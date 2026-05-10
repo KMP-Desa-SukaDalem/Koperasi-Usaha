@@ -1,0 +1,51 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+
+<div class="main-content">
+  <div class="top-header">
+    <div>
+      <button class="btn btn-link d-lg-none p-0 me-3" onclick="toggleSidebar()" style="color:var(--on-surface);"><span class="material-symbols-outlined">menu</span></button>
+      <h1 class="page-title d-inline-block">Tambah Supplier</h1>
+    </div>
+    <a href="/supplier" class="btn btn-secondary">
+      <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">arrow_back</span> Kembali
+    </a>
+  </div>
+  <div class="content-wrapper">
+    <% if (error && error.length > 0) { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert"><%= error %><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+    <% } %>
+    <div class="card" style="max-width:600px;">
+      <div class="card-body">
+        <form action="/supplier" method="POST">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <div class="mb-3">
+            <label for="nama_toko" class="form-label">Nama Toko / Perusahaan <span style="color:var(--error);">*</span></label>
+            <input type="text" class="form-control" id="nama_toko" name="nama_toko" placeholder="Nama toko atau instansi" required>
+          </div>
+          <div class="mb-3">
+            <label for="nama_penanggung_jawab" class="form-label">Penanggung Jawab <span style="color:var(--error);">*</span></label>
+            <input type="text" class="form-control" id="nama_penanggung_jawab" name="nama_penanggung_jawab" placeholder="Nama narahubung" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email (Opsional)">
+          </div>
+          <div class="mb-3">
+            <label for="nomor_telepon" class="form-label">Nomor Telepon <span style="color:var(--error);">*</span></label>
+            <input type="text" class="form-control" id="nomor_telepon" name="nomor_telepon" placeholder="Contoh: 08123456789" required>
+          </div>
+          <div class="mb-4">
+            <label for="alamat" class="form-label">Alamat Lengkap <span style="color:var(--error);">*</span></label>
+            <textarea class="form-control" id="alamat" name="alamat" rows="3" placeholder="Alamat supplier" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">save</span> Simpan
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

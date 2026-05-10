@@ -1,0 +1,61 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+
+<div class="main-content">
+  <div class="top-header">
+    <div>
+      <button class="btn btn-link d-lg-none p-0 me-3" onclick="toggleSidebar()" style="color:var(--on-surface);"><span class="material-symbols-outlined">menu</span></button>
+      <h1 class="page-title d-inline-block">Edit Pengguna</h1>
+    </div>
+    <a href="/users" class="btn btn-secondary">
+      <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">arrow_back</span> Kembali
+    </a>
+  </div>
+  <div class="content-wrapper">
+    <% if (error.length > 0) { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert"><%= error %><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+    <% } %>
+    <div class="card" style="max-width:600px;">
+      <div class="card-body">
+        <form action="/users/edit/<%= editUser.id %>" method="POST">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <div class="mb-3">
+            <label for="nama_lengkap" class="form-label">Nama Lengkap <span style="color:var(--error);">*</span></label>
+            <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="<%= editUser.nama_lengkap %>" required>
+          </div>
+          <div class="mb-3">
+            <label for="username" class="form-label">Username <span style="color:var(--error);">*</span></label>
+            <input type="text" class="form-control" id="username" name="username" value="<%= editUser.username %>" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="<%= editUser.email %>" placeholder="contoh@email.com">
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password Baru</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Kosongkan jika tidak ingin mengubah">
+            <small class="text-secondary">Kosongkan jika tidak ingin mengubah password.</small>
+          </div>
+          <div class="mb-4">
+            <label for="role" class="form-label">Role <span style="color:var(--error);">*</span></label>
+            <select class="form-select" id="role" name="role" required>
+              <% if (user.role === 'admin') { %>
+                <option value="admin" <%= editUser.role === 'admin' ? 'selected' : '' %>>Admin</option>
+              <% } else if (editUser.role === 'admin') { %>
+                <option value="admin" selected>Admin</option>
+              <% } %>
+              <option value="pengurus" <%= editUser.role === 'pengurus' ? 'selected' : '' %>>Pengurus</option>
+              <option value="operator" <%= editUser.role === 'operator' ? 'selected' : '' %>>Operator</option>
+              <option value="auditor" <%= editUser.role === 'auditor' ? 'selected' : '' %>>Auditor</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">save</span> Perbarui
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

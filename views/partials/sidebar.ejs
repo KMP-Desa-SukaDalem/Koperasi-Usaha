@@ -1,0 +1,94 @@
+<%
+  // Determine which nav item is active based on current URL
+  const currentPath = typeof currentPage !== 'undefined' ? currentPage : '';
+%>
+
+<!-- Sidebar Overlay (Mobile) -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <!-- Brand -->
+  <div class="sidebar-brand">
+    <div class="brand-logo">
+      <span class="material-symbols-outlined">account_balance</span>
+    </div>
+    <div class="brand-text">
+      <h6>Koperasi</h6>
+      <small>Desa Sukadalem</small>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="sidebar-nav">
+    <div class="nav-section-title">Menu Utama</div>
+
+    <a href="/dashboard" class="nav-link <%= currentPath === 'dashboard' ? 'active' : '' %>">
+      <span class="material-symbols-outlined">dashboard</span>
+      Dashboard
+    </a>
+
+    <% if (user && ['admin', 'operator'].includes(user.role)) { %>
+      <a href="/unit-usaha" class="nav-link <%= currentPath === 'unit-usaha' ? 'active' : '' %>">
+        <span class="material-symbols-outlined">storefront</span>
+        Unit Usaha
+      </a>
+
+      <a href="/barang" class="nav-link <%= currentPath === 'barang' ? 'active' : '' %>">
+        <span class="material-symbols-outlined">inventory_2</span>
+        Barang
+      </a>
+
+      <a href="/transaksi" class="nav-link <%= currentPath === 'transaksi' ? 'active' : '' %>">
+        <span class="material-symbols-outlined">receipt_long</span>
+        Transaksi
+      </a>
+    <% } %>
+
+    <% if (user && ['admin', 'pengurus', 'auditor'].includes(user.role)) { %>
+      <div class="nav-section-title mt-3">Pelaporan</div>
+
+      <a href="/laporan" class="nav-link <%= currentPath === 'laporan' ? 'active' : '' %>">
+        <span class="material-symbols-outlined">analytics</span>
+        Laporan
+      </a>
+    <% } %>
+
+    <div class="nav-section-title mt-3">Administrasi</div>
+
+    <% if (user && ['admin', 'pengurus'].includes(user.role)) { %>
+      <a href="/users" class="nav-link <%= currentPath === 'users' ? 'active' : '' %>">
+        <span class="material-symbols-outlined">group</span>
+        Pengguna
+      </a>
+    <% } %>
+    
+    <a href="/anggota" class="nav-link <%= currentPath === 'anggota' ? 'active' : '' %>">
+      <span class="material-symbols-outlined">contacts</span>
+      Data Anggota
+    </a>
+    <a href="/supplier" class="nav-link <%= currentPath === 'supplier' ? 'active' : '' %>">
+      <span class="material-symbols-outlined">local_shipping</span>
+      Data Supplier
+    </a>
+  </nav>
+
+  <!-- Sidebar Footer -->
+  <div class="sidebar-footer">
+    <% if (user) { %>
+      <div class="user-info">
+        <div class="user-avatar">
+          <%= user.nama_lengkap ? user.nama_lengkap.charAt(0).toUpperCase() : 'U' %>
+        </div>
+        <div>
+          <div class="user-name"><%= user.nama_lengkap || 'User' %></div>
+          <div class="user-role"><%= user.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : '' %></div>
+        </div>
+      </div>
+    <% } %>
+    <a href="/logout" class="nav-link mt-2" style="color: rgba(255,255,255,0.6);">
+      <span class="material-symbols-outlined">logout</span>
+      Keluar
+    </a>
+  </div>
+</aside>

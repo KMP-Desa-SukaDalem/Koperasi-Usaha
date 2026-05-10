@@ -1,0 +1,122 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+
+<div class="main-content">
+  <div class="top-header">
+    <div>
+      <button class="btn btn-link d-lg-none p-0 me-3" onclick="toggleSidebar()" style="color:var(--on-surface);"><span class="material-symbols-outlined">menu</span></button>
+      <h1 class="page-title d-inline-block">Manajemen Barang</h1>
+    </div>
+    <a href="/barang/tambah" class="btn btn-primary">
+      <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">add</span> Tambah Barang
+    </a>
+  </div>
+
+  <div class="content-wrapper">
+    <% if (success.length > 0) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert"><%= success %><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+    <% } %>
+    <% if (error.length > 0) { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert"><%= error %><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+    <% } %>
+
+    <div class="card">
+      <div class="card-body p-0">
+        <% if (barang.length > 0) { %>
+          <div class="table-responsive">
+            <table class="table mb-0">
+              <thead>
+                <tr>
+                  <th style="width:50px;">No</th>
+                  <th>Nama Barang</th>
+                  <th>Unit Usaha</th>
+                  <th class="text-end">Harga Beli</th>
+                  <th class="text-end">Harga Jual</th>
+                  <th class="text-center">Stok</th>
+                  <th style="width:150px;" class="text-center">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% barang.forEach((item, i) => { %>
+                  <tr>
+                    <td><%= i + 1 %></td>
+                    <td><strong><%= item.nama_barang %></strong></td>
+                    <td><small class="text-secondary"><%= item.nama_unit %></small></td>
+                    <td class="text-end">Rp <%= Number(item.harga_beli).toLocaleString('id-ID') %></td>
+                    <td class="text-end">Rp <%= Number(item.harga_jual).toLocaleString('id-ID') %></td>
+                    <td class="text-center">
+                      <% if (item.stok < 10) { %>
+                        <span class="badge" style="background-color:#fef3c7;color:#92400e;"><%= item.stok %></span>
+                      <% } else { %>
+                        <span class="badge" style="background-color:#d1fae5;color:#059669;"><%= item.stok %></span>
+                      <% } %>
+                    </td>
+                    <td class="text-center">
+                      <a href="/barang/edit/<%= item.id %>" class="btn btn-sm btn-outline-primary me-1" title="Edit">
+                        <span class="material-symbols-outlined" style="font-size:1rem;">edit</span>
+                      </a>
+                      <button type="button" class="btn btn-sm btn-danger btn-delete"
+                        data-bs-toggle="modal" data-bs-target="#deleteModal"
+                        data-id="<%= item.id %>" data-nama="<%= item.nama_barang %>">
+                        <span class="material-symbols-outlined" style="font-size:1rem;">delete</span>
+                      </button>
+                    </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        <% } else { %>
+          <div class="empty-state">
+            <div class="empty-icon"><span class="material-symbols-outlined">inventory_2</span></div>
+            <h5>Belum Ada Barang</h5>
+            <p>Klik tombol "Tambah Barang" untuk menambahkan barang baru.</p>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">
+          <span class="material-symbols-outlined me-2" style="vertical-align:middle;color:var(--error);">warning</span>
+          Konfirmasi Hapus
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Yakin ingin menghapus barang <strong id="deleteItemName"></strong>?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        <form id="deleteForm" method="POST" style="display:inline;">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <button type="submit" class="btn btn-danger">
+            <span class="material-symbols-outlined me-1" style="font-size:1rem;vertical-align:middle;">delete</span>
+            Hapus
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const deleteModal = document.getElementById('deleteModal');
+    deleteModal.addEventListener('show.bs.modal', function(event) {
+      const button = event.relatedTarget;
+      const id = button.getAttribute('data-id');
+      const nama = button.getAttribute('data-nama');
+      document.getElementById('deleteItemName').textContent = nama;
+      document.getElementById('deleteForm').action = '/barang/delete/' + id;
+    });
+  });
+</script>
+
+<%- include('../partials/footer') %>

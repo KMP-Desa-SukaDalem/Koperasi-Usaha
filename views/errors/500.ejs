@@ -1,0 +1,20 @@
+<%- include('../partials/header') %>
+
+<div class="error-page">
+  <div>
+    <div class="error-code">500</div>
+    <h3 class="mt-3 font-headline">Terjadi Kesalahan Server</h3>
+    <p class="text-secondary mt-2 mb-4">Maaf, terjadi kesalahan internal. Silakan coba lagi beberapa saat.</p>
+    <% if (typeof error !== 'undefined' && error.message) { %>
+      <div class="alert alert-danger text-start mb-4" style="max-width:500px;margin:0 auto;">
+        <small><strong>Detail:</strong> <%= error.message %></small>
+      </div>
+    <% } %>
+    <a href="/dashboard" class="btn btn-primary">
+      <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">arrow_back</span>
+      Kembali ke Dashboard
+    </a>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,54 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+
+<div class="main-content">
+  <div class="top-header">
+    <div>
+      <button class="btn btn-link d-lg-none p-0 me-3" onclick="toggleSidebar()" style="color:var(--on-surface);"><span class="material-symbols-outlined">menu</span></button>
+      <h1 class="page-title d-inline-block">Edit Barang</h1>
+    </div>
+    <a href="/barang" class="btn btn-secondary">
+      <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">arrow_back</span> Kembali
+    </a>
+  </div>
+  <div class="content-wrapper">
+    <div class="card" style="max-width:600px;">
+      <div class="card-body">
+        <form action="/barang/edit/<%= item.id %>" method="POST">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <div class="mb-3">
+            <label for="unit_usaha_id" class="form-label">Unit Usaha <span style="color:var(--error);">*</span></label>
+            <select class="form-select" id="unit_usaha_id" name="unit_usaha_id" required>
+              <% units.forEach(u => { %>
+                <option value="<%= u.id %>" <%= u.id === item.unit_usaha_id ? 'selected' : '' %>><%= u.nama_unit %></option>
+              <% }) %>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="nama_barang" class="form-label">Nama Barang <span style="color:var(--error);">*</span></label>
+            <input type="text" class="form-control" id="nama_barang" name="nama_barang" value="<%= item.nama_barang %>" required>
+          </div>
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <label for="harga_beli" class="form-label">Harga Beli (Rp)</label>
+              <input type="number" class="form-control" id="harga_beli" name="harga_beli" min="0" value="<%= item.harga_beli %>">
+            </div>
+            <div class="col-md-6">
+              <label for="harga_jual" class="form-label">Harga Jual (Rp)</label>
+              <input type="number" class="form-control" id="harga_jual" name="harga_jual" min="0" value="<%= item.harga_jual %>">
+            </div>
+          </div>
+          <div class="mb-4">
+            <label for="stok" class="form-label">Stok</label>
+            <input type="number" class="form-control" id="stok" name="stok" min="0" value="<%= item.stok %>" style="max-width:200px;">
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">save</span> Perbarui
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

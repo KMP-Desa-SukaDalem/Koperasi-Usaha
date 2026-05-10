@@ -1,0 +1,190 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+
+<div class="main-content">
+  <div class="top-header">
+    <div>
+      <button class="btn btn-link d-lg-none p-0 me-3" onclick="toggleSidebar()" style="color:var(--on-surface);"><span class="material-symbols-outlined">menu</span></button>
+      <h1 class="page-title d-inline-block">Manajemen Pengguna</h1>
+    </div>
+    <div class="d-flex align-items-center">
+      <a href="/users/riwayat" class="btn btn-outline-primary me-2">
+        <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">history</span> Riwayat Aktivitas
+      </a>
+      <a href="/users/tambah" class="btn btn-primary">
+        <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">person_add</span> Tambah Pengguna
+      </a>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+    <!-- Search Bar -->
+    <div class="mb-4">
+      <form action="/users" method="GET" class="row g-2">
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0">
+              <span class="material-symbols-outlined text-muted" style="font-size: 1.25rem;">search</span>
+            </span>
+            <input type="text" name="search" class="form-control border-start-0 ps-0" placeholder="Cari Nama / Username / Email..." value="<%= search %>">
+          </div>
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary w-100">Cari</button>
+        </div>
+        <% if (search) { %>
+          <div class="col-md-2">
+            <a href="/users" class="btn btn-outline-secondary w-100">Reset</a>
+          </div>
+        <% } %>
+      </form>
+    </div>
+
+    <!-- Role Explanation Callout -->
+    <div class="alert alert-info border-0 shadow-sm mb-4" style="background-color: #f8f9fa; border-left: 5px solid var(--primary) !important;">
+      <div class="d-flex">
+        <span class="material-symbols-outlined me-3 text-primary" style="font-size: 2rem;">info</span>
+        <div>
+          <h6 class="fw-bold text-dark mb-2">Informasi Hak Akses Role:</h6>
+          <div class="row small text-muted">
+            <div class="col-md-6 mb-2">
+              <strong>• Admin:</strong> Hak akses penuh ke seluruh fitur dan konfigurasi sistem.
+            </div>
+            <div class="col-md-6 mb-2">
+              <strong>• Pengurus:</strong> Memantau laporan, melihat dashboard, dan mengelola data pengguna (terbatas).
+            </div>
+            <div class="col-md-6 mb-2">
+              <strong>• Operator:</strong> Bertugas menginput data master (barang/unit) dan melakukan transaksi kasir penjualan.
+            </div>
+            <div class="col-md-6 mb-2">
+              <strong>• Auditor:</strong> Hanya memiliki akses khusus untuk melihat dan mengunduh laporan keuangan/transaksi.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% if (success.length > 0) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert"><%= success %><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+    <% } %>
+    <% if (error.length > 0) { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert"><%= error %><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+    <% } %>
+
+    <div class="card">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th style="width:50px;">No</th>
+                <th>Username</th>
+                <th>Nama Lengkap</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Dibuat</th>
+                <th style="width:150px;" class="text-center">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (users.length === 0) { %>
+                <tr>
+                  <td colspan="7" class="text-center py-4 text-muted">
+                    <span class="material-symbols-outlined d-block mb-2" style="font-size: 3rem; opacity: 0.3;">search_off</span>
+                    Data tidak ditemukan.
+                  </td>
+                </tr>
+              <% } %>
+              <% users.forEach((u, i) => { %>
+                <tr>
+                  <td><%= i + 1 %></td>
+                  <td><strong><%= u.username %></strong></td>
+                  <td><%= u.nama_lengkap %></td>
+                  <td><span class="text-muted small"><%= u.email || '-' %></span></td>
+                  <td>
+                    <% if (u.role === 'admin') { %>
+                      <span class="badge badge-role-admin">Admin</span>
+                    <% } else if (u.role === 'pengurus') { %>
+                      <span class="badge badge-role-pengurus">Pengurus</span>
+                    <% } else if (u.role === 'operator') { %>
+                      <span class="badge badge-role-operator">Operator</span>
+                    <% } else { %>
+                      <span class="badge badge-role-auditor">Auditor</span>
+                    <% } %>
+                  </td>
+                  <td><%= new Date(u.created_at).toLocaleDateString('id-ID') %></td>
+                  <td class="text-center">
+                    <% if (user.role === 'admin' || (user.role === 'pengurus' && u.role !== 'admin')) { %>
+                      <a href="/users/edit/<%= u.id %>" class="btn btn-sm btn-outline-primary me-1" title="Edit">
+                        <span class="material-symbols-outlined" style="font-size:1rem;">edit</span>
+                      </a>
+                      <% if (u.id !== user.id) { %>
+                        <button type="button" class="btn btn-sm btn-danger btn-delete"
+                          data-bs-toggle="modal" data-bs-target="#deleteModal"
+                          data-id="<%= u.id %>" data-nama="<%= u.nama_lengkap %>">
+                          <span class="material-symbols-outlined" style="font-size:1rem;">delete</span>
+                        </button>
+                      <% } %>
+                    <% } else { %>
+                      <button class="btn btn-sm btn-outline-secondary me-1" disabled title="Edit dilarang">
+                        <span class="material-symbols-outlined" style="font-size:1rem;">edit</span>
+                      </button>
+                      <% if (u.id !== user.id) { %>
+                        <button type="button" class="btn btn-sm btn-secondary" disabled title="Hapus dilarang">
+                          <span class="material-symbols-outlined" style="font-size:1rem;">delete</span>
+                        </button>
+                      <% } %>
+                    <% } %>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">
+          <span class="material-symbols-outlined me-2" style="vertical-align:middle;color:var(--error);">warning</span>
+          Konfirmasi Hapus
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Yakin ingin menghapus pengguna <strong id="deleteItemName"></strong>?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        <form id="deleteForm" method="POST" style="display:inline;">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <button type="submit" class="btn btn-danger">
+            <span class="material-symbols-outlined me-1" style="font-size:1rem;vertical-align:middle;">delete</span>
+            Hapus
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const deleteModal = document.getElementById('deleteModal');
+    deleteModal.addEventListener('show.bs.modal', function(event) {
+      const button = event.relatedTarget;
+      const id = button.getAttribute('data-id');
+      const nama = button.getAttribute('data-nama');
+      document.getElementById('deleteItemName').textContent = nama;
+      document.getElementById('deleteForm').action = '/users/delete/' + id;
+    });
+  });
+</script>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,47 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+
+<div class="main-content">
+  <div class="top-header">
+    <div>
+      <button class="btn btn-link d-lg-none p-0 me-3" onclick="toggleSidebar()" style="color:var(--on-surface);"><span class="material-symbols-outlined">menu</span></button>
+      <h1 class="page-title d-inline-block">Tambah Anggota</h1>
+    </div>
+    <a href="/anggota" class="btn btn-secondary">
+      <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">arrow_back</span> Kembali
+    </a>
+  </div>
+  <div class="content-wrapper">
+    <% if (error && error.length > 0) { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert"><%= error %><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+    <% } %>
+    <div class="card" style="max-width:600px;">
+      <div class="card-body">
+        <form action="/anggota" method="POST">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <div class="mb-3">
+            <label for="nik" class="form-label">NIK <span style="color:var(--error);">*</span></label>
+            <input type="text" class="form-control" id="nik" name="nik" placeholder="Nomor Induk Kependudukan" required>
+          </div>
+          <div class="mb-3">
+            <label for="nama_lengkap" class="form-label">Nama Lengkap <span style="color:var(--error);">*</span></label>
+            <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" placeholder="Nama lengkap anggota" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email <span style="color:var(--error);">*</span></label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email anggota" required>
+          </div>
+          <div class="mb-4">
+            <label for="nomor_telepon" class="form-label">Nomor Telepon <span style="color:var(--error);">*</span></label>
+            <input type="text" class="form-control" id="nomor_telepon" name="nomor_telepon" placeholder="Contoh: 08123456789" required>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">save</span> Simpan
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

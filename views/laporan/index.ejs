@@ -1,0 +1,163 @@
+<%- include('../partials/header') %>
+  <%- include('../partials/sidebar') %>
+
+    <div class="main-content">
+      <div class="top-header">
+        <div>
+          <button class="btn btn-link d-lg-none p-0 me-3" onclick="toggleSidebar()"
+            style="color:var(--on-surface);"><span class="material-symbols-outlined">menu</span></button>
+          <h1 class="page-title d-inline-block">Laporan Penjualan</h1>
+        </div>
+        <button class="btn btn-primary no-print" onclick="window.print()">
+          <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">print</span>
+          Cetak / Unduh
+        </button>
+      </div>
+
+      <div class="content-wrapper">
+        <!-- Filter -->
+        <div class="card mb-4 no-print">
+          <div class="card-body">
+            <form method="GET" action="/laporan" class="row g-3 align-items-end">
+              <div class="col-md-3">
+                <label for="startDate" class="form-label">Dari Tanggal</label>
+                <input type="date" class="form-control" id="startDate" name="startDate"
+                  value="<%= filters.startDate %>">
+              </div>
+              <div class="col-md-3">
+                <label for="endDate" class="form-label">Sampai Tanggal</label>
+                <input type="date" class="form-control" id="endDate" name="endDate" value="<%= filters.endDate %>">
+              </div>
+              <div class="col-md-3">
+                <label for="unitId" class="form-label">Unit Usaha</label>
+                <select class="form-select" id="unitId" name="unitId">
+                  <option value="">Semua Unit</option>
+                  <% units.forEach(u=> { %>
+                    <option value="<%= u.id %>" <%=filters.unitId==u.id ? 'selected' : '' %>><%= u.nama_unit %>
+                    </option>
+                    <% }) %>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <button type="submit" class="btn btn-primary me-2">
+                  <span class="material-symbols-outlined me-1"
+                    style="font-size:1rem;vertical-align:middle;">filter_alt</span> Filter
+                </button>
+                <a href="/laporan" class="btn btn-secondary">Reset</a>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Ringkasan -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-6">
+            <div class="stat-card">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="stat-icon primary">
+                  <span class="material-symbols-outlined">paid</span>
+                </div>
+              </div>
+              <div class="stat-value">Rp <%= Number(totalPendapatan).toLocaleString('id-ID') %>
+              </div>
+              <div class="stat-label mt-1">Total Pendapatan</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="stat-card">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="stat-icon info">
+                  <span class="material-symbols-outlined">receipt_long</span>
+                </div>
+              </div>
+              <div class="stat-value">
+                <%= totalTransaksi %>
+              </div>
+              <div class="stat-label mt-1">Total Transaksi</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pendapatan per Unit -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <h5 class="mb-0">
+              <span class="material-symbols-outlined me-2"
+                style="vertical-align:middle;color:var(--primary);">storefront</span>
+              Pendapatan per Unit Usaha
+            </h5>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table mb-0">
+                <thead>
+                  <tr>
+                    <th>Unit Usaha</th>
+                    <th class="text-center">Jumlah Transaksi</th>
+                    <th class="text-end">Total Pendapatan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% laporanUnit.forEach(u=> { %>
+                    <tr>
+                      <td><strong>
+                          <%= u.nama_unit %>
+                        </strong></td>
+                      <td class="text-center">
+                        <%= u.jumlah_transaksi %>
+                      </td>
+                      <td class="text-end"><strong>Rp <%= Number(u.total_pendapatan).toLocaleString('id-ID') %></strong>
+                      </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detail per Barang -->
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0">
+              <span class="material-symbols-outlined me-2"
+                style="vertical-align:middle;color:var(--primary);">inventory_2</span>
+              Detail Penjualan per Barang
+            </h5>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table mb-0">
+                <thead>
+                  <tr>
+                    <th>Barang</th>
+                    <th>Unit</th>
+                    <th class="text-center">Total Terjual</th>
+                    <th class="text-end">Total Pendapatan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% laporanBarang.forEach(b=> { %>
+                    <tr>
+                      <td><strong>
+                          <%= b.nama_barang %>
+                        </strong></td>
+                      <td><small class="text-secondary">
+                          <%= b.nama_unit %>
+                        </small></td>
+                      <td class="text-center">
+                        <%= b.total_terjual %>
+                      </td>
+                      <td class="text-end"><strong>Rp <%= Number(b.total_pendapatan).toLocaleString('id-ID') %></strong>
+                      </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include('../partials/footer') %>

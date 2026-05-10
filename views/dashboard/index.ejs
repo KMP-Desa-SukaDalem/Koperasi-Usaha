@@ -1,0 +1,190 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+
+<div class="main-content">
+  <!-- Top Header -->
+  <div class="top-header">
+    <div>
+      <button class="btn btn-link d-lg-none p-0 me-3" onclick="toggleSidebar()" style="color:var(--on-surface);">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <h1 class="page-title d-inline-block">Dashboard</h1>
+    </div>
+    <div class="d-flex align-items-center gap-3">
+      <span style="font-size:0.8125rem;color:var(--text-secondary);">
+        <span class="material-symbols-outlined me-1" style="font-size:1rem;vertical-align:middle;">calendar_today</span>
+        <%= new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %>
+      </span>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content-wrapper">
+    <!-- Flash Messages -->
+    <% if (success.length > 0) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= success %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    <% } %>
+    <% if (error.length > 0) { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= error %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    <% } %>
+
+    <!-- Welcome -->
+    <div class="mb-4">
+      <h4 class="font-headline mb-1">Selamat datang, <%= user.nama_lengkap %>!</h4>
+      <p style="color:var(--text-secondary);font-size:0.9375rem;">Ringkasan aktivitas Koperasi Desa Sukadalem</p>
+    </div>
+
+    <!-- Stat Cards -->
+    <div class="row g-4 mb-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="stat-card">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <div class="stat-icon primary">
+              <span class="material-symbols-outlined">paid</span>
+            </div>
+          </div>
+          <div class="stat-value">Rp <%= Number(totalPendapatan).toLocaleString('id-ID') %></div>
+          <div class="stat-label mt-1">Pendapatan Bulan Ini</div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="stat-card">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <div class="stat-icon success">
+              <span class="material-symbols-outlined">storefront</span>
+            </div>
+          </div>
+          <div class="stat-value"><%= totalUnit %></div>
+          <div class="stat-label mt-1">Total Unit Usaha</div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="stat-card">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <div class="stat-icon info">
+              <span class="material-symbols-outlined">inventory_2</span>
+            </div>
+          </div>
+          <div class="stat-value"><%= totalBarang %></div>
+          <div class="stat-label mt-1">Total Barang</div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="stat-card">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <div class="stat-icon warning">
+              <span class="material-symbols-outlined">receipt_long</span>
+            </div>
+          </div>
+          <div class="stat-value"><%= transaksiHariIni %></div>
+          <div class="stat-label mt-1">Transaksi Hari Ini</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- Recent Transactions -->
+      <div class="col-lg-7">
+        <div class="card">
+          <div class="card-header d-flex align-items-center justify-content-between">
+            <h5 class="mb-0">
+              <span class="material-symbols-outlined me-2" style="vertical-align:middle;color:var(--primary);">receipt_long</span>
+              Transaksi Terbaru
+            </h5>
+            <% if (user.role === 'admin' || user.role === 'operator') { %>
+              <a href="/transaksi/riwayat" class="btn btn-sm btn-outline-primary">Lihat Semua</a>
+            <% } %>
+          </div>
+          <div class="card-body p-0">
+            <% if (recentTransaksi.length > 0) { %>
+              <div class="table-responsive">
+                <table class="table mb-0">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Kasir</th>
+                      <th>Tanggal</th>
+                      <th class="text-end">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% recentTransaksi.forEach(t => { %>
+                      <tr>
+                        <td><strong>#<%= t.id %></strong></td>
+                        <td><%= t.kasir %></td>
+                        <td><%= new Date(t.tanggal_transaksi).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) %></td>
+                        <td class="text-end"><strong>Rp <%= Number(t.total_harga).toLocaleString('id-ID') %></strong></td>
+                      </tr>
+                    <% }) %>
+                  </tbody>
+                </table>
+              </div>
+            <% } else { %>
+              <div class="empty-state">
+                <div class="empty-icon">
+                  <span class="material-symbols-outlined">receipt_long</span>
+                </div>
+                <h5>Belum Ada Transaksi</h5>
+                <p>Transaksi akan muncul di sini setelah kasir melakukan penjualan.</p>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Low Stock Alert -->
+      <div class="col-lg-5">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0">
+              <span class="material-symbols-outlined me-2" style="vertical-align:middle;color:#d97706;">warning</span>
+              Stok Rendah
+            </h5>
+          </div>
+          <div class="card-body p-0">
+            <% if (lowStockItems.length > 0) { %>
+              <div class="table-responsive">
+                <table class="table mb-0">
+                  <thead>
+                    <tr>
+                      <th>Barang</th>
+                      <th>Unit</th>
+                      <th class="text-center">Stok</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% lowStockItems.forEach(item => { %>
+                      <tr>
+                        <td><%= item.nama_barang %></td>
+                        <td><small class="text-secondary"><%= item.nama_unit %></small></td>
+                        <td class="text-center">
+                          <span class="badge" style="background-color:#fef3c7;color:#92400e;"><%= item.stok %></span>
+                        </td>
+                      </tr>
+                    <% }) %>
+                  </tbody>
+                </table>
+              </div>
+            <% } else { %>
+              <div class="empty-state">
+                <div class="empty-icon">
+                  <span class="material-symbols-outlined">check_circle</span>
+                </div>
+                <h5>Stok Aman</h5>
+                <p>Semua barang memiliki stok yang cukup.</p>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

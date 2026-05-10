@@ -1,0 +1,411 @@
+<%- include('../partials/header') %>
+  <%- include('../partials/sidebar') %>
+
+    <div class="main-content">
+      <div class="top-header">
+        <div>
+          <button class="btn btn-link d-lg-none p-0 me-3" onclick="toggleSidebar()"
+            style="color:var(--on-surface);"><span class="material-symbols-outlined">menu</span></button>
+          <h1 class="page-title d-inline-block">Transaksi Penjualan</h1>
+        </div>
+        <a href="/transaksi/riwayat" class="btn btn-secondary">
+          <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">history</span>
+          Riwayat
+        </a>
+      </div>
+
+      <div class="content-wrapper">
+        <div id="alert-container"></div>
+
+        <div class="row g-4">
+          <!-- Pilih Barang -->
+          <div class="col-lg-7">
+            <div class="card">
+              <div class="card-header d-flex align-items-center justify-content-between">
+                <h5 class="mb-0">
+                  <span class="material-symbols-outlined me-2"
+                    style="vertical-align:middle;color:var(--primary);">inventory_2</span>
+                  Pilih Barang
+                </h5>
+                <select class="form-select" id="filterUnit" style="max-width:220px;">
+                  <option value="">Semua Unit</option>
+                  <% units.forEach(u=> { %>
+                    <option value="<%= u.id %>">
+                      <%= u.nama_unit %>
+                    </option>
+                    <% }) %>
+                </select>
+              </div>
+              <div class="card-body p-0">
+                <div class="table-responsive" style="max-height:400px;overflow-y:auto;">
+                  <table class="table mb-0">
+                    <thead style="position:sticky;top:0;background:var(--surface-container-low);z-index:1;">
+                      <tr>
+                        <th>Barang</th>
+                        <th>Unit</th>
+                        <th class="text-end">Harga</th>
+                        <th class="text-center">Stok</th>
+                        <th class="text-center" style="width:80px;">Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody id="barangList">
+                      <% barang.forEach(item=> { %>
+                        <tr data-id="<%= item.id %>" data-nama="<%= item.nama_barang %>"
+                          data-harga="<%= item.harga_jual %>" data-stok="<%= item.stok %>"
+                          data-unit="<%= item.unit_usaha_id %>">
+                          <td><strong>
+                              <%= item.nama_barang %>
+                            </strong></td>
+                          <td><small class="text-secondary">
+                              <%= item.nama_unit %>
+                            </small></td>
+                          <td class="text-end">Rp <%= Number(item.harga_jual).toLocaleString('id-ID') %>
+                          </td>
+                          <td class="text-center">
+                            <%= item.stok %>
+                          </td>
+                          <td class="text-center">
+                            <button class="btn btn-sm btn-primary btn-add-item" onclick="addToCart(this)" <%=item.stok
+                              <=0 ? 'disabled' : '' %>>
+                              <span class="material-symbols-outlined" style="font-size:1rem;">add</span>
+                            </button>
+                          </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Keranjang -->
+          <div class="col-lg-5">
+            <div class="card" style="position:sticky;top:80px;">
+              <div class="card-header">
+                <h5 class="mb-0">
+                  <span class="material-symbols-outlined me-2"
+                    style="vertical-align:middle;color:var(--primary);">shopping_cart</span>
+                  Keranjang
+                </h5>
+              </div>
+              <div class="card-body p-0">
+                <div id="cartEmpty" class="empty-state" style="padding:2rem;">
+                  <div class="empty-icon"><span class="material-symbols-outlined">shopping_cart</span></div>
+                  <h5>Keranjang Kosong</h5>
+                  <p>Klik tombol + untuk menambahkan barang.</p>
+                </div>
+                <div id="cartTable" style="display:none;">
+                  <div class="table-responsive">
+                    <table class="table mb-0">
+                      <thead>
+                        <tr>
+                          <th>Barang</th>
+                          <th class="text-center" style="width:100px;">Qty</th>
+                          <th class="text-end">Subtotal</th>
+                          <th style="width:40px;"></th>
+                        </tr>
+                      </thead>
+                      <tbody id="cartBody"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body pt-0" id="cartFooter" style="display:none;">
+                <div class="d-flex justify-content-between align-items-center p-3 mb-3"
+                  style="background:var(--surface-container-low);border-radius:var(--radius-md);">
+                  <span class="font-headline" style="font-weight:700;font-size:1rem;">TOTAL</span>
+                  <span class="font-headline" style="font-weight:800;font-size:1.25rem;color:var(--primary);"
+                    id="totalHarga">Rp 0</span>
+                </div>
+                <button class="btn btn-primary w-100" id="btnBayar" onclick="bukaModalPembayaran()">
+                  <span class="material-symbols-outlined me-1"
+                    style="font-size:1.125rem;vertical-align:middle;">payments</span>
+                  Proses Pembayaran
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Pembayaran -->
+    <div class="modal fade" id="modalPembayaran" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Konfirmasi Pembayaran</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label">Total Tagihan</label>
+              <h3 id="modalTotalTagihan" class="text-primary mb-0">Rp 0</h3>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Metode Pembayaran</label>
+              <select class="form-select" id="metodePembayaran" onchange="toggleCashInput()">
+                <option value="Cash">Cash</option>
+                <!-- untuk menggunakan metode transfer nanti bisa diubah dengan cara hapus simbol komen  -->
+                <!-- <option value="Transfer">Transfer</option> -->
+              </select>
+            </div>
+            <div id="cashInputGroup">
+              <div class="mb-3">
+                <label class="form-label">Nominal Uang (Rp)</label>
+                <input type="number" class="form-control" id="nominalBayar" placeholder="Masukkan jumlah uang"
+                  oninput="hitungKembalian()">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Kembalian</label>
+                <h4 id="kembalian" class="text-success mb-0">Rp 0</h4>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary" id="btnKonfirmasiBayar" onclick="prosesTransaksi()">
+              <span class="material-symbols-outlined me-1"
+                style="vertical-align:middle;font-size:1rem;">check_circle</span> Konfirmasi & Bayar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Cetak Struk -->
+    <div class="modal fade" id="modalStruk" tabindex="-1" data-bs-backdrop="static">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content text-center p-4">
+          <div class="mb-3">
+            <span class="material-symbols-outlined text-success" style="font-size:4rem;">check_circle</span>
+          </div>
+          <h5 class="mb-3">Transaksi Berhasil!</h5>
+          <p class="text-secondary mb-4" id="pesanSukses"></p>
+          <div class="d-grid gap-2">
+            <button type="button" class="btn btn-primary" id="btnCetakStruk" onclick="cetakStruk()">
+              <span class="material-symbols-outlined me-1" style="vertical-align:middle;">print</span> Cetak Struk
+            </button>
+            <button type="button" class="btn btn-outline-secondary" onclick="tutupStrukDanReload()">Selesai</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let cart = [];
+
+      // Filter barang berdasarkan unit
+      document.getElementById('filterUnit').addEventListener('change', function () {
+        const unitId = this.value;
+        const rows = document.querySelectorAll('#barangList tr');
+        rows.forEach(row => {
+          if (!unitId || row.dataset.unit === unitId) {
+            row.style.display = '';
+          } else {
+            row.style.display = 'none';
+          }
+        });
+      });
+
+      function addToCart(btn) {
+        const row = btn.closest('tr');
+        const id = parseInt(row.dataset.id);
+        const nama = row.dataset.nama;
+        const harga = parseFloat(row.dataset.harga);
+        const stok = parseInt(row.dataset.stok);
+
+        const existing = cart.find(c => c.barang_id === id);
+        if (existing) {
+          if (existing.qty >= stok) {
+            showAlert('danger', 'Stok tidak mencukupi!');
+            return;
+          }
+          existing.qty++;
+        } else {
+          cart.push({ barang_id: id, nama, harga, qty: 1, stok });
+        }
+        renderCart();
+      }
+
+      function removeFromCart(index) {
+        cart.splice(index, 1);
+        renderCart();
+      }
+
+      function updateQty(index, newQty) {
+        newQty = parseInt(newQty);
+        if (newQty <= 0) {
+          cart.splice(index, 1);
+        } else if (newQty > cart[index].stok) {
+          showAlert('danger', 'Qty melebihi stok tersedia!');
+          return;
+        } else {
+          cart[index].qty = newQty;
+        }
+        renderCart();
+      }
+
+      let totalBelanja = 0;
+      let transaksiSuksesId = null;
+
+      function renderCart() {
+        const cartBody = document.getElementById('cartBody');
+        const cartEmpty = document.getElementById('cartEmpty');
+        const cartTable = document.getElementById('cartTable');
+        const cartFooter = document.getElementById('cartFooter');
+
+        if (cart.length === 0) {
+          cartEmpty.style.display = '';
+          cartTable.style.display = 'none';
+          cartFooter.style.display = 'none';
+          return;
+        }
+
+        cartEmpty.style.display = 'none';
+        cartTable.style.display = '';
+        cartFooter.style.display = '';
+
+        let html = '';
+        totalBelanja = 0;
+
+        cart.forEach((item, i) => {
+          const subtotal = item.harga * item.qty;
+          totalBelanja += subtotal;
+          html += `
+        <tr>
+          <td><strong>${item.nama}</strong><br><small class="text-secondary">Rp ${item.harga.toLocaleString('id-ID')}</small></td>
+          <td class="text-center">
+            <input type="number" class="form-control form-control-sm text-center" value="${item.qty}" min="1" max="${item.stok}" onchange="updateQty(${i}, this.value)" style="width:60px;margin:0 auto;">
+          </td>
+          <td class="text-end">Rp ${subtotal.toLocaleString('id-ID')}</td>
+          <td>
+            <button class="btn btn-sm p-0" onclick="removeFromCart(${i})" style="color:var(--error);">
+              <span class="material-symbols-outlined" style="font-size:1.125rem;">close</span>
+            </button>
+          </td>
+        </tr>
+      `;
+        });
+
+        cartBody.innerHTML = html;
+        document.getElementById('totalHarga').textContent = 'Rp ' + totalBelanja.toLocaleString('id-ID');
+      }
+
+      function bukaModalPembayaran() {
+        if (cart.length === 0) return;
+        document.getElementById('modalTotalTagihan').textContent = 'Rp ' + totalBelanja.toLocaleString('id-ID');
+        document.getElementById('metodePembayaran').value = 'Cash';
+        document.getElementById('nominalBayar').value = '';
+        document.getElementById('kembalian').textContent = 'Rp 0';
+        document.getElementById('kembalian').className = 'text-success mb-0';
+        toggleCashInput();
+        const modal = new bootstrap.Modal(document.getElementById('modalPembayaran'));
+        modal.show();
+      }
+
+      function toggleCashInput() {
+        const metode = document.getElementById('metodePembayaran').value;
+        const cashGroup = document.getElementById('cashInputGroup');
+        if (metode === 'Cash') {
+          cashGroup.style.display = 'block';
+        } else {
+          cashGroup.style.display = 'none';
+        }
+      }
+
+      function hitungKembalian() {
+        const nominal = parseFloat(document.getElementById('nominalBayar').value) || 0;
+        const kembalian = nominal - totalBelanja;
+        const elKembalian = document.getElementById('kembalian');
+
+        if (kembalian < 0) {
+          elKembalian.textContent = 'Kurang Rp ' + Math.abs(kembalian).toLocaleString('id-ID');
+          elKembalian.className = 'text-danger mb-0';
+          document.getElementById('btnKonfirmasiBayar').disabled = true;
+        } else {
+          elKembalian.textContent = 'Rp ' + kembalian.toLocaleString('id-ID');
+          elKembalian.className = 'text-success mb-0';
+          document.getElementById('btnKonfirmasiBayar').disabled = false;
+        }
+      }
+
+      async function prosesTransaksi() {
+        if (cart.length === 0) return;
+
+        const metode_pembayaran = document.getElementById('metodePembayaran').value;
+        const nominal_bayar = parseFloat(document.getElementById('nominalBayar').value) || 0;
+
+        if (metode_pembayaran === 'Cash' && nominal_bayar < totalBelanja) {
+          alert('Nominal uang tidak mencukupi!');
+          return;
+        }
+
+        const btn = document.getElementById('btnKonfirmasiBayar');
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Memproses...';
+
+        try {
+          const items = cart.map(c => ({ barang_id: c.barang_id, qty: c.qty }));
+          const res = await fetch('/transaksi', {
+            method: 'POST',
+            headers: { 
+              'Content-Type': 'application/json',
+              'X-CSRF-Token': '<%= csrfToken %>'
+            },
+            body: JSON.stringify({ items, metode_pembayaran, nominal_bayar })
+          });
+          const data = await res.json();
+
+          if (data.success) {
+            // Sembunyikan modal pembayaran
+            bootstrap.Modal.getInstance(document.getElementById('modalPembayaran')).hide();
+
+            // Simpan ID untuk cetak struk
+            transaksiSuksesId = data.transaksiId;
+
+            // Tampilkan modal struk
+            document.getElementById('pesanSukses').innerHTML = `Transaksi #${data.transaksiId} berhasil!<br>Kembalian: <strong>Rp ${Number(data.kembalian || (nominal_bayar - totalBelanja)).toLocaleString('id-ID')}</strong>`;
+            const modalStruk = new bootstrap.Modal(document.getElementById('modalStruk'));
+            modalStruk.show();
+
+            cart = [];
+            renderCart();
+          } else {
+            showAlert('danger', data.message || 'Transaksi gagal.');
+          }
+        } catch (err) {
+          console.error(err);
+          showAlert('danger', 'Terjadi kesalahan. Coba lagi.');
+        } finally {
+          btn.disabled = false;
+          btn.innerHTML = '<span class="material-symbols-outlined me-1" style="vertical-align:middle;font-size:1rem;">check_circle</span> Konfirmasi & Bayar';
+        }
+      }
+
+      function cetakStruk() {
+        if (transaksiSuksesId) {
+          window.open(`/transaksi/struk/${transaksiSuksesId}`, '_blank');
+          tutupStrukDanReload();
+        }
+      }
+
+      function tutupStrukDanReload() {
+        bootstrap.Modal.getInstance(document.getElementById('modalStruk')).hide();
+        setTimeout(() => location.reload(), 300);
+      }
+
+      function showAlert(type, msg) {
+        const container = document.getElementById('alert-container');
+        container.innerHTML = `
+      <div class="alert alert-${type === 'success' ? 'success' : 'danger'} alert-dismissible fade show" role="alert">
+        ${msg}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    `;
+        setTimeout(() => { container.innerHTML = ''; }, 4000);
+      }
+    </script>
+
+    <%- include('../partials/footer') %>

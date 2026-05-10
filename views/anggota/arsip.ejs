@@ -1,0 +1,135 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+
+<div class="main-content">
+  <div class="top-header">
+    <div>
+      <button class="btn btn-link d-lg-none p-0 me-3" onclick="toggleSidebar()" style="color:var(--on-surface);"><span class="material-symbols-outlined">menu</span></button>
+      <h1 class="page-title d-inline-block">Arsip Data Anggota (Nonaktif)</h1>
+    </div>
+    <a href="/anggota" class="btn btn-outline-secondary">
+      <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">arrow_back</span> Kembali
+    </a>
+  </div>
+
+  <div class="content-wrapper">
+    <% if (success && success.length > 0) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert"><%= success %><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+    <% } %>
+    <% if (error && error.length > 0) { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert"><%= error %><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+    <% } %>
+
+    <!-- Search Form -->
+    <div class="card mb-4 shadow-sm border-0">
+      <div class="card-body">
+        <form action="/anggota/arsip" method="GET" class="row g-3 align-items-center">
+          <div class="col-12 col-md-8 col-lg-6">
+            <div class="input-group">
+              <span class="input-group-text bg-white border-end-0">
+                <span class="material-symbols-outlined text-muted">search</span>
+              </span>
+              <input type="text" name="search" class="form-control border-start-0 ps-0" placeholder="Cari berdasarkan NIK atau Nama..." value="<%= typeof search !== 'undefined' ? search : '' %>">
+              <button class="btn btn-primary" type="submit">Cari</button>
+            </div>
+          </div>
+          <% if (typeof search !== 'undefined' && search) { %>
+            <div class="col-auto">
+              <a href="/anggota/arsip" class="btn btn-outline-secondary">Reset</a>
+            </div>
+          <% } %>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th style="width:50px;">No</th>
+                <th>NIK</th>
+                <th>Nama Lengkap</th>
+                <th>Nomor Telepon</th>
+                <th style="width:200px;" class="text-center">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (anggota && anggota.length > 0) { %>
+                <% anggota.forEach((row, i) => { %>
+                  <tr>
+                    <td><%= i + 1 %></td>
+                    <td><%= row.nik %></td>
+                    <td><strong><%= row.nama_lengkap %></strong></td>
+                    <td><%= row.nomor_telepon %></td>
+                    
+                    <td class="text-center">
+                      <!-- Tombol Trigger Modal Restore -->
+                      <button type="button" class="btn btn-sm btn-success btn-restore"
+                        data-bs-toggle="modal" data-bs-target="#restoreModal"
+                        data-id="<%= row.id %>" data-nama="<%= row.nama_lengkap %>" title="Aktifkan Kembali">
+                        <span class="material-symbols-outlined" style="font-size:1rem; vertical-align:middle;">settings_backup_restore</span> Aktifkan
+                      </button>
+                    </td>
+                  </tr>
+                <% }) %>
+              <% } else { %>
+                <tr>
+                  <td colspan="5" class="text-center">Tidak ada data anggota di arsip.</td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Restore Confirmation Modal -->
+<div class="modal fade" id="restoreModal" tabindex="-1" aria-labelledby="restoreModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="restoreModalLabel">
+          <span class="material-symbols-outlined me-2" style="vertical-align:middle;color:var(--success);">info</span>
+          Konfirmasi Pemulihan
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Yakin ingin mengaktifkan kembali data anggota <strong id="restoreItemName"></strong>?</p>
+        <p class="text-muted small">Akun login anggota ini juga akan diaktifkan kembali.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        <form id="restoreForm" method="POST" style="display:inline;">
+          <!-- CSRF Token Simulation (Hidden Input) -->
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <button type="submit" class="btn btn-success">
+            <span class="material-symbols-outlined me-1" style="font-size:1rem;vertical-align:middle;">check_circle</span>
+            Ya, Aktifkan
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const restoreModal = document.getElementById('restoreModal');
+    if (restoreModal) {
+      restoreModal.addEventListener('show.bs.modal', function(event) {
+        const button = event.relatedTarget;
+        const id = button.getAttribute('data-id');
+        const nama = button.getAttribute('data-nama');
+        document.getElementById('restoreItemName').textContent = nama;
+        document.getElementById('restoreForm').action = '/anggota/restore/' + id;
+      });
+    }
+  });
+</script>
+
+<%- include('../partials/footer') %>

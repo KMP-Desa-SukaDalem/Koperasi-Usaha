@@ -1,0 +1,116 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+
+<div class="main-content">
+  <div class="top-header">
+    <div>
+      <button class="btn btn-link d-lg-none p-0 me-3" onclick="toggleSidebar()" style="color:var(--on-surface);">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <h1 class="page-title d-inline-block">Manajemen Unit Usaha</h1>
+    </div>
+    <a href="/unit-usaha/tambah" class="btn btn-primary">
+      <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">add</span>
+      Tambah Unit
+    </a>
+  </div>
+
+  <div class="content-wrapper">
+    <% if (success.length > 0) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert"><%= success %><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+    <% } %>
+    <% if (error.length > 0) { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert"><%= error %><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+    <% } %>
+
+    <div class="card">
+      <div class="card-body p-0">
+        <% if (units.length > 0) { %>
+          <div class="table-responsive">
+            <table class="table mb-0">
+              <thead>
+                <tr>
+                  <th style="width:50px;">No</th>
+                  <th>Nama Unit</th>
+                  <th>Deskripsi</th>
+                  <th>Dibuat</th>
+                  <th style="width:150px;" class="text-center">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% units.forEach((unit, i) => { %>
+                  <tr>
+                    <td><%= i + 1 %></td>
+                    <td><strong><%= unit.nama_unit %></strong></td>
+                    <td><%= unit.deskripsi || '-' %></td>
+                    <td><%= new Date(unit.created_at).toLocaleDateString('id-ID') %></td>
+                    <td class="text-center">
+                      <a href="/unit-usaha/edit/<%= unit.id %>" class="btn btn-sm btn-outline-primary me-1" title="Edit">
+                        <span class="material-symbols-outlined" style="font-size:1rem;">edit</span>
+                      </a>
+                      <button type="button" class="btn btn-sm btn-danger btn-delete"
+                        data-bs-toggle="modal" data-bs-target="#deleteModal"
+                        data-id="<%= unit.id %>" data-nama="<%= unit.nama_unit %>">
+                        <span class="material-symbols-outlined" style="font-size:1rem;">delete</span>
+                      </button>
+                    </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        <% } else { %>
+          <div class="empty-state">
+            <div class="empty-icon"><span class="material-symbols-outlined">storefront</span></div>
+            <h5>Belum Ada Unit Usaha</h5>
+            <p>Klik tombol "Tambah Unit" untuk menambahkan unit usaha baru.</p>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">
+          <span class="material-symbols-outlined me-2" style="vertical-align:middle;color:var(--error);">warning</span>
+          Konfirmasi Hapus
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Yakin ingin menghapus unit usaha <strong id="deleteItemName"></strong>?</p>
+        <p class="text-secondary mb-0" style="font-size:0.875rem;">Semua barang yang terkait dengan unit ini juga akan dihapus.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        <form id="deleteForm" method="POST" style="display:inline;">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <button type="submit" class="btn btn-danger">
+            <span class="material-symbols-outlined me-1" style="font-size:1rem;vertical-align:middle;">delete</span>
+            Hapus
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const deleteModal = document.getElementById('deleteModal');
+    deleteModal.addEventListener('show.bs.modal', function(event) {
+      const button = event.relatedTarget;
+      const id = button.getAttribute('data-id');
+      const nama = button.getAttribute('data-nama');
+      document.getElementById('deleteItemName').textContent = nama;
+      document.getElementById('deleteForm').action = '/unit-usaha/delete/' + id;
+    });
+  });
+</script>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,193 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+
+<div class="main-content">
+  <div class="top-header">
+    <div>
+      <button class="btn btn-link d-lg-none p-0 me-3" onclick="toggleSidebar()" style="color:var(--on-surface);"><span class="material-symbols-outlined">menu</span></button>
+      <h1 class="page-title d-inline-block">Data Anggota</h1>
+    </div>
+    <div class="d-flex gap-2">
+      <!-- TOMBOL EKSPOR (Tersedia untuk Admin, Pengurus, Auditor) -->
+      <% if (user && ['admin', 'pengurus', 'auditor'].includes(user.role)) { %>
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown">
+            <span class="material-symbols-outlined me-1" style="font-size:1.125rem;">download</span> Ekspor
+          </button>
+          <ul class="dropdown-menu shadow-sm border-0">
+            <li><a class="dropdown-item d-flex align-items-center py-2" href="/anggota/export/excel">
+              <span class="material-symbols-outlined me-2 text-success">description</span> Excel (.xlsx)
+            </a></li>
+            <li><a class="dropdown-item d-flex align-items-center py-2" href="/anggota/export/pdf">
+              <span class="material-symbols-outlined me-2 text-danger">picture_as_pdf</span> PDF (.pdf)
+            </a></li>
+          </ul>
+        </div>
+      <% } %>
+
+      <!-- TOMBOL RIWAYAT & ARSIP (Hanya Admin & Pengurus) -->
+      <% if (user && ['admin', 'pengurus'].includes(user.role)) { %>
+        <a href="/anggota/riwayat" class="btn btn-outline-info d-flex align-items-center">
+          <span class="material-symbols-outlined me-1" style="font-size:1.125rem;">history</span> Riwayat
+        </a>
+        <a href="/anggota/arsip" class="btn btn-outline-danger d-flex align-items-center">
+          <span class="material-symbols-outlined me-1" style="font-size:1.125rem;">archive</span> Arsip
+        </a>
+        <a href="/anggota/tambah" class="btn btn-primary d-flex align-items-center">
+          <span class="material-symbols-outlined me-1" style="font-size:1.125rem;">person_add</span> Tambah Anggota
+        </a>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+    <% if (success && success.length > 0) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert"><%= success %><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+    <% } %>
+    <% if (error && error.length > 0) { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert"><%= error %><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+    <% } %>
+
+    <!-- Search Form -->
+    <div class="card mb-4 shadow-sm border-0">
+      <div class="card-body">
+        <form action="/anggota" method="GET" class="row g-3 align-items-center">
+          <div class="col-12 col-md-8 col-lg-6">
+            <div class="input-group">
+              <span class="input-group-text bg-white border-end-0">
+                <span class="material-symbols-outlined text-muted">search</span>
+              </span>
+              <input type="text" name="search" class="form-control border-start-0 ps-0" placeholder="Cari berdasarkan NIK atau Nama..." value="<%= typeof search !== 'undefined' ? search : '' %>">
+              <button class="btn btn-primary" type="submit">Cari</button>
+            </div>
+          </div>
+          <% if (typeof search !== 'undefined' && search) { %>
+            <div class="col-auto">
+              <a href="/anggota" class="btn btn-outline-secondary">Reset</a>
+            </div>
+          <% } %>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th style="width:50px;">No</th>
+                <th>NIK</th>
+                <th>Nama Lengkap</th>
+                <th>Nomor Telepon</th>
+                <th style="width:200px;" class="text-center">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (anggota && anggota.length > 0) { %>
+                <% anggota.forEach((row, i) => { 
+                  // Logika pengubahan nomor HP untuk format Internasional (62)
+                  let waNumber = row.nomor_telepon;
+                  if(waNumber.startsWith('0')) {
+                    waNumber = '62' + waNumber.substring(1);
+                  }
+                  let telNumber = '+' + waNumber;
+                %>
+                  <tr>
+                    <td><%= i + 1 %></td>
+                    <td><%= row.nik %></td>
+                    <td><strong><%= row.nama_lengkap %></strong></td>
+                    <td><%= row.nomor_telepon %></td>
+                    
+                    <td class="text-center">
+                      <div class="d-flex justify-content-center align-items-center gap-2">
+                        <!-- TOMBOL DETAIL -->
+                        <a href="/anggota/detail/<%= row.id %>" class="btn btn-sm btn-outline-info" title="Lihat Detail">
+                          <span class="material-symbols-outlined" style="font-size:1rem; vertical-align:middle;">visibility</span>
+                        </a>
+
+                        <!-- TOMBOL KOMUNIKASI -->
+                        <a href="https://wa.me/<%= waNumber %>" class="btn btn-sm btn-success" target="_blank" title="Chat WhatsApp">
+                          <span class="material-symbols-outlined" style="font-size:1rem; vertical-align:middle;">chat</span>
+                        </a>
+                        <a href="tel:<%= telNumber %>" class="btn btn-sm btn-primary" title="Panggil Telepon">
+                          <span class="material-symbols-outlined" style="font-size:1rem; vertical-align:middle;">call</span>
+                        </a>
+
+                        <!-- LOGIKA RBAC VIEW: Sembunyikan tombol Edit & Delete untuk Operator/Auditor -->
+                        <% if (user.role === 'admin' || user.role === 'pengurus') { %>
+                          <div class="vr"></div> <!-- Pembatas Vertikal -->
+                          
+                          <a href="/anggota/edit/<%= row.id %>" class="btn btn-sm btn-outline-warning" title="Edit Data">
+                            <span class="material-symbols-outlined" style="font-size:1rem; vertical-align:middle;">edit</span>
+                          </a>
+                          
+                          <!-- Tombol Trigger Modal Delete -->
+                          <button type="button" class="btn btn-sm btn-danger btn-delete"
+                            data-bs-toggle="modal" data-bs-target="#deleteModal"
+                            data-id="<%= row.id %>" data-nama="<%= row.nama_lengkap %>" title="Hapus Data">
+                            <span class="material-symbols-outlined" style="font-size:1rem; vertical-align:middle;">delete</span>
+                          </button>
+                        <% } %>
+                      </div>
+                    </td>
+                  </tr>
+                <% }) %>
+              <% } else { %>
+                <tr>
+                  <td colspan="5" class="text-center">Tidak ada data anggota.</td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">
+          <span class="material-symbols-outlined me-2" style="vertical-align:middle;color:var(--error);">warning</span>
+          Konfirmasi Hapus
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Yakin ingin menghapus data anggota <strong id="deleteItemName"></strong>?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        <form id="deleteForm" method="POST" style="display:inline;">
+          <!-- CSRF Token Simulation (Hidden Input) -->
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <button type="submit" class="btn btn-danger">
+            <span class="material-symbols-outlined me-1" style="font-size:1rem;vertical-align:middle;">delete</span>
+            Hapus
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const deleteModal = document.getElementById('deleteModal');
+    if (deleteModal) {
+      deleteModal.addEventListener('show.bs.modal', function(event) {
+        const button = event.relatedTarget;
+        const id = button.getAttribute('data-id');
+        const nama = button.getAttribute('data-nama');
+        document.getElementById('deleteItemName').textContent = nama;
+        document.getElementById('deleteForm').action = '/anggota/delete/' + id;
+      });
+    }
+  });
+</script>
+
+<%- include('../partials/footer') %>

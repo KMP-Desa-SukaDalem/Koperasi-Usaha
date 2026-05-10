@@ -1,0 +1,60 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+
+<div class="main-content">
+  <div class="top-header">
+    <div>
+      <button class="btn btn-link d-lg-none p-0 me-3" onclick="toggleSidebar()" style="color:var(--on-surface);"><span class="material-symbols-outlined">menu</span></button>
+      <h1 class="page-title d-inline-block">Tambah Pengguna</h1>
+    </div>
+    <a href="/users" class="btn btn-secondary">
+      <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">arrow_back</span> Kembali
+    </a>
+  </div>
+  <div class="content-wrapper">
+    <% if (error.length > 0) { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert"><%= error %><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+    <% } %>
+    <div class="card" style="max-width:600px;">
+      <div class="card-body">
+        <form action="/users" method="POST">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <div class="mb-3">
+            <label for="nama_lengkap" class="form-label">Nama Lengkap <span style="color:var(--error);">*</span></label>
+            <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" placeholder="Nama lengkap pengguna" required>
+          </div>
+          <div class="mb-3">
+            <label for="username" class="form-label">Username <span style="color:var(--error);">*</span></label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username untuk login" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="contoh@email.com">
+            <small class="text-muted">Opsional, digunakan untuk notifikasi atau pencarian.</small>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password <span style="color:var(--error);">*</span></label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password minimal 6 karakter" required minlength="6">
+          </div>
+          <div class="mb-4">
+            <label for="role" class="form-label">Role <span style="color:var(--error);">*</span></label>
+            <select class="form-select" id="role" name="role" required>
+              <option value="">-- Pilih Role --</option>
+              <% if (user.role === 'admin') { %>
+                <option value="admin">Admin</option>
+              <% } %>
+              <option value="pengurus">Pengurus</option>
+              <option value="operator">Operator</option>
+              <option value="auditor">Auditor</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">save</span> Simpan
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

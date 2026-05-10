@@ -1,0 +1,87 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+
+<div class="main-content">
+  <div class="top-header">
+    <div>
+      <button class="btn btn-link d-lg-none p-0 me-3" onclick="toggleSidebar()" style="color:var(--on-surface);"><span class="material-symbols-outlined">menu</span></button>
+      <h1 class="page-title d-inline-block">Riwayat Transaksi</h1>
+    </div>
+    <div>
+      <a href="/transaksi/riwayat/download?startDate=<%= filters.startDate %>&endDate=<%= filters.endDate %>" class="btn btn-success me-2" download="riwayat_transaksi.csv">
+        <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">download</span> Download CSV
+      </a>
+      <a href="/transaksi" class="btn btn-primary">
+        <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">point_of_sale</span> Kasir
+      </a>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+    <!-- Filter -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <form method="GET" action="/transaksi/riwayat" class="row g-3 align-items-end">
+          <div class="col-md-4">
+            <label for="startDate" class="form-label">Dari Tanggal</label>
+            <input type="date" class="form-control" id="startDate" name="startDate" value="<%= filters.startDate %>">
+          </div>
+          <div class="col-md-4">
+            <label for="endDate" class="form-label">Sampai Tanggal</label>
+            <input type="date" class="form-control" id="endDate" name="endDate" value="<%= filters.endDate %>">
+          </div>
+          <div class="col-md-4">
+            <button type="submit" class="btn btn-primary me-2">
+              <span class="material-symbols-outlined me-1" style="font-size:1rem;vertical-align:middle;">filter_alt</span> Filter
+            </button>
+            <a href="/transaksi/riwayat" class="btn btn-secondary">Reset</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Tabel -->
+    <div class="card">
+      <div class="card-body p-0">
+        <% if (transaksi.length > 0) { %>
+          <div class="table-responsive">
+            <table class="table mb-0">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Kasir</th>
+                  <th>Tanggal</th>
+                  <th class="text-end">Total</th>
+                  <th class="text-center" style="width:80px;">Detail</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% transaksi.forEach(t => { %>
+                  <tr>
+                    <td><strong>#<%= t.id %></strong></td>
+                    <td><%= t.kasir %></td>
+                    <td><%= new Date(t.tanggal_transaksi).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) %></td>
+                    <td class="text-end"><strong>Rp <%= Number(t.total_harga).toLocaleString('id-ID') %></strong></td>
+                    <td class="text-center">
+                      <a href="/transaksi/detail/<%= t.id %>" class="btn btn-sm btn-outline-primary">
+                        <span class="material-symbols-outlined" style="font-size:1rem;">visibility</span>
+                      </a>
+                    </td>
+                  </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        <% } else { %>
+          <div class="empty-state">
+            <div class="empty-icon"><span class="material-symbols-outlined">receipt_long</span></div>
+            <h5>Tidak Ada Transaksi</h5>
+            <p>Belum ada transaksi pada periode yang dipilih.</p>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 12px;
+      margin: 0;
+      padding: 10px;
+      width: 300px;
+      color: #000;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .header h2 {
+      margin: 0 0 5px 0;
+      font-size: 16px;
+    }
+    .header p {
+      margin: 0;
+    }
+    .divider {
+      border-top: 1px dashed #000;
+      margin: 5px 0;
+    }
+    .info {
+      margin-bottom: 5px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      text-align: left;
+      padding: 2px 0;
+    }
+    .text-right {
+      text-align: right;
+    }
+    .text-center {
+      text-align: center;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 15px;
+    }
+    @media print {
+      body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body onload="window.print();">
+  <div class="header">
+    <h2>Koperasi Desa Sukadalem</h2>
+    <p>Jl. Desa Sukadalem, Kec. Waringinkurung</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="info">
+    <table style="width: 100%;">
+      <tr>
+        <td>No. Trx</td>
+        <td>: #<%= transaksi.id %></td>
+      </tr>
+      <tr>
+        <td>Tanggal</td>
+        <td>: <%= new Date(transaksi.tanggal_transaksi).toLocaleString('id-ID') %></td>
+      </tr>
+      <tr>
+        <td>Kasir</td>
+        <td>: <%= transaksi.kasir %></td>
+      </tr>
+      <tr>
+        <td>Metode</td>
+        <td>: <%= transaksi.metode_pembayaran || 'Cash' %></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th class="text-right">Qty</th>
+        <th class="text-right">Harga</th>
+        <th class="text-right">Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% transaksi.details.forEach(item => { %>
+        <tr>
+          <td colspan="4"><%= item.nama_barang %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="text-right"><%= item.qty %></td>
+          <td class="text-right"><%= Number(item.harga_jual).toLocaleString('id-ID') %></td>
+          <td class="text-right"><%= Number(item.subtotal).toLocaleString('id-ID') %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <div class="divider"></div>
+
+  <table style="width: 100%;">
+    <tr>
+      <td colspan="2"><strong>Total Tagihan</strong></td>
+      <td class="text-right"><strong>Rp <%= Number(transaksi.total_harga).toLocaleString('id-ID') %></strong></td>
+    </tr>
+    <tr>
+      <td colspan="2">Bayar (<%= transaksi.metode_pembayaran || 'Cash' %>)</td>
+      <td class="text-right">Rp <%= Number(transaksi.nominal_bayar || transaksi.total_harga).toLocaleString('id-ID') %></td>
+    </tr>
+    <tr>
+      <td colspan="2">Kembalian</td>
+      <td class="text-right">Rp <%= Number(transaksi.kembalian || 0).toLocaleString('id-ID') %></td>
+    </tr>
+  </table>
+
+  <div class="divider"></div>
+
+  <div class="footer">
+    <p>Terima Kasih</p>
+    <p>Barang yang sudah dibeli tidak dapat ditukar/dikembalikan.</p>
+  </div>
+</body>
+</html>

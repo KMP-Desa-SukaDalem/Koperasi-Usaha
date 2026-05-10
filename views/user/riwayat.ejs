@@ -1,0 +1,74 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+
+<div class="main-content">
+  <div class="top-header">
+    <div class="d-flex align-items-center">
+      <a href="/users" class="btn btn-link p-0 me-3" style="color:var(--on-surface);">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </a>
+      <h1 class="page-title">Riwayat Aktivitas Pengguna</h1>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+    <div class="card shadow-sm border-0">
+      <div class="card-header bg-white py-3 border-0">
+        <h5 class="mb-0 fw-bold">Log Perubahan Data Pengguna</h5>
+        <p class="text-muted small mb-0">Menampilkan riwayat aksi tambah, edit, dan hapus data pengguna sistem.</p>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead class="bg-light">
+              <tr>
+                <th style="width:180px;">Waktu</th>
+                <th>Aktor</th>
+                <th>Aksi</th>
+                <th>Keterangan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (logs.length === 0) { %>
+                <tr>
+                  <td colspan="4" class="text-center py-5 text-muted">Belum ada riwayat aktivitas untuk data pengguna.</td>
+                </tr>
+              <% } %>
+              <% logs.forEach(log => { %>
+                <tr>
+                  <td class="small">
+                    <%= new Date(log.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }) %>
+                    <br>
+                    <span class="text-muted"><%= new Date(log.created_at).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) %> WIB</span>
+                  </td>
+                  <td>
+                    <strong><%= log.actor_name || 'System / Deleted User' %></strong>
+                    <br>
+                    <span class="badge bg-light text-dark border small"><%= log.actor_role %></span>
+                  </td>
+                  <td>
+                    <% if (log.action === 'CREATE') { %>
+                      <span class="badge bg-success">TAMBAH</span>
+                    <% } else if (log.action === 'UPDATE') { %>
+                      <span class="badge bg-warning text-dark">EDIT</span>
+                    <% } else if (log.action === 'DELETE') { %>
+                      <span class="badge bg-danger">HAPUS</span>
+                    <% } else { %>
+                      <span class="badge bg-secondary"><%= log.action %></span>
+                    <% } %>
+                  </td>
+                  <td>
+                    <p class="mb-0 small" style="max-width: 500px; white-space: normal;"><%= log.description %></p>
+                    <small class="text-muted">Target ID: <%= log.target_id %></small>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

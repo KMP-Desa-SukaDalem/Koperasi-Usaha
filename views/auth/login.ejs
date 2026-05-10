@@ -1,0 +1,73 @@
+<%- include('../partials/header') %>
+
+<div class="login-page">
+  <!-- Brand Panel (Left) -->
+  <div class="login-brand-panel">
+    <div class="brand-content">
+      <div class="brand-icon">
+        <span class="material-symbols-outlined">account_balance</span>
+      </div>
+      <h1>Koperasi<br>Desa Sukadalem</h1>
+      <p>Sistem Manajemen Koperasi Berbasis Web Untuk Pengelolaan Usaha Desa</p>
+      <div class="mt-4" style="opacity:0.5;font-size:0.8125rem;">
+        Kecamatan Waringinkurung
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Panel (Right) -->
+  <div class="login-form-panel">
+    <div class="login-form-container">
+      <h2>Masuk</h2>
+      <p class="login-subtitle">Silakan masukkan kredensial Anda untuk melanjutkan</p>
+
+      <!-- Flash Messages -->
+      <% if (typeof success !== 'undefined' && success.length > 0) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <%= success %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      <% } %>
+      <% if (typeof error !== 'undefined' && error.length > 0) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <%= error %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      <% } %>
+
+      <form action="/login" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <div class="input-group">
+            <span class="input-group-text" style="background:var(--surface-container-lowest);border-color:var(--surface-container);">
+              <span class="material-symbols-outlined" style="font-size:1.125rem;color:var(--text-secondary);">person</span>
+            </span>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username" required autofocus>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-group">
+            <span class="input-group-text" style="background:var(--surface-container-lowest);border-color:var(--surface-container);">
+              <span class="material-symbols-outlined" style="font-size:1.125rem;color:var(--text-secondary);">lock</span>
+            </span>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="btn-login">
+          <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">login</span>
+          Masuk
+        </button>
+      </form>
+
+      <div class="text-center mt-4" style="font-size:0.75rem;color:var(--text-muted);">
+        &copy; 2024 Koperasi Desa Sukadalem. Sistem Manajemen Koperasi.
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,174 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+
+<div class="main-content">
+  <div class="top-header">
+    <div>
+      <button class="btn btn-link d-lg-none p-0 me-3" onclick="toggleSidebar()" style="color:var(--on-surface);"><span class="material-symbols-outlined">menu</span></button>
+      <h1 class="page-title d-inline-block">Data Supplier</h1>
+    </div>
+    <% if (user && ['admin', 'pengurus'].includes(user.role)) { %>
+    <a href="/supplier/tambah" class="btn btn-primary">
+      <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">add_business</span> Tambah Supplier
+    </a>
+    <% } %>
+  </div>
+
+  <div class="content-wrapper">
+    <% if (success && success.length > 0) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert"><%= success %><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+    <% } %>
+    <% if (error && error.length > 0) { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert"><%= error %><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+    <% } %>
+
+    <!-- Search & Export Controls -->
+    <div class="card mb-4 shadow-sm border-0">
+      <div class="card-body">
+        <div class="row g-3 align-items-center">
+          <div class="col-12 col-lg-6">
+            <form action="/supplier" method="GET" class="input-group">
+              <span class="input-group-text bg-white border-end-0">
+                <span class="material-symbols-outlined text-muted">search</span>
+              </span>
+              <input type="text" name="search" class="form-control border-start-0 ps-0" placeholder="Cari Nama Toko, Penanggung Jawab, atau Kontak..." value="<%= typeof search !== 'undefined' ? search : '' %>">
+              <button class="btn btn-primary" type="submit">Cari</button>
+              <% if (typeof search !== 'undefined' && search) { %>
+                <a href="/supplier" class="btn btn-outline-secondary">Reset</a>
+              <% } %>
+            </form>
+          </div>
+          <div class="col-12 col-lg-6 text-lg-end">
+            <div class="btn-group shadow-sm">
+              <a href="/supplier/export-excel" class="btn btn-outline-success">
+                <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">description</span> Excel
+              </a>
+              <a href="/supplier/export-pdf" class="btn btn-outline-danger">
+                <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">picture_as_pdf</span> PDF
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th style="width:50px;">No</th>
+                <th>Toko / Perusahaan</th>
+                <th>Penanggung Jawab</th>
+                <th>Telepon</th>
+                <th style="width:200px;" class="text-center">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (supplier && supplier.length > 0) { %>
+                <% supplier.forEach((row, i) => { 
+                  // Logika pengubahan nomor HP untuk format Internasional (62)
+                  let waNumber = row.nomor_telepon;
+                  if(waNumber.startsWith('0')) {
+                    waNumber = '62' + waNumber.substring(1);
+                  }
+                  let telNumber = '+' + waNumber;
+                %>
+                  <tr>
+                    <td><%= i + 1 %></td>
+                    <td><strong><%= row.nama_toko %></strong></td>
+                    <td><%= row.nama_penanggung_jawab %></td>
+                    <td><%= row.nomor_telepon %></td>
+                    
+                    <td class="text-center">
+                      <div class="d-flex justify-content-center align-items-center gap-2">
+                        <!-- TOMBOL DETAIL -->
+                        <a href="/supplier/detail/<%= row.id %>" class="btn btn-sm btn-outline-info" title="Lihat Detail">
+                          <span class="material-symbols-outlined" style="font-size:1rem; vertical-align:middle;">visibility</span>
+                        </a>
+
+                        <!-- TOMBOL KOMUNIKASI -->
+                        <a href="https://wa.me/<%= waNumber %>" class="btn btn-sm btn-success" target="_blank" title="Chat WhatsApp">
+                          <span class="material-symbols-outlined" style="font-size:1rem; vertical-align:middle;">chat</span>
+                        </a>
+                        <a href="tel:<%= telNumber %>" class="btn btn-sm btn-primary" title="Panggil Telepon">
+                          <span class="material-symbols-outlined" style="font-size:1rem; vertical-align:middle;">call</span>
+                        </a>
+
+                        <!-- LOGIKA RBAC VIEW: Sembunyikan tombol Edit & Delete untuk Operator/Auditor -->
+                        <% if (user.role === 'admin' || user.role === 'pengurus') { %>
+                          <div class="vr"></div> <!-- Pembatas Vertikal -->
+                          
+                          <a href="/supplier/edit/<%= row.id %>" class="btn btn-sm btn-outline-warning" title="Edit Data">
+                            <span class="material-symbols-outlined" style="font-size:1rem; vertical-align:middle;">edit</span>
+                          </a>
+                          
+                          <!-- Tombol Trigger Modal Delete -->
+                          <button type="button" class="btn btn-sm btn-danger btn-delete"
+                            data-bs-toggle="modal" data-bs-target="#deleteModal"
+                            data-id="<%= row.id %>" data-nama="<%= row.nama_toko %>" title="Hapus Data">
+                            <span class="material-symbols-outlined" style="font-size:1rem; vertical-align:middle;">delete</span>
+                          </button>
+                        <% } %>
+                      </div>
+                    </td>
+                  </tr>
+                <% }) %>
+              <% } else { %>
+                <tr>
+                  <td colspan="5" class="text-center">Tidak ada data supplier.</td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">
+          <span class="material-symbols-outlined me-2" style="vertical-align:middle;color:var(--error);">warning</span>
+          Konfirmasi Hapus
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Yakin ingin menghapus data supplier <strong id="deleteItemName"></strong>?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        <form id="deleteForm" method="POST" style="display:inline;">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <button type="submit" class="btn btn-danger">
+            <span class="material-symbols-outlined me-1" style="font-size:1rem;vertical-align:middle;">delete</span>
+            Hapus
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const deleteModal = document.getElementById('deleteModal');
+    if (deleteModal) {
+      deleteModal.addEventListener('show.bs.modal', function(event) {
+        const button = event.relatedTarget;
+        const id = button.getAttribute('data-id');
+        const nama = button.getAttribute('data-nama');
+        document.getElementById('deleteItemName').textContent = nama;
+        document.getElementById('deleteForm').action = '/supplier/delete/' + id;
+      });
+    }
+  });
+</script>
+
+<%- include('../partials/footer') %>

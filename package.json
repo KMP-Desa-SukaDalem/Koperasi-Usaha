@@ -1,0 +1,29 @@
+{
+  "name": "sistem-manajemen-koperasi-desa",
+  "version": "1.0.0",
+  "description": "Sistem Manajemen Koperasi Berbasis Web Untuk Pengelolaan Usaha Desa - Studi Kasus Koperasi Desa Sukadalem",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.7",
+    "csurf": "^1.2.2",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "exceljs": "^4.4.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.4.1",
+    "express-session": "^1.18.1",
+    "helmet": "^8.1.0",
+    "mysql2": "^3.11.0",
+    "nodemailer": "^8.0.5",
+    "pdfkit": "^0.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

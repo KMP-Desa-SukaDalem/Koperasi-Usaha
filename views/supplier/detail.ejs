@@ -1,0 +1,100 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+
+<div class="main-content">
+  <div class="top-header">
+    <div class="d-flex align-items-center">
+      <a href="/supplier" class="btn btn-link p-0 me-3" style="color:var(--on-surface);">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </a>
+      <h1 class="page-title">Detail Supplier</h1>
+    </div>
+    <div class="d-flex gap-2">
+      <% if (user.role === 'admin' || user.role === 'pengurus') { %>
+        <a href="/supplier/edit/<%= supplier.id %>" class="btn btn-outline-warning">
+          <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">edit</span> Edit
+        </a>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card text-center mb-4 shadow-sm border-0">
+          <div class="card-body py-5">
+            <div class="mb-3">
+              <div class="d-inline-flex align-items-center justify-content-center bg-danger text-white rounded-circle shadow-sm" style="width:100px; height:100px;">
+                <span class="material-symbols-outlined" style="font-size:3.5rem;">storefront</span>
+              </div>
+            </div>
+            <h4 class="mb-1"><%= supplier.nama_toko %></h4>
+            <p class="text-muted mb-3">Mitra Supplier</p>
+            <span class="badge rounded-pill bg-primary px-3 py-2">Terverifikasi</span>
+          </div>
+        </div>
+
+        <div class="card shadow-sm border-0 mb-4">
+          <div class="card-body">
+            <h6 class="card-title fw-bold mb-3">Kontak Supplier</h6>
+            <div class="d-grid gap-2">
+              <% 
+                let waNumber = supplier.nomor_telepon;
+                if(waNumber.startsWith('0')) {
+                  waNumber = '62' + waNumber.substring(1);
+                }
+              %>
+              <a href="https://wa.me/<%= waNumber %>" target="_blank" class="btn btn-success d-flex align-items-center justify-content-center">
+                <span class="material-symbols-outlined me-2">chat</span> WhatsApp
+              </a>
+              <a href="tel:+<%= waNumber %>" class="btn btn-primary d-flex align-items-center justify-content-center">
+                <span class="material-symbols-outlined me-2">call</span> Telepon
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="card shadow-sm border-0 h-100">
+          <div class="card-header bg-white py-3 border-0">
+            <h5 class="mb-0 fw-bold">Profil Perusahaan/Toko</h5>
+          </div>
+          <div class="card-body">
+            <div class="row mb-3">
+              <div class="col-sm-4 text-muted">Nama Toko/Perusahaan</div>
+              <div class="col-sm-8 fw-bold"><%= supplier.nama_toko %></div>
+            </div>
+            <hr class="text-muted opacity-25">
+            <div class="row mb-3">
+              <div class="col-sm-4 text-muted">Penanggung Jawab</div>
+              <div class="col-sm-8 fw-bold"><%= supplier.nama_penanggung_jawab %></div>
+            </div>
+            <hr class="text-muted opacity-25">
+            <div class="row mb-3">
+              <div class="col-sm-4 text-muted">Email</div>
+              <div class="col-sm-8 text-primary"><%= supplier.email || '—' %></div>
+            </div>
+            <hr class="text-muted opacity-25">
+            <div class="row mb-3">
+              <div class="col-sm-4 text-muted">Nomor Telepon</div>
+              <div class="col-sm-8"><%= supplier.nomor_telepon %></div>
+            </div>
+            <hr class="text-muted opacity-25">
+            <div class="row mb-3">
+              <div class="col-sm-4 text-muted">Alamat Lengkap</div>
+              <div class="col-sm-8"><%= supplier.alamat %></div>
+            </div>
+            <hr class="text-muted opacity-25">
+            <div class="row mb-3">
+              <div class="col-sm-4 text-muted">Mulai Bermitra</div>
+              <div class="col-sm-8"><%= new Date(supplier.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

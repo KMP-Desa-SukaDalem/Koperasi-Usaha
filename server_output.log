@@ -1,0 +1,1147 @@
+
+> sistem-manajemen-koperasi-desa@1.0.0 dev
+> nodemon app.js
+
+[33m[nodemon] 3.1.14[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,cjs,json[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Database Pool Created
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] clean exit - waiting for changes before restart[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Database Pool Created
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+Error: TypeError: generateToken is not a function
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:82:26
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/connect-flash/lib/flash.js:21:5
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at doubleCsrfProtection (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:145:7)
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+Error: TypeError: generateToken is not a function
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:82:26
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/connect-flash/lib/flash.js:21:5
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at doubleCsrfProtection (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:145:7)
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+Error: TypeError: generateToken is not a function
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:82:26
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/connect-flash/lib/flash.js:21:5
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at doubleCsrfProtection (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:145:7)
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+Error: TypeError: generateToken is not a function
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:82:26
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/connect-flash/lib/flash.js:21:5
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at doubleCsrfProtection (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:145:7)
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+Error: TypeError: generateToken is not a function
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:82:26
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/connect-flash/lib/flash.js:21:5
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at doubleCsrfProtection (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:145:7)
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Database Pool Created
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] clean exit - waiting for changes before restart[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Database Pool Created
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] clean exit - waiting for changes before restart[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Database Pool Created
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] clean exit - waiting for changes before restart[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Database Pool Created
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Database Pool Created
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+Error: TypeError: getSessionIdentifier is not a function
+    at constructMessage (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:67:30)
+    at generateCsrfTokenInternal (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:90:22)
+    at generateCsrfToken (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:96:23)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:82:26
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/connect-flash/lib/flash.js:21:5
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at doubleCsrfProtection (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:145:7)
+TypeError: getSessionIdentifier is not a function
+    at constructMessage (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:67:30)
+    at generateCsrfTokenInternal (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:90:22)
+    at generateCsrfToken (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:96:23)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:129:58
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:116:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:121:3
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:116:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:111:12)
+Error: TypeError: getSessionIdentifier is not a function
+    at constructMessage (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:67:30)
+    at generateCsrfTokenInternal (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:90:22)
+    at generateCsrfToken (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:96:23)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:82:26
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/connect-flash/lib/flash.js:21:5
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at doubleCsrfProtection (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:145:7)
+TypeError: getSessionIdentifier is not a function
+    at constructMessage (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:67:30)
+    at generateCsrfTokenInternal (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:90:22)
+    at generateCsrfToken (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:96:23)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:129:58
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:116:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:121:3
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:116:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:111:12)
+Error: TypeError: getSessionIdentifier is not a function
+    at constructMessage (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:67:30)
+    at generateCsrfTokenInternal (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:90:22)
+    at generateCsrfToken (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:96:23)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:82:26
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/connect-flash/lib/flash.js:21:5
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at doubleCsrfProtection (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:145:7)
+TypeError: getSessionIdentifier is not a function
+    at constructMessage (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:67:30)
+    at generateCsrfTokenInternal (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:90:22)
+    at generateCsrfToken (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:96:23)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:129:58
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:116:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:121:3
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:116:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:111:12)
+Error: TypeError: getSessionIdentifier is not a function
+    at constructMessage (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:67:30)
+    at generateCsrfTokenInternal (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:90:22)
+    at generateCsrfToken (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:96:23)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:82:26
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/connect-flash/lib/flash.js:21:5
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at doubleCsrfProtection (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:145:7)
+TypeError: getSessionIdentifier is not a function
+    at constructMessage (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:67:30)
+    at generateCsrfTokenInternal (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:90:22)
+    at generateCsrfToken (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:96:23)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:129:58
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:116:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:121:3
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:116:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:111:12)
+Error: TypeError: getSessionIdentifier is not a function
+    at constructMessage (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:67:30)
+    at generateCsrfTokenInternal (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:90:22)
+    at generateCsrfToken (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:96:23)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:82:26
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/connect-flash/lib/flash.js:21:5
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at doubleCsrfProtection (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:145:7)
+TypeError: getSessionIdentifier is not a function
+    at constructMessage (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:67:30)
+    at generateCsrfTokenInternal (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:90:22)
+    at generateCsrfToken (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:96:23)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:129:58
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:116:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:121:3
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:116:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:111:12)
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Database Pool Created
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Database Pool Created
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Database Pool Created
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Database Pool Created
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+node:internal/modules/cjs/loader:1478
+  throw err;
+  ^
+
+Error: Cannot find module 'csurf'
+Require stack:
+- /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at require (node:internal/modules/helpers:191:16)
+    at Object.<anonymous> (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:12:14)
+    at Module._compile (node:internal/modules/cjs/loader:1829:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js'
+  ]
+}
+
+Node.js v25.9.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+(node:4321) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] clean exit - waiting for changes before restart[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+(node:4451) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+node:internal/modules/cjs/loader:1478
+  throw err;
+  ^
+
+Error: Cannot find module 'csurf'
+Require stack:
+- /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at require (node:internal/modules/helpers:191:16)
+    at Object.<anonymous> (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:12:14)
+    at Module._compile (node:internal/modules/cjs/loader:1829:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js'
+  ]
+}
+
+Node.js v25.9.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+Error: TypeError: generateToken is not a function
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:78:26
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/connect-flash/lib/flash.js:21:5
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at doubleCsrfProtection (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:145:7)
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+ReferenceError: /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/views/errors/500.ejs:1
+ >> 1| <%- include('../partials/header') %>
+    2| 
+    3| <div class="error-page">
+    4|   <div>
+
+/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/views/partials/header.ejs:22
+    20|   
+    21|   <!-- CSRF Token for AJAX -->
+ >> 22|   <meta name="csrf-token" content="<%= csrfToken %>">
+    23| </head>
+    24| <body>
+    25| 
+
+csrfToken is not defined
+    at eval (eval at compile (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:673:12), <anonymous>:15:26)
+    at header (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:703:17)
+    at include (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:701:39)
+    at eval (eval at compile (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:673:12), <anonymous>:10:17)
+    at 500 (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:703:17)
+    at tryHandleCache (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:274:36)
+    at exports.renderFile [as engine] (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:491:10)
+    at View.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/view.js:139:8)
+    at tryRender (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/application.js:627:10)
+    at app.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/response.js:923:7)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:126:33
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:116:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+Error: TypeError: generateToken is not a function
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:78:26
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/connect-flash/lib/flash.js:21:5
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at doubleCsrfProtection (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:145:7)
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+ReferenceError: /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/views/errors/500.ejs:1
+ >> 1| <%- include('../partials/header') %>
+    2| 
+    3| <div class="error-page">
+    4|   <div>
+
+/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/views/partials/header.ejs:22
+    20|   
+    21|   <!-- CSRF Token for AJAX -->
+ >> 22|   <meta name="csrf-token" content="<%= csrfToken %>">
+    23| </head>
+    24| <body>
+    25| 
+
+csrfToken is not defined
+    at eval (eval at compile (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:673:12), <anonymous>:15:26)
+    at header (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:703:17)
+    at include (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:701:39)
+    at eval (eval at compile (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:673:12), <anonymous>:10:17)
+    at 500 (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:703:17)
+    at tryHandleCache (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:274:36)
+    at exports.renderFile [as engine] (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:491:10)
+    at View.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/view.js:139:8)
+    at tryRender (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/application.js:627:10)
+    at app.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/response.js:923:7)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:126:33
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:116:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+Error: TypeError: generateToken is not a function
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:78:26
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/connect-flash/lib/flash.js:21:5
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at doubleCsrfProtection (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:145:7)
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+ReferenceError: /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/views/errors/500.ejs:1
+ >> 1| <%- include('../partials/header') %>
+    2| 
+    3| <div class="error-page">
+    4|   <div>
+
+/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/views/partials/header.ejs:22
+    20|   
+    21|   <!-- CSRF Token for AJAX -->
+ >> 22|   <meta name="csrf-token" content="<%= csrfToken %>">
+    23| </head>
+    24| <body>
+    25| 
+
+csrfToken is not defined
+    at eval (eval at compile (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:673:12), <anonymous>:15:26)
+    at header (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:703:17)
+    at include (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:701:39)
+    at eval (eval at compile (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:673:12), <anonymous>:10:17)
+    at 500 (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:703:17)
+    at tryHandleCache (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:274:36)
+    at exports.renderFile [as engine] (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:491:10)
+    at View.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/view.js:139:8)
+    at tryRender (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/application.js:627:10)
+    at app.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/response.js:923:7)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:126:33
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:116:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+Error: TypeError: generateToken is not a function
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:78:26
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/connect-flash/lib/flash.js:21:5
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at doubleCsrfProtection (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:145:7)
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+ReferenceError: /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/views/errors/500.ejs:1
+ >> 1| <%- include('../partials/header') %>
+    2| 
+    3| <div class="error-page">
+    4|   <div>
+
+/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/views/partials/header.ejs:22
+    20|   
+    21|   <!-- CSRF Token for AJAX -->
+ >> 22|   <meta name="csrf-token" content="<%= csrfToken %>">
+    23| </head>
+    24| <body>
+    25| 
+
+csrfToken is not defined
+    at eval (eval at compile (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:673:12), <anonymous>:15:26)
+    at header (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:703:17)
+    at include (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:701:39)
+    at eval (eval at compile (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:673:12), <anonymous>:10:17)
+    at 500 (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:703:17)
+    at tryHandleCache (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:274:36)
+    at exports.renderFile [as engine] (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:491:10)
+    at View.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/view.js:139:8)
+    at tryRender (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/application.js:627:10)
+    at app.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/response.js:923:7)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:126:33
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:116:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+Error: TypeError: generateToken is not a function
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:78:26
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/connect-flash/lib/flash.js:21:5
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at doubleCsrfProtection (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:145:7)
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+ReferenceError: /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/views/errors/500.ejs:1
+ >> 1| <%- include('../partials/header') %>
+    2| 
+    3| <div class="error-page">
+    4|   <div>
+
+/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/views/partials/header.ejs:22
+    20|   
+    21|   <!-- CSRF Token for AJAX -->
+ >> 22|   <meta name="csrf-token" content="<%= csrfToken %>">
+    23| </head>
+    24| <body>
+    25| 
+
+csrfToken is not defined
+    at eval (eval at compile (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:673:12), <anonymous>:15:26)
+    at header (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:703:17)
+    at include (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:701:39)
+    at eval (eval at compile (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:673:12), <anonymous>:10:17)
+    at 500 (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:703:17)
+    at tryHandleCache (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:274:36)
+    at exports.renderFile [as engine] (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:491:10)
+    at View.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/view.js:139:8)
+    at tryRender (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/application.js:627:10)
+    at app.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/response.js:923:7)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:126:33
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:116:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+Error: TypeError: generateToken is not a function
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:78:26
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/connect-flash/lib/flash.js:21:5
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at doubleCsrfProtection (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:145:7)
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+ReferenceError: /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/views/errors/500.ejs:1
+ >> 1| <%- include('../partials/header') %>
+    2| 
+    3| <div class="error-page">
+    4|   <div>
+
+/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/views/partials/header.ejs:22
+    20|   
+    21|   <!-- CSRF Token for AJAX -->
+ >> 22|   <meta name="csrf-token" content="<%= csrfToken %>">
+    23| </head>
+    24| <body>
+    25| 
+
+csrfToken is not defined
+    at eval (eval at compile (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:673:12), <anonymous>:15:26)
+    at header (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:703:17)
+    at include (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:701:39)
+    at eval (eval at compile (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:673:12), <anonymous>:10:17)
+    at 500 (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:703:17)
+    at tryHandleCache (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:274:36)
+    at exports.renderFile [as engine] (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:491:10)
+    at View.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/view.js:139:8)
+    at tryRender (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/application.js:627:10)
+    at app.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/response.js:923:7)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:126:33
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:116:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+Error: TypeError: generateToken is not a function
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:78:26
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/connect-flash/lib/flash.js:21:5
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at doubleCsrfProtection (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:145:7)
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+ReferenceError: /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/views/errors/500.ejs:1
+ >> 1| <%- include('../partials/header') %>
+    2| 
+    3| <div class="error-page">
+    4|   <div>
+
+/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/views/partials/header.ejs:22
+    20|   
+    21|   <!-- CSRF Token for AJAX -->
+ >> 22|   <meta name="csrf-token" content="<%= csrfToken %>">
+    23| </head>
+    24| <body>
+    25| 
+
+csrfToken is not defined
+    at eval (eval at compile (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:673:12), <anonymous>:15:26)
+    at header (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:703:17)
+    at include (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:701:39)
+    at eval (eval at compile (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:673:12), <anonymous>:10:17)
+    at 500 (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:703:17)
+    at tryHandleCache (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:274:36)
+    at exports.renderFile [as engine] (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:491:10)
+    at View.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/view.js:139:8)
+    at tryRender (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/application.js:627:10)
+    at app.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/response.js:923:7)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:126:33
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:116:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+Error: TypeError: generateToken is not a function
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:78:26
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/connect-flash/lib/flash.js:21:5
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at doubleCsrfProtection (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/csrf-csrf/dist/index.cjs:145:7)
+    at Layer.handleRequest (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:152:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:342:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+ReferenceError: /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/views/errors/500.ejs:1
+ >> 1| <%- include('../partials/header') %>
+    2| 
+    3| <div class="error-page">
+    4|   <div>
+
+/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/views/partials/header.ejs:22
+    20|   
+    21|   <!-- CSRF Token for AJAX -->
+ >> 22|   <meta name="csrf-token" content="<%= csrfToken %>">
+    23| </head>
+    24| <body>
+    25| 
+
+csrfToken is not defined
+    at eval (eval at compile (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:673:12), <anonymous>:15:26)
+    at header (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:703:17)
+    at include (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:701:39)
+    at eval (eval at compile (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:673:12), <anonymous>:10:17)
+    at 500 (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:703:17)
+    at tryHandleCache (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:274:36)
+    at exports.renderFile [as engine] (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:491:10)
+    at View.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/view.js:139:8)
+    at tryRender (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/application.js:627:10)
+    at app.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/response.js:923:7)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:126:33
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:116:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] clean exit - waiting for changes before restart[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+(node:5214) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+(node:6198) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+node:internal/modules/cjs/loader:1478
+  throw err;
+  ^
+
+Error: Cannot find module 'csurf'
+Require stack:
+- /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at require (node:internal/modules/helpers:191:16)
+    at Object.<anonymous> (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:12:14)
+    at Module._compile (node:internal/modules/cjs/loader:1829:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js'
+  ]
+}
+
+Node.js v25.9.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+node:internal/modules/cjs/loader:1478
+  throw err;
+  ^
+
+Error: Cannot find module 'csurf'
+Require stack:
+- /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at require (node:internal/modules/helpers:191:16)
+    at Object.<anonymous> (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:12:14)
+    at Module._compile (node:internal/modules/cjs/loader:1829:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js'
+  ]
+}
+
+Node.js v25.9.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+Error: TypeError: req.flash is not a function
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:107:9
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:116:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:111:12)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:111:12)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+    at next (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:291:5)
+ReferenceError: /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/views/errors/500.ejs:1
+ >> 1| <%- include('../partials/header') %>
+    2| 
+    3| <div class="error-page">
+    4|   <div>
+
+/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/views/partials/header.ejs:22
+    20|   
+    21|   <!-- CSRF Token for AJAX -->
+ >> 22|   <meta name="csrf-token" content="<%= csrfToken %>">
+    23| </head>
+    24| <body>
+    25| 
+
+csrfToken is not defined
+    at eval (eval at compile (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:673:12), <anonymous>:15:26)
+    at header (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:703:17)
+    at include (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:701:39)
+    at eval (eval at compile (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:673:12), <anonymous>:10:17)
+    at 500 (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:703:17)
+    at tryHandleCache (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:274:36)
+    at exports.renderFile [as engine] (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/ejs/lib/ejs.js:491:10)
+    at View.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/view.js:139:8)
+    at tryRender (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/application.js:627:10)
+    at app.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/application.js:574:3)
+    at ServerResponse.render (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/express/lib/response.js:923:7)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:115:33
+    at Layer.handleError (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/layer.js:116:17)
+    at trimPrefix (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:340:13)
+    at /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:297:9
+    at processParams (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:582:12)
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+(node:7551) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+node:internal/modules/cjs/loader:1478
+  throw err;
+  ^
+
+Error: Cannot find module 'csrf-csrf'
+Require stack:
+- /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at require (node:internal/modules/helpers:191:16)
+    at Object.<anonymous> (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:8:24)
+    at Module._compile (node:internal/modules/cjs/loader:1829:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js'
+  ]
+}
+
+Node.js v25.9.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+node:internal/modules/cjs/loader:1478
+  throw err;
+  ^
+
+Error: Cannot find module 'csrf-csrf'
+Require stack:
+- /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at require (node:internal/modules/helpers:191:16)
+    at Object.<anonymous> (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:8:24)
+    at Module._compile (node:internal/modules/cjs/loader:1829:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js'
+  ]
+}
+
+Node.js v25.9.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+node:internal/modules/cjs/loader:1478
+  throw err;
+  ^
+
+Error: Cannot find module 'csrf-csrf'
+Require stack:
+- /Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)
+    at Module._load (node:internal/modules/cjs/loader:1261:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at require (node:internal/modules/helpers:191:16)
+    at Object.<anonymous> (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js:8:24)
+    at Module._compile (node:internal/modules/cjs/loader:1829:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/app.js'
+  ]
+}
+
+Node.js v25.9.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+(node:7723) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+(node:9744) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+CREATE_ANGGOTA_ERROR: Error: NIK sudah terdaftar sebagai anggota aktif.
+    at create (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/controllers/anggotaController.js:137:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+✅ Email berhasil dikirim ke: senopa8600@bezill.com
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] clean exit - waiting for changes before restart[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] clean exit - waiting for changes before restart[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/controllers/anggotaController.js:221
+    try {
+        ^
+
+SyntaxError: Unexpected token '{'
+    at wrapSafe (node:internal/modules/cjs/loader:1762:18)
+    at Module._compile (node:internal/modules/cjs/loader:1803:20)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1969:10)
+    at Module.load (node:internal/modules/cjs/loader:1552:32)
+    at Module._load (node:internal/modules/cjs/loader:1354:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at require (node:internal/modules/helpers:191:16)
+    at Object.<anonymous> (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/routes/anggotaRoutes.js:3:27)
+    at Module._compile (node:internal/modules/cjs/loader:1829:14)
+
+Node.js v25.9.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+(node:13383) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+CREATE_ANGGOTA_ERROR: Error: NIK sudah terdaftar sebagai anggota aktif.
+    at create (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/controllers/anggotaController.js:129:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+CREATE_ANGGOTA_ERROR: Error: NIK sudah terdaftar sebagai anggota aktif.
+    at create (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/controllers/anggotaController.js:129:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+(node:13644) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+CREATE_ANGGOTA_ERROR: Error: NIK sudah terdaftar sebagai anggota aktif.
+    at create (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/controllers/anggotaController.js:123:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+✅ Email berhasil dikirim ke: test@gmail.com
+✅ Email berhasil dikirim ke: test4@gmail.com
+CREATE_ANGGOTA_ERROR: Error: Email sudah digunakan oleh anggota lain.
+    at create (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/controllers/anggotaController.js:130:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/route.js:228
+        throw new TypeError('argument handler must be a function')
+        ^
+
+TypeError: argument handler must be a function
+    at Route.<computed> [as get] (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/lib/route.js:228:15)
+    at Router.<computed> [as get] (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/node_modules/router/index.js:448:19)
+    at Object.<anonymous> (/Users/ramaaryop/Library/Mobile Documents/com~apple~CloudDocs/Ruang kuliah/Semester 8/Skripsi/Ngoding/routes/userRoutes.js:14:8)
+    at Module._compile (node:internal/modules/cjs/loader:1829:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1969:10)
+    at Module.load (node:internal/modules/cjs/loader:1552:32)
+    at Module._load (node:internal/modules/cjs/loader:1354:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.require (node:internal/modules/cjs/loader:1575:12)
+    at require (node:internal/modules/helpers:191:16)
+
+Node.js v25.9.0
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+(node:14071) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node app.js`[39m
+✅ Server Koperasi Desa berjalan di http://localhost:3000
+📦 Environment: development

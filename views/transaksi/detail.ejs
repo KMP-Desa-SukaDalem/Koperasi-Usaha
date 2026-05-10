@@ -1,0 +1,82 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+
+<div class="main-content">
+  <div class="top-header">
+    <div>
+      <button class="btn btn-link d-lg-none p-0 me-3" onclick="toggleSidebar()" style="color:var(--on-surface);"><span class="material-symbols-outlined">menu</span></button>
+      <h1 class="page-title d-inline-block">Detail Transaksi #<%= transaksi.id %></h1>
+    </div>
+    <a href="/transaksi/riwayat" class="btn btn-secondary">
+      <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">arrow_back</span> Kembali
+    </a>
+  </div>
+  <div class="content-wrapper">
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0">Item Transaksi</h5>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table mb-0">
+                <thead>
+                  <tr>
+                    <th>Barang</th>
+                    <th>Unit</th>
+                    <th class="text-end">Harga</th>
+                    <th class="text-center">Qty</th>
+                    <th class="text-end">Subtotal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% transaksi.details.forEach(d => { %>
+                    <tr>
+                      <td><strong><%= d.nama_barang %></strong></td>
+                      <td><small class="text-secondary"><%= d.nama_unit %></small></td>
+                      <td class="text-end">Rp <%= Number(d.harga_jual).toLocaleString('id-ID') %></td>
+                      <td class="text-center"><%= d.qty %></td>
+                      <td class="text-end"><strong>Rp <%= Number(d.subtotal).toLocaleString('id-ID') %></strong></td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+                <tfoot>
+                  <tr style="background:var(--surface-container-low);">
+                    <td colspan="4" class="text-end"><strong class="font-headline">TOTAL</strong></td>
+                    <td class="text-end"><strong class="font-headline" style="color:var(--primary);font-size:1.125rem;">Rp <%= Number(transaksi.total_harga).toLocaleString('id-ID') %></strong></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-header"><h5 class="mb-0">Info Transaksi</h5></div>
+          <div class="card-body">
+            <div class="mb-3">
+              <small class="text-secondary">ID Transaksi</small>
+              <div class="fw-bold">#<%= transaksi.id %></div>
+            </div>
+            <div class="mb-3">
+              <small class="text-secondary">Kasir</small>
+              <div class="fw-bold"><%= transaksi.kasir %></div>
+            </div>
+            <div class="mb-3">
+              <small class="text-secondary">Tanggal</small>
+              <div class="fw-bold"><%= new Date(transaksi.tanggal_transaksi).toLocaleDateString('id-ID', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' }) %></div>
+            </div>
+            <div>
+              <small class="text-secondary">Total Item</small>
+              <div class="fw-bold"><%= transaksi.details.length %> jenis barang</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

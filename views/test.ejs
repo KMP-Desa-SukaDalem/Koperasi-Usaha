@@ -1,0 +1,108 @@
+<%- include('./partials/header') %>
+
+<%- include('./partials/sidebar') %>
+
+<div class="main-content">
+  <!-- Top Header -->
+  <div class="top-header">
+    <div>
+      <button class="btn btn-link d-lg-none p-0 me-3" onclick="toggleSidebar()" style="color:var(--on-surface);">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+      <h1 class="page-title d-inline-block">Test Page</h1>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content-wrapper">
+    <!-- Flash Messages -->
+    <% if (typeof success !== 'undefined' && success.length > 0) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= success %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    <% } %>
+    <% if (typeof error !== 'undefined' && error.length > 0) { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= error %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    <% } %>
+
+    <!-- Status Cards -->
+    <div class="row g-4 mb-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="stat-card">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <div class="stat-icon primary">
+              <span class="material-symbols-outlined">paid</span>
+            </div>
+          </div>
+          <div class="stat-value">Rp 15.400.000</div>
+          <div class="stat-label mt-1">Total Pendapatan</div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="stat-card">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <div class="stat-icon success">
+              <span class="material-symbols-outlined">storefront</span>
+            </div>
+          </div>
+          <div class="stat-value">4</div>
+          <div class="stat-label mt-1">Unit Usaha</div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="stat-card">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <div class="stat-icon info">
+              <span class="material-symbols-outlined">inventory_2</span>
+            </div>
+          </div>
+          <div class="stat-value">124</div>
+          <div class="stat-label mt-1">Total Barang</div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="stat-card">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <div class="stat-icon warning">
+              <span class="material-symbols-outlined">receipt_long</span>
+            </div>
+          </div>
+          <div class="stat-value">89</div>
+          <div class="stat-label mt-1">Transaksi Hari Ini</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sample Card -->
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <span class="material-symbols-outlined me-2" style="vertical-align:middle;color:var(--primary);">check_circle</span>
+          Fondasi Berhasil!
+        </h5>
+      </div>
+      <div class="card-body">
+        <p class="mb-2">Server Express 5 + EJS berjalan dengan baik. Tema <strong>Merah Putih</strong> sudah aktif.</p>
+        <div class="d-flex gap-2 flex-wrap mt-3">
+          <button class="btn btn-primary">Primary Button</button>
+          <button class="btn btn-outline-primary">Outline Button</button>
+          <button class="btn btn-secondary">Secondary Button</button>
+          <button class="btn btn-danger">Danger Button</button>
+        </div>
+        <hr class="my-4" style="border-color: var(--surface-container);">
+        <div class="d-flex gap-2 flex-wrap">
+          <span class="badge badge-role-admin">Admin</span>
+          <span class="badge badge-role-pengurus">Pengurus</span>
+          <span class="badge badge-role-operator">Operator</span>
+          <span class="badge badge-role-auditor">Auditor</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('./partials/footer') %>
