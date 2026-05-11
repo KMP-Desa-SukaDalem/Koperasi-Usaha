@@ -63,7 +63,7 @@ const User = {
 
   // Hapus user
   async delete(id) {
-    const [result] = await db.query('DELETE FROM users WHERE id = ?', [id]);
+    const [result] = await db.query('UPDATE users SET status = ? WHERE id = ?', ['nonactive', id]);
     return result;
   },
 

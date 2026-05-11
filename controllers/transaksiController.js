@@ -5,96 +5,118 @@ const UnitUsaha = require('../models/UnitUsaha');
 const transaksiController = {
   // GET /transaksi - Halaman POS Kasir
   async index(req, res) {
-    const units = await UnitUsaha.findAll();
-    const barang = await Barang.findAll();
-    res.render('transaksi/index', {
-      title: 'Transaksi Penjualan',
-      currentPage: 'transaksi',
-      units,
-      barang
-    });
+    try {
+      const units = await UnitUsaha.findAll();
+      const barang = await Barang.findAll();
+      res.render('transaksi/index', {
+        title: 'Transaksi Penjualan',
+        currentPage: 'transaksi',
+        units,
+        barang
+      });
+    } catch (error) {
+      console.error(error);
+      req.flash('error', 'Gagal memuat halaman transaksi.');
+      res.redirect('/dashboard');
+    }
   },
 
   // POST /transaksi - Proses transaksi
   async create(req, res) {
-    const { items, metode_pembayaran, nominal_bayar } = req.body;
+    try {
+      const { items, metode_pembayaran, nominal_bayar } = req.body;
 
-    if (!items || !Array.isArray(items) || items.length === 0) {
-      return res.status(400).json({ success: false, message: 'Tidak ada barang dalam transaksi.' });
-    }
+      if (!items || !Array.isArray(items) || items.length === 0) {
+        return res.status(400).json({ success: false, message: 'Tidak ada barang dalam transaksi.' });
+      }
 
-    // Validasi dan ambil data harga dari DB
-    const validatedItems = [];
-    for (const item of items) {
-      const barang = await Barang.findById(item.barang_id);
-      if (!barang) {
-        return res.status(400).json({ success: false, message: `Barang ID ${item.barang_id} tidak ditemukan.` });
+      // Validasi dan ambil data harga dari DB
+      const validatedItems = [];
+      for (const item of items) {
+        const barang = await Barang.findById(item.barang_id);
+        if (!barang) {
+          return res.status(400).json({ success: false, message: `Barang ID ${item.barang_id} tidak ditemukan.` });
+        }
+        if (barang.stok < item.qty) {
+          return res.status(400).json({ success: false, message: `Stok ${barang.nama_barang} tidak mencukupi. Tersedia: ${barang.stok}` });
+        }
+        validatedItems.push({
+          barang_id: item.barang_id,
+          qty: parseInt(item.qty),
+          harga_jual: parseFloat(barang.harga_jual)
+        });
       }
-      if (barang.stok < item.qty) {
-        return res.status(400).json({ success: false, message: `Stok ${barang.nama_barang} tidak mencukupi. Tersedia: ${barang.stok}` });
-      }
-      validatedItems.push({
-        barang_id: item.barang_id,
-        qty: parseInt(item.qty),
-        harga_jual: parseFloat(barang.harga_jual)
+
+      // Hitung total harga transaksi
+      let totalHargaTrans = 0;
+      validatedItems.forEach(item => {
+        totalHargaTrans += item.harga_jual * item.qty;
       });
-    }
 
-    // Hitung total harga transaksi
-    let totalHargaTrans = 0;
-    validatedItems.forEach(item => {
-      totalHargaTrans += item.harga_jual * item.qty;
-    });
-
-    let kembalian = 0;
-    if (metode_pembayaran === 'Cash') {
-      const nominal = parseFloat(nominal_bayar) || 0;
-      if (nominal < totalHargaTrans) {
-        return res.status(400).json({ success: false, message: 'Nominal bayar tidak mencukupi.' });
+      let kembalian = 0;
+      if (metode_pembayaran === 'Cash') {
+        const nominal = parseFloat(nominal_bayar) || 0;
+        if (nominal < totalHargaTrans) {
+          return res.status(400).json({ success: false, message: 'Nominal bayar tidak mencukupi.' });
+        }
+        kembalian = nominal - totalHargaTrans;
       }
-      kembalian = nominal - totalHargaTrans;
-    }
 
-    const result = await Transaksi.create(req.session.user.id, validatedItems, {
-      metode_pembayaran,
-      nominal_bayar: metode_pembayaran === 'Cash' ? parseFloat(nominal_bayar) : totalHargaTrans,
-      kembalian
-    });
-    res.json({
-      success: true,
-      message: 'Transaksi berhasil!',
-      transaksiId: result.transaksiId,
-      totalHarga: result.totalHarga
-    });
+      const result = await Transaksi.create(req.session.user.id, validatedItems, {
+        metode_pembayaran,
+        nominal_bayar: metode_pembayaran === 'Cash' ? parseFloat(nominal_bayar) : totalHargaTrans,
+        kembalian
+      });
+      res.json({
+        success: true,
+        message: 'Transaksi berhasil!',
+        transaksiId: result.transaksiId,
+        totalHarga: result.totalHarga
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, message: 'Gagal memproses transaksi. Terjadi kesalahan pada server.' });
+    }
   },
 
   // GET /transaksi/riwayat - Riwayat transaksi
   async riwayat(req, res) {
-    const filters = {
-      startDate: req.query.startDate || '',
-      endDate: req.query.endDate || ''
-    };
-    const transaksi = await Transaksi.findAll(filters);
-    res.render('transaksi/riwayat', {
-      title: 'Riwayat Transaksi',
-      currentPage: 'transaksi',
-      transaksi,
-      filters
-    });
+    try {
+      const filters = {
+        startDate: req.query.startDate || '',
+        endDate: req.query.endDate || ''
+      };
+      const transaksi = await Transaksi.findAll(filters);
+      res.render('transaksi/riwayat', {
+        title: 'Riwayat Transaksi',
+        currentPage: 'transaksi',
+        transaksi,
+        filters
+      });
+    } catch (error) {
+      console.error(error);
+      req.flash('error', 'Gagal memuat riwayat transaksi.');
+      res.redirect('/dashboard');
+    }
   },
 
   // GET /transaksi/detail/:id - Detail transaksi
   async detail(req, res) {
-    const transaksi = await Transaksi.findById(req.params.id);
-    if (!transaksi) {
-      req.flash('error', 'Transaksi tidak ditemukan.');
-      return res.redirect('/transaksi/riwayat');
+    try {
+      const transaksi = await Transaksi.findById(req.params.id);
+      if (!transaksi) {
+        req.flash('error', 'Transaksi tidak ditemukan.');
+        return res.redirect('/transaksi/riwayat');
+      }
+      res.render('transaksi/detail', {
+        title: `Detail Transaksi #${transaksi.id}`,
+        currentPage: 'transaksi',
+        transaksi
+      });
+    } catch (error) {
+      console.error(error);
+      res.redirect('/transaksi/riwayat');
     }
-    res.render('transaksi/detail', {
-      title: `Detail Transaksi #${transaksi.id}`,
-      currentPage: 'transaksi',
-      transaksi
-    });
   },
 
   // GET /transaksi/struk/:id - Cetak struk transaksi

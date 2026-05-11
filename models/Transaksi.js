@@ -14,10 +14,16 @@ const Transaksi = {
         totalHarga += item.harga_jual * item.qty;
       }
 
+      // Generate Kode Transaksi: TRX-YYYYMMDD-Random
+      const now = new Date();
+      const dateStr = now.toISOString().slice(0, 10).replace(/-/g, '');
+      const randomStr = Math.random().toString(36).substring(2, 7).toUpperCase();
+      const kodeTransaksi = `TRX-${dateStr}-${randomStr}`;
+
       // Insert header transaksi
       const [headerResult] = await conn.query(
-        'INSERT INTO transaksi (user_id, total_harga, metode_pembayaran, nominal_bayar, kembalian) VALUES (?, ?, ?, ?, ?)',
-        [userId, totalHarga, metode_pembayaran, nominal_bayar, kembalian]
+        'INSERT INTO transaksi (kode_transaksi, user_id, total_harga, metode_pembayaran, nominal_bayar, kembalian) VALUES (?, ?, ?, ?, ?, ?)',
+        [kodeTransaksi, userId, totalHarga, metode_pembayaran, nominal_bayar, kembalian]
       );
       const transaksiId = headerResult.insertId;
 
@@ -26,8 +32,8 @@ const Transaksi = {
         const subtotal = item.harga_jual * item.qty;
 
         await conn.query(
-          'INSERT INTO detail_transaksi (transaksi_id, barang_id, qty, subtotal) VALUES (?, ?, ?, ?)',
-          [transaksiId, item.barang_id, item.qty, subtotal]
+          'INSERT INTO detail_transaksi (transaksi_id, barang_id, qty, harga_satuan, subtotal) VALUES (?, ?, ?, ?, ?)',
+          [transaksiId, item.barang_id, item.qty, item.harga_jual, subtotal]
         );
 
         // Kurangi stok

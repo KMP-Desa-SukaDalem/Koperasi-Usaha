@@ -2,13 +2,14 @@ const db = require('../config/database');
 
 const Barang = {
   // Ambil semua barang (JOIN dengan unit_usaha)
-  async findAll() {
+  async findAll(status = 'active') {
     const [rows] = await db.query(`
       SELECT b.*, u.nama_unit 
       FROM barang b
       JOIN unit_usaha u ON b.unit_usaha_id = u.id
+      WHERE b.status = ?
       ORDER BY b.id ASC
-    `);
+    `, [status]);
     return rows;
   },
 
@@ -66,13 +67,13 @@ const Barang = {
 
   // Hapus barang
   async delete(id) {
-    const [result] = await db.query('DELETE FROM barang WHERE id = ?', [id]);
+    const [result] = await db.query('UPDATE barang SET status = ? WHERE id = ?', ['nonactive', id]);
     return result;
   },
 
   // Hitung jumlah barang
-  async count() {
-    const [rows] = await db.query('SELECT COUNT(*) as total FROM barang');
+  async count(status = 'active') {
+    const [rows] = await db.query('SELECT COUNT(*) as total FROM barang WHERE status = ?', [status]);
     return rows[0].total;
   },
 

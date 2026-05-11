@@ -13,6 +13,9 @@ const csrf = require('csurf');
 
 const app = express();
 
+// Penting untuk Vercel agar session/cookie bekerja di balik proxy
+app.set('trust proxy', 1);
+
 // ============================================================
 // Security Middleware
 // ============================================================
@@ -51,13 +54,13 @@ app.use(session({
   }
 }));
 
-// 4. CSRF Protection (setelah session)
+// Flash Messages (Harus setelah session, sebelum CSRF agar error CSRF bisa pakai flash)
+app.use(flash());
+
+// 4. CSRF Protection (setelah session dan flash)
 const csrfProtection = csrf();
 // Terapkan CSRF secara global, kecuali API jika ada
 app.use(csrfProtection);
-
-// Flash Messages
-app.use(flash());
 
 // Global Variables untuk Views
 app.use((req, res, next) => {

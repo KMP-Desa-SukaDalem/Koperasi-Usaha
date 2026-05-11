@@ -72,7 +72,7 @@ const supplierController = {
       res.redirect('/supplier');
     } catch (error) {
       console.error(error);
-      req.flash('error', 'Terjadi kesalahan saat menyimpan data.');
+      req.flash('error', 'Terjadi kesalahan saat menyimpan data supplier.');
       res.redirect('/supplier/tambah');
     }
   },
@@ -112,7 +112,7 @@ const supplierController = {
       res.redirect('/supplier');
     } catch (error) {
       console.error(error);
-      req.flash('error', 'Terjadi kesalahan saat memperbarui data.');
+      req.flash('error', 'Terjadi kesalahan saat memperbarui data supplier.');
       res.redirect('/supplier/edit/' + req.params.id);
     }
   },

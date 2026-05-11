@@ -2,8 +2,8 @@ const db = require('../config/database');
 
 const UnitUsaha = {
   // Ambil semua unit usaha
-  async findAll() {
-    const [rows] = await db.query('SELECT * FROM unit_usaha ORDER BY id ASC');
+  async findAll(status = 'active') {
+    const [rows] = await db.query('SELECT * FROM unit_usaha WHERE status = ? ORDER BY id ASC', [status]);
     return rows;
   },
 
@@ -35,13 +35,13 @@ const UnitUsaha = {
 
   // Hapus unit usaha
   async delete(id) {
-    const [result] = await db.query('DELETE FROM unit_usaha WHERE id = ?', [id]);
+    const [result] = await db.query('UPDATE unit_usaha SET status = ? WHERE id = ?', ['nonactive', id]);
     return result;
   },
 
   // Hitung jumlah unit usaha
-  async count() {
-    const [rows] = await db.query('SELECT COUNT(*) as total FROM unit_usaha');
+  async count(status = 'active') {
+    const [rows] = await db.query('SELECT COUNT(*) as total FROM unit_usaha WHERE status = ?', [status]);
     return rows[0].total;
   }
 };

@@ -33,6 +33,11 @@ const authController = {
       return res.redirect('/login');
     }
 
+    if (user.status !== 'active') {
+      req.flash('error', 'Akun Anda telah dinonaktifkan. Silakan hubungi admin.');
+      return res.redirect('/login');
+    }
+
     // Simpan data user di session (tanpa password)
     req.session.user = {
       id: user.id,
@@ -41,15 +46,8 @@ const authController = {
       role: user.role
     };
 
-    req.flash('success', `Selamat datang, ${user.nama_lengkap} di sistem pengelolan koperasi desa sukadalem!`);
-    //   if (user.role === 'auditor') {
-    //     return res.redirect('/laporan');
-    //   }
-    //   return res.redirect('/dashboard');
-    // },
-    if (user.role) {
-      return res.redirect('/dashboard');
-    }
+    req.flash('success', `Selamat datang kembali, ${user.nama_lengkap}!`);
+    return res.redirect('/dashboard');
   },
 
   // GET /logout - Proses logout

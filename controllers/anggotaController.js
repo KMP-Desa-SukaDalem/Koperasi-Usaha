@@ -108,11 +108,11 @@ const anggotaController = {
           // AUTO-RESTORE LOGIC
           const oldNama = existingAnggota[0].nama_lengkap;
           await conn.query(
-            'UPDATE anggota SET nama_lengkap = ?, email = ?, nomor_telepon = ?, status = "active" WHERE nik = ?',
+            'UPDATE anggota SET nama_lengkap = ?, email = ?, nomor_telepon = ?, status = \'active\' WHERE nik = ?',
             [nama_lengkap, email, nomor_telepon, nik]
           );
           await conn.query(
-            'UPDATE users SET nama_lengkap = ?, email = ?, status = "active" WHERE nama_lengkap = ?',
+            'UPDATE users SET nama_lengkap = ?, email = ?, status = \'active\' WHERE nama_lengkap = ?',
             [nama_lengkap, email, oldNama]
           );
           await conn.commit();
@@ -278,10 +278,10 @@ const anggotaController = {
       const nama_lengkap = anggota[0].nama_lengkap;
 
       // 2. Soft Delete Anggota
-      await conn.query('UPDATE anggota SET status = "nonactive" WHERE id = ?', [id]);
+      await conn.query('UPDATE anggota SET status = \'nonactive\' WHERE id = ?', [id]);
 
       // 3. Soft Delete User terkait
-      await conn.query('UPDATE users SET status = "nonactive" WHERE nama_lengkap = ?', [nama_lengkap]);
+      await conn.query('UPDATE users SET status = \'nonactive\' WHERE nama_lengkap = ?', [nama_lengkap]);
 
       await conn.commit();
 
@@ -322,10 +322,10 @@ const anggotaController = {
       const nama_lengkap = anggota[0].nama_lengkap;
 
       // 2. Restore Anggota
-      await conn.query('UPDATE anggota SET status = "active" WHERE id = ?', [id]);
+      await conn.query('UPDATE anggota SET status = \'active\' WHERE id = ?', [id]);
 
       // 3. Restore User terkait
-      await conn.query('UPDATE users SET status = "active" WHERE nama_lengkap = ?', [nama_lengkap]);
+      await conn.query('UPDATE users SET status = \'active\' WHERE nama_lengkap = ?', [nama_lengkap]);
 
       await conn.commit();
 
