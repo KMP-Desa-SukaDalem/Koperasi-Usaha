@@ -13,6 +13,16 @@ const csrf = require('csurf');
 
 const app = express();
 
+// Konfigurasi MySQL Session Store
+const MySQLStore = require('express-mysql-session')(session);
+const db = require('./config/database');
+const sessionStore = new MySQLStore({
+  clearExpired: true,
+  checkExpirationInterval: 900000, // 15 menit
+  expiration: 86400000, // 24 jam
+  createDatabaseTable: true // Otomatis buat tabel sessions jika belum ada
+}, db);
+
 // Penting untuk Vercel agar session/cookie bekerja di balik proxy
 app.set('trust proxy', 1);
 
@@ -44,6 +54,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   name: 'session_koperasi', // Nama cookie custom
   secret: process.env.SESSION_SECRET || 'koperasi_sukadalem_secret_random_99',
+  store: sessionStore, // GUNAKAN DATABASE UNTUK SIMPAN SESSION
   resave: false,
   saveUninitialized: false,
   cookie: {
