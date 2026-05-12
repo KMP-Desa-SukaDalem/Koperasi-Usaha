@@ -49,7 +49,7 @@ app.use(session({
   cookie: {
     maxAge: 1000 * 60 * 60 * 24, // 1 hari
     httpOnly: true, // Mencegah akses via JS (XSS)
-    secure: false, // Set ke true jika menggunakan HTTPS
+    secure: process.env.NODE_ENV === 'production', // Set ke true jika menggunakan HTTPS
     sameSite: 'lax'
   }
 }));
@@ -111,7 +111,7 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   if (err.code === 'EBADCSRFTOKEN') {
     req.flash('error', 'Sesi form kadaluarsa atau tidak valid. Silakan coba lagi.');
-    return res.redirect('back');
+    return res.redirect(req.get('Referer') || '/login');
   }
   next(err);
 });
