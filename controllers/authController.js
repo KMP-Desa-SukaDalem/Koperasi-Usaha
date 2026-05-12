@@ -12,42 +12,48 @@ const authController = {
 
   // POST /login - Proses login
   async loginProcess(req, res) {
-    const { username, password } = req.body;
+    try {
+      const { username, password } = req.body;
 
-    if (!username || !password) {
-      req.flash('error', 'Username dan password harus diisi.');
+      if (!username || !password) {
+        req.flash('error', 'Username dan password harus diisi.');
+        return res.redirect('/login');
+      }
+
+      const user = await User.findByUsername(username);
+
+      if (!user) {
+        req.flash('error', 'Username atau password salah.');
+        return res.redirect('/login');
+      }
+
+      const isMatch = await bcrypt.compare(password, user.password);
+
+      if (!isMatch) {
+        req.flash('error', 'Username atau password salah.');
+        return res.redirect('/login');
+      }
+
+      if (user.status !== 'active') {
+        req.flash('error', 'Akun Anda telah dinonaktifkan. Silakan hubungi admin.');
+        return res.redirect('/login');
+      }
+
+      // Simpan data user di session (tanpa password)
+      req.session.user = {
+        id: user.id,
+        username: user.username,
+        nama_lengkap: user.nama_lengkap,
+        role: user.role
+      };
+
+      req.flash('success', `Selamat datang kembali, ${user.nama_lengkap}!`);
+      return res.redirect('/dashboard');
+    } catch (error) {
+      console.error('LOGIN_ERROR:', error);
+      req.flash('error', 'Terjadi kesalahan pada server saat login. Silakan coba lagi nanti.');
       return res.redirect('/login');
     }
-
-    const user = await User.findByUsername(username);
-
-    if (!user) {
-      req.flash('error', 'Username atau password salah.');
-      return res.redirect('/login');
-    }
-
-    const isMatch = await bcrypt.compare(password, user.password);
-
-    if (!isMatch) {
-      req.flash('error', 'Username atau password salah.');
-      return res.redirect('/login');
-    }
-
-    if (user.status !== 'active') {
-      req.flash('error', 'Akun Anda telah dinonaktifkan. Silakan hubungi admin.');
-      return res.redirect('/login');
-    }
-
-    // Simpan data user di session (tanpa password)
-    req.session.user = {
-      id: user.id,
-      username: user.username,
-      nama_lengkap: user.nama_lengkap,
-      role: user.role
-    };
-
-    req.flash('success', `Selamat datang kembali, ${user.nama_lengkap}!`);
-    return res.redirect('/dashboard');
   },
 
   // GET /logout - Proses logout
