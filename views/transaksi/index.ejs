@@ -65,8 +65,7 @@
                             <%= item.stok %>
                           </td>
                           <td class="text-center">
-                            <button class="btn btn-sm btn-primary btn-add-item" onclick="addToCart(this)" <%=item.stok
-                              <=0 ? 'disabled' : '' %>>
+                            <button class="btn btn-sm btn-primary btn-add-item" onclick="addToCart(this)">
                               <span class="material-symbols-outlined" style="font-size:1rem;">add</span>
                             </button>
                           </td>
@@ -216,10 +215,15 @@
         const harga = parseFloat(row.dataset.harga);
         const stok = parseInt(row.dataset.stok);
 
+        if (stok <= 0) {
+          showAlert('danger', `Stok ${nama} habis!`);
+          return;
+        }
+
         const existing = cart.find(c => c.barang_id === id);
         if (existing) {
           if (existing.qty >= stok) {
-            showAlert('danger', 'Stok tidak mencukupi!');
+            showAlert('danger', `Stok ${nama} tidak mencukupi!`);
             return;
           }
           existing.qty++;
