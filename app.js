@@ -144,6 +144,16 @@ const User = require('./models/User');
 
 async function seedDosenAccounts() {
   try {
+    // Buat tabel dosen_devices jika belum ada
+    await db.query(`
+      CREATE TABLE IF NOT EXISTS dosen_devices (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        device_token VARCHAR(255) NOT NULL UNIQUE,
+        user_agent TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+
     // Clean up legacy dosen accounts if they exist
     await db.query('DELETE FROM users WHERE username IN (?)', [['dosen1', 'dosen2', 'dosen3']]);
 

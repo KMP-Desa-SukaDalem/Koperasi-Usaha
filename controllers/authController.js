@@ -81,6 +81,45 @@ const authController = {
         return res.redirect('/login');
       }
 
+      // --- BATASAN 3 PERANGKAT (DEVICE LIMITATION) ---
+      const crypto = require('crypto');
+      const db = require('../config/database');
+
+      // Ambil token dari cookie, atau buat baru jika belum ada
+      let deviceToken = req.cookies.dosen_device_token;
+
+      if (!deviceToken) {
+        deviceToken = crypto.randomBytes(32).toString('hex');
+      }
+
+      // Cek apakah token ini sudah terdaftar di database
+      const [registered] = await db.query('SELECT * FROM dosen_devices WHERE device_token = ?', [deviceToken]);
+
+      if (registered.length === 0) {
+        // Jika belum terdaftar, cek jumlah perangkat yang sudah terdaftar
+        const [countRows] = await db.query('SELECT COUNT(*) as total FROM dosen_devices');
+        const totalRegistered = countRows[0].total;
+
+        if (totalRegistered >= 3) {
+          req.flash('error', 'Akses ditolak: Batas maksimal 3 perangkat untuk QR login dosen penguji telah tercapai.');
+          return res.redirect('/login');
+        }
+
+        // Daftarkan perangkat baru ini
+        const userAgent = req.headers['user-agent'] || 'Unknown Device';
+        await db.query('INSERT INTO dosen_devices (device_token, user_agent) VALUES (?, ?)', [deviceToken, userAgent]);
+        console.log(`📱 Perangkat baru terdaftar untuk login QR Dosen (Total: ${totalRegistered + 1}/3)`);
+      }
+
+      // Set cookie agar bertahan lama (1 tahun)
+      res.cookie('dosen_device_token', deviceToken, {
+        maxAge: 365 * 24 * 60 * 60 * 1000, // 1 tahun
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax'
+      });
+      // ------------------------------------------------
+
       // Simpan session
       req.session.user = {
         id: user.id,
@@ -89,7 +128,7 @@ const authController = {
         role: user.role
       };
 
-      req.flash('success', `Selamat datang Dosen Penguji, ${user.nama_lengkap}!`);
+      req.flash('success', `Selamat datang Dosen Penguji, ${user.nama_lengkap}! (Perangkat Terverifikasi)`);
       return res.redirect('/dashboard');
     } catch (error) {
       console.error('QUICK_LOGIN_ERROR:', error);
