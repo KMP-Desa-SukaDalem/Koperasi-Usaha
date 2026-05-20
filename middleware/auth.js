@@ -7,16 +7,26 @@ const db = require('../config/database');
 const isLoggedIn = async (req, res, next) => {
   if (req.session && req.session.user) {
     try {
-      // Periksa status terbaru di database
-      const [rows] = await db.query('SELECT status FROM users WHERE id = ?', [req.session.user.id]);
+      // Ambil data terbaru dari database agar tetap sinkron
+      const [rows] = await db.query('SELECT id, username, nama_lengkap, role, status FROM users WHERE id = ?', [req.session.user.id]);
       
       if (rows.length > 0 && rows[0].status === 'active') {
+        // Update session dengan data terbaru
+        req.session.user = {
+          id: rows[0].id,
+          username: rows[0].username,
+          nama_lengkap: rows[0].nama_lengkap,
+          role: rows[0].role
+        };
+        // Sinkronkan juga ke local variable views untuk request ini
+        res.locals.user = req.session.user;
         return next();
       } else {
         // Jika akun dinonaktifkan atau dihapus (nonactive)
         req.session.destroy((err) => {
           if (err) console.error('SESSION_DESTROY_ERROR:', err);
         });
+        req.flash('error', 'Akun Anda telah dinonaktifkan atau dihapus.');
         return res.redirect('/login');
       }
     } catch (err) {
