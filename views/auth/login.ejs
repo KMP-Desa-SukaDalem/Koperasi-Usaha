@@ -1,73 +1,142 @@
 <%- include('../partials/header') %>
 
-<div class="login-page">
-  <!-- Brand Panel (Left) -->
-  <div class="login-brand-panel">
-    <div class="brand-content">
-      <div class="brand-icon">
-        <span class="material-symbols-outlined">account_balance</span>
+  <div class="login-page">
+    <!-- Brand Panel (Left) -->
+    <div class="login-brand-panel">
+      <div class="brand-content">
+        <div class="brand-icon">
+          <span class="material-symbols-outlined">account_balance</span>
+        </div>
+        <h1>Koperasi<br>Desa Sukadalem</h1>
+        <p>Sistem Manajemen Koperasi Berbasis Web Untuk Pengelolaan Usaha Desa</p>
+        <div class="mt-4" style="opacity:0.5;font-size:0.8125rem;">
+          Kecamatan Waringinkurung
+        </div>
       </div>
-      <h1>Koperasi<br>Desa Sukadalem</h1>
-      <p>Sistem Manajemen Koperasi Berbasis Web Untuk Pengelolaan Usaha Desa</p>
-      <div class="mt-4" style="opacity:0.5;font-size:0.8125rem;">
-        Kecamatan Waringinkurung
+    </div>
+
+    <!-- Form Panel (Right) -->
+    <div class="login-form-panel">
+      <div class="login-form-container">
+        <h2>Masuk</h2>
+        <p class="login-subtitle">Silakan masukkan kredensial Anda untuk melanjutkan</p>
+
+        <!-- Flash Messages -->
+        <% if (typeof success !=='undefined' && success.length> 0) { %>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= success %>
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+          <% } %>
+            <% if (typeof error !=='undefined' && error.length> 0) { %>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%= error %>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>
+              <% } %>
+
+                <form action="/login" method="POST">
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                  <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        style="background:var(--surface-container-lowest);border-color:var(--surface-container);">
+                        <span class="material-symbols-outlined"
+                          style="font-size:1.125rem;color:var(--text-secondary);">person</span>
+                      </span>
+                      <input type="text" class="form-control" id="username" name="username"
+                        placeholder="Masukkan username" required autofocus>
+                    </div>
+                  </div>
+
+                  <div class="mb-4">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-group">
+                      <span class="input-group-text"
+                        style="background:var(--surface-container-lowest);border-color:var(--surface-container);">
+                        <span class="material-symbols-outlined"
+                          style="font-size:1.125rem;color:var(--text-secondary);">lock</span>
+                      </span>
+                      <input type="password" class="form-control" id="password" name="password"
+                        placeholder="Masukkan password" required>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary" id="btn-login">
+                    <span class="material-symbols-outlined me-1"
+                      style="font-size:1.125rem;vertical-align:middle;">login</span>
+                    Masuk
+                  </button>
+                </form>
+
+                <!-- Akses Cepat Penguji / Dosen -->
+                <div class="mt-4 border-top pt-3">
+                  <h6 class="text-center mb-3"
+                    style="font-size: 0.8125rem; color: var(--text-secondary); font-weight: 600;">
+                    <span class="material-symbols-outlined me-1"
+                      style="font-size: 1.125rem; vertical-align: middle; color: var(--primary);">qr_code_scanner</span>
+                    Akses Cepat Penguji / Dosen (Role: Admin)
+                  </h6>
+                  <div class="row g-2 justify-content-center text-center">
+                    <div class="col-4">
+                      <div class="card p-2 shadow-sm"
+                        style="border-radius: 8px; border: 1px solid var(--surface-container-high); background: var(--surface-container-lowest);">
+                        <span class="fw-bold mb-1"
+                          style="font-size: 0.65rem; display: block; color: var(--text-primary);">Dosen Penguji I</span>
+                        <img id="qr-dosen1" class="img-fluid mx-auto mb-2"
+                          style="max-width: 70px; border-radius: 4px; border: 1px solid var(--surface-container-high);"
+                          src="" alt="QR Dosen 1" />
+                        <a id="link-dosen1" href="#" class="btn btn-sm btn-primary py-1 px-0 w-100"
+                          style="font-size: 0.6rem; border-radius: 4px; line-height: 1;">Masuk</a>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="card p-2 shadow-sm"
+                        style="border-radius: 8px; border: 1px solid var(--surface-container-high); background: var(--surface-container-lowest);">
+                        <span class="fw-bold mb-1"
+                          style="font-size: 0.65rem; display: block; color: var(--text-primary);">Dosen Penguji
+                          II</span>
+                        <img id="qr-dosen2" class="img-fluid mx-auto mb-2"
+                          style="max-width: 70px; border-radius: 4px; border: 1px solid var(--surface-container-high);"
+                          src="" alt="QR Dosen 2" />
+                        <a id="link-dosen2" href="#" class="btn btn-sm btn-primary py-1 px-0 w-100"
+                          style="font-size: 0.6rem; border-radius: 4px; line-height: 1;">Masuk</a>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="card p-2 shadow-sm"
+                        style="border-radius: 8px; border: 1px solid var(--surface-container-high); background: var(--surface-container-lowest);">
+                        <span class="fw-bold mb-1"
+                          style="font-size: 0.65rem; display: block; color: var(--text-primary);">Dosen Penguji
+                          III</span>
+                        <img id="qr-dosen3" class="img-fluid mx-auto mb-2"
+                          style="max-width: 70px; border-radius: 4px; border: 1px solid var(--surface-container-high);"
+                          src="" alt="QR Dosen 3" />
+                        <a id="link-dosen3" href="#" class="btn btn-sm btn-primary py-1 px-0 w-100"
+                          style="font-size: 0.6rem; border-radius: 4px; line-height: 1;">Masuk</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <script>
+                  document.addEventListener('DOMContentLoaded', function () {
+                    const origin = window.location.origin;
+                    ['dosen1', 'dosen2', 'dosen3'].forEach(dosen => {
+                      const loginUrl = origin + '/quick-login?username=' + dosen;
+                      const qrApiUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + encodeURIComponent(loginUrl);
+                      document.getElementById('qr-' + dosen).src = qrApiUrl;
+                      document.getElementById('link-' + dosen).href = loginUrl;
+                    });
+                  });
+                </script>
+
+                <div class="text-center mt-4" style="font-size:0.75rem;color:var(--text-muted);">
+                  &copy; <%= new Date().getFullYear() %> Koperasi Desa Sukadalem. Sistem Manajemen Koperasi.
+                </div>
       </div>
     </div>
   </div>
 
-  <!-- Form Panel (Right) -->
-  <div class="login-form-panel">
-    <div class="login-form-container">
-      <h2>Masuk</h2>
-      <p class="login-subtitle">Silakan masukkan kredensial Anda untuk melanjutkan</p>
-
-      <!-- Flash Messages -->
-      <% if (typeof success !== 'undefined' && success.length > 0) { %>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <%= success %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-      <% } %>
-      <% if (typeof error !== 'undefined' && error.length > 0) { %>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <%= error %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-      <% } %>
-
-      <form action="/login" method="POST">
-        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-        <div class="mb-3">
-          <label for="username" class="form-label">Username</label>
-          <div class="input-group">
-            <span class="input-group-text" style="background:var(--surface-container-lowest);border-color:var(--surface-container);">
-              <span class="material-symbols-outlined" style="font-size:1.125rem;color:var(--text-secondary);">person</span>
-            </span>
-            <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username" required autofocus>
-          </div>
-        </div>
-
-        <div class="mb-4">
-          <label for="password" class="form-label">Password</label>
-          <div class="input-group">
-            <span class="input-group-text" style="background:var(--surface-container-lowest);border-color:var(--surface-container);">
-              <span class="material-symbols-outlined" style="font-size:1.125rem;color:var(--text-secondary);">lock</span>
-            </span>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" required>
-          </div>
-        </div>
-
-        <button type="submit" class="btn btn-primary" id="btn-login">
-          <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">login</span>
-          Masuk
-        </button>
-      </form>
-
-      <div class="text-center mt-4" style="font-size:0.75rem;color:var(--text-muted);">
-        &copy; 2024 Koperasi Desa Sukadalem. Sistem Manajemen Koperasi.
-      </div>
-    </div>
-  </div>
-</div>
-
-<%- include('../partials/footer') %>
+  <%- include('../partials/footer') %>

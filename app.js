@@ -137,6 +137,41 @@ app.use((err, req, res, next) => {
 });
 
 // ============================================================
+// Automatic Seeder for Lecturer (Dosen) Admin Accounts
+// ============================================================
+const bcrypt = require('bcrypt');
+const User = require('./models/User');
+
+async function seedDosenAccounts() {
+  try {
+    const dosenList = [
+      { username: 'dosen1', nama_lengkap: 'Dosen Penguji I', email: 'dosen1@sukadalem.id' },
+      { username: 'dosen2', nama_lengkap: 'Dosen Penguji II', email: 'dosen2@sukadalem.id' },
+      { username: 'dosen3', nama_lengkap: 'Dosen Penguji III', email: 'dosen3@sukadalem.id' }
+    ];
+
+    for (const d of dosenList) {
+      const existing = await User.findByUsername(d.username);
+      if (!existing) {
+        // Hash password 'dosen123'
+        const hashedPassword = await bcrypt.hash('dosen123', 10);
+        await User.create({
+          username: d.username,
+          password: hashedPassword,
+          nama_lengkap: d.nama_lengkap,
+          email: d.email,
+          role: 'admin'
+        });
+        console.log(`✅ Seeder: Berhasil membuat akun dosen ${d.username} (Admin)`);
+      }
+    }
+  } catch (err) {
+    console.error('❌ Seeder Error:', err);
+  }
+}
+seedDosenAccounts();
+
+// ============================================================
 // Start Server
 // ============================================================
 const PORT = process.env.PORT || 3000;

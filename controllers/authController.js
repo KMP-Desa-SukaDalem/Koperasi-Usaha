@@ -56,6 +56,48 @@ const authController = {
     }
   },
 
+  // GET /quick-login - Akses Cepat Login Otomatis Dosen
+  async quickLogin(req, res) {
+    try {
+      const { username } = req.query;
+      if (!username) {
+        req.flash('error', 'Username tidak valid.');
+        return res.redirect('/login');
+      }
+
+      if (!['dosen1', 'dosen2', 'dosen3'].includes(username)) {
+        req.flash('error', 'Akses ditolak.');
+        return res.redirect('/login');
+      }
+
+      const user = await User.findByUsername(username);
+      if (!user) {
+        req.flash('error', 'Akun dosen belum siap. Silakan refresh halaman.');
+        return res.redirect('/login');
+      }
+
+      if (user.status !== 'active') {
+        req.flash('error', 'Akun dosen dinonaktifkan.');
+        return res.redirect('/login');
+      }
+
+      // Simpan session
+      req.session.user = {
+        id: user.id,
+        username: user.username,
+        nama_lengkap: user.nama_lengkap,
+        role: user.role
+      };
+
+      req.flash('success', `Selamat datang Dosen Penguji, ${user.nama_lengkap}!`);
+      return res.redirect('/dashboard');
+    } catch (error) {
+      console.error('QUICK_LOGIN_ERROR:', error);
+      req.flash('error', 'Gagal memproses login cepat.');
+      return res.redirect('/login');
+    }
+  },
+
   // GET /logout - Proses logout
   logout(req, res) {
     req.session.destroy((err) => {

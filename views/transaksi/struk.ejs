@@ -131,6 +131,29 @@
 
   <div class="divider"></div>
 
+  <div class="signature-section" style="margin: 15px 0; text-align: right;">
+    <div style="display: inline-block; text-align: center; width: 140px;">
+      <span style="display: block; margin-bottom: 5px; font-size: 11px;">Kasir,</span>
+      <div style="height: 50px; display: flex; align-items: center; justify-content: center; margin-bottom: 5px;">
+        <img id="signatureImg" src="" style="max-height: 50px; max-width: 120px; display: none; margin: 0 auto;" />
+        <script>
+          (function() {
+            const sig = localStorage.getItem('kasirSignature');
+            if (sig) {
+              const img = document.getElementById('signatureImg');
+              img.src = sig;
+              img.style.display = 'block';
+            }
+          })();
+        </script>
+      </div>
+      <div style="border-bottom: 1px solid #000; width: 120px; margin: 0 auto 5px auto;"></div>
+      <span style="display: block; font-size: 11px; font-weight: bold;"><%= transaksi.kasir %></span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
   <div class="footer">
     <p>Terima Kasih</p>
     <p>Barang yang sudah dibeli tidak dapat ditukar/dikembalikan.</p>

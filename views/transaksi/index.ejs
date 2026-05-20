@@ -175,18 +175,35 @@
 
     <!-- Modal Cetak Struk -->
     <div class="modal fade" id="modalStruk" tabindex="-1" data-bs-backdrop="static">
-      <div class="modal-dialog modal-dialog-centered modal-sm">
-        <div class="modal-content text-center p-4">
-          <div class="mb-3">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-4">
+          <div class="text-center mb-3">
             <span class="material-symbols-outlined text-success" style="font-size:4rem;">check_circle</span>
+            <h5 class="mt-2 mb-1">Transaksi Berhasil!</h5>
+            <p class="text-secondary mb-3" id="pesanSukses"></p>
           </div>
-          <h5 class="mb-3">Transaksi Berhasil!</h5>
-          <p class="text-secondary mb-4" id="pesanSukses"></p>
+
+          <!-- Tanda Tangan Canvas Pad -->
+          <div class="mb-4">
+            <label class="form-label d-block fw-bold text-start mb-2" style="font-size:0.9rem;">
+              <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;color:var(--primary);">draw</span>
+              Tanda Tangan Kasir <span class="text-danger">*</span>
+            </label>
+            <div style="background:#f8f9fa;border:1px solid #dee2e6;border-radius:8px;padding:8px;text-align:center;">
+              <canvas id="signatureCanvas" width="320" height="160" style="border:1px dashed #bbb;border-radius:6px;background:#fff;cursor:crosshair;touch-action:none;display:block;margin:0 auto;max-width:100%;"></canvas>
+            </div>
+            <div class="text-start mt-2">
+              <button type="button" class="btn btn-sm btn-outline-danger" onclick="clearSignature()">
+                <span class="material-symbols-outlined me-1" style="font-size:0.9rem;vertical-align:middle;">delete</span> Hapus Coretan
+              </button>
+            </div>
+          </div>
+
           <div class="d-grid gap-2">
-            <button type="button" class="btn btn-primary" id="btnCetakStruk" onclick="cetakStruk()">
-              <span class="material-symbols-outlined me-1" style="vertical-align:middle;">print</span> Cetak Struk
+            <button type="button" class="btn btn-primary" id="btnCetakStruk" onclick="cetakStruk()" disabled>
+              <span class="material-symbols-outlined me-1" style="vertical-align:middle;">print</span> Simpan & Cetak Struk
             </button>
-            <button type="button" class="btn btn-outline-secondary" onclick="tutupStrukDanReload()">Selesai</button>
+            <button type="button" class="btn btn-outline-secondary" onclick="tutupStrukDanReload()">Selesai (Tanpa Cetak)</button>
           </div>
         </div>
       </div>
@@ -373,6 +390,11 @@
             document.getElementById('pesanSukses').innerHTML = `Transaksi #${data.transaksiId} berhasil!<br>Kembalian: <strong>Rp ${Number(data.kembalian || (nominal_bayar - totalBelanja)).toLocaleString('id-ID')}</strong>`;
             const modalStruk = new bootstrap.Modal(document.getElementById('modalStruk'));
             modalStruk.show();
+            // Inisialisasi signature pad setelah modal terbuka
+            setTimeout(initSignaturePad, 300);
+
+            // Tampilkan alert sukses (Langkah 14 & 15 di diagram)
+            showAlert('success', 'Transaksi penjualan berhasil!');
 
             cart = [];
             renderCart();
@@ -388,8 +410,107 @@
         }
       }
 
+      // Canvas Tanda Tangan Kasir
+      let canvas, ctx;
+      let drawing = false;
+      let hasSigned = false;
+
+      function initSignaturePad() {
+        canvas = document.getElementById('signatureCanvas');
+        if (!canvas) return;
+        ctx = canvas.getContext('2d');
+        
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 3;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        // Mouse events
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+
+        // Touch events for mobile/tablet
+        canvas.addEventListener('touchstart', startDrawingTouch, { passive: false });
+        canvas.addEventListener('touchmove', drawTouch, { passive: false });
+        canvas.addEventListener('touchend', stopDrawing);
+
+        // Reset state
+        hasSigned = false;
+        document.getElementById('btnCetakStruk').disabled = true;
+      }
+
+      function startDrawing(e) {
+        drawing = true;
+        draw(e);
+      }
+
+      function draw(e) {
+        if (!drawing) return;
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        if (!hasSigned) {
+          ctx.beginPath();
+          ctx.moveTo(x, y);
+          hasSigned = true;
+          document.getElementById('btnCetakStruk').disabled = false;
+        } else {
+          ctx.lineTo(x, y);
+          ctx.stroke();
+        }
+      }
+
+      function stopDrawing() {
+        drawing = false;
+        ctx.beginPath();
+      }
+
+      function startDrawingTouch(e) {
+        e.preventDefault();
+        drawing = true;
+        const touch = e.touches[0];
+        const rect = canvas.getBoundingClientRect();
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+        
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        hasSigned = true;
+        document.getElementById('btnCetakStruk').disabled = false;
+      }
+
+      function drawTouch(e) {
+        e.preventDefault();
+        if (!drawing) return;
+        const touch = e.touches[0];
+        const rect = canvas.getBoundingClientRect();
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+        
+        ctx.lineTo(x, y);
+        ctx.stroke();
+      }
+
+      function clearSignature() {
+        if (!canvas) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        hasSigned = false;
+        document.getElementById('btnCetakStruk').disabled = true;
+      }
+
       function cetakStruk() {
         if (transaksiSuksesId) {
+          if (!hasSigned) {
+            alert('Silakan tanda tangani struk terlebih dahulu!');
+            return;
+          }
+          // Simpan data URL tanda tangan ke localStorage
+          const signatureData = canvas.toDataURL();
+          localStorage.setItem('kasirSignature', signatureData);
+
           window.open(`/transaksi/struk/${transaksiSuksesId}`, '_blank');
           tutupStrukDanReload();
         }
