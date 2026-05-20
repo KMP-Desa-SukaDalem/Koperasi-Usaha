@@ -65,7 +65,7 @@ const authController = {
         return res.redirect('/login');
       }
 
-      if (!['dosen1', 'dosen2', 'dosen3'].includes(username)) {
+      if (username !== 'dosen') {
         req.flash('error', 'Akses ditolak.');
         return res.redirect('/login');
       }

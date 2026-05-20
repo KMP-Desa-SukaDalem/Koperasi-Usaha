@@ -144,10 +144,11 @@ const User = require('./models/User');
 
 async function seedDosenAccounts() {
   try {
+    // Clean up legacy dosen accounts if they exist
+    await db.query('DELETE FROM users WHERE username IN (?)', [['dosen1', 'dosen2', 'dosen3']]);
+
     const dosenList = [
-      { username: 'dosen1', nama_lengkap: 'Dosen Penguji I', email: 'dosen1@sukadalem.id' },
-      { username: 'dosen2', nama_lengkap: 'Dosen Penguji II', email: 'dosen2@sukadalem.id' },
-      { username: 'dosen3', nama_lengkap: 'Dosen Penguji III', email: 'dosen3@sukadalem.id' }
+      { username: 'dosen', nama_lengkap: 'Dosen Penguji', email: 'dosen@sukadalem.id' }
     ];
 
     for (const d of dosenList) {
