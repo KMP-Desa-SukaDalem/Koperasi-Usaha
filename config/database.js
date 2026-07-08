@@ -23,7 +23,7 @@ const poolConfig = {
 };
 
 // Aktifkan SSL hanya jika host bukan localhost atau 127.0.0.1 (misalnya untuk database production cloud)
-if (process.env.DB_HOST !== 'localhost' && process.env.DB_HOST !== '127.0.0.1') {
+if (process.env.DB_HOST !== 'localhost' && process.env.DB_HOST !== '127.0.0.1' && process.env.DB_HOST !== 'db' && process.env.DB_HOST !== 'mysql') {
   poolConfig.ssl = {
     rejectUnauthorized: false
   };

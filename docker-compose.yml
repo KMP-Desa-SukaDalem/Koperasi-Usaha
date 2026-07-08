@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: koperasi_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: labsweek_kmp-usaha
+      MYSQL_USER: labsweek_kmp-usaha
+      MYSQL_PASSWORD: kmp-usaha
+      MYSQL_ROOT_PASSWORD: kmp-usaha-root
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database_export.sql:/docker-entrypoint-initdb.d/init.sql
+      - mysql_data:/var/lib/mysql
+
+  app:
+    build: .
+    container_name: koperasi_app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - DB_HOST=dolce.sg.berkahost.com
+      - DB_USER=labsweek_kmp-usaha
+      - DB_PASSWORD=kmp-usaha
+      - DB_NAME=labsweek_kmp-usaha
+      - DB_PORT=3306
+      - SESSION_SECRET=koperasi_desa_sukadalem_2024_secure_v1_random_long_string
+      - SMTP_HOST=smtp.gmail.com
+      - SMTP_PORT=587
+      - SMTP_USER=koperasidesasukadalem@gmail.com
+      - SMTP_PASS=ufkb iywp ponq zwmu
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:
