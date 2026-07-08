@@ -7,7 +7,7 @@
       <button class="btn btn-link d-lg-none p-0 me-3" onclick="toggleSidebar()" style="color:var(--on-surface);"><span class="material-symbols-outlined">menu</span></button>
       <h1 class="page-title d-inline-block">Data Supplier</h1>
     </div>
-    <% if (user && ['admin', 'pengurus'].includes(user.role)) { %>
+    <% if (user && ['admin', 'operator'].includes(user.role)) { %>
     <a href="/supplier/tambah" class="btn btn-primary">
       <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">add_business</span> Tambah Supplier
     </a>
@@ -96,8 +96,8 @@
                           <span class="material-symbols-outlined" style="font-size:1rem; vertical-align:middle;">call</span>
                         </a>
 
-                        <!-- LOGIKA RBAC VIEW: Sembunyikan tombol Edit & Delete untuk Operator/Auditor -->
-                        <% if (user.role === 'admin' || user.role === 'pengurus') { %>
+                        <!-- LOGIKA RBAC VIEW: Tampilkan tombol Edit & Delete untuk Admin dan Operator -->
+                        <% if (user.role === 'admin' || user.role === 'operator') { %>
                           <div class="vr"></div> <!-- Pembatas Vertikal -->
                           
                           <a href="/supplier/edit/<%= row.id %>" class="btn btn-sm btn-outline-warning" title="Edit Data">

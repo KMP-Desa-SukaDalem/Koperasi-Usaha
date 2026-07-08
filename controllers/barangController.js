@@ -1,5 +1,6 @@
 const Barang = require('../models/Barang');
 const UnitUsaha = require('../models/UnitUsaha');
+const Log = require('../models/Log');
 
 const barangController = {
   // GET /barang - Daftar barang
@@ -46,13 +47,16 @@ const barangController = {
         return res.redirect('/barang/tambah');
       }
 
-      await Barang.create({
+      const result = await Barang.create({
         unit_usaha_id,
         nama_barang,
         harga_beli: harga_beli || 0,
         harga_jual: harga_jual || 0,
         stok: stok || 0
       });
+
+      // Log Activity: Create Barang
+      await Log.record(req.session.user.id, 'CREATE', 'BARANG', result.insertId, `Menambah barang baru: ${nama_barang} (Stok: ${stok || 0}).`);
 
       req.flash('success', 'Barang berhasil ditambahkan.');
       res.redirect('/barang');
@@ -104,6 +108,9 @@ const barangController = {
         stok: stok || 0
       });
 
+      // Log Activity: Update Barang
+      await Log.record(req.session.user.id, 'UPDATE', 'BARANG', req.params.id, `Memperbarui data barang: ${nama_barang} (Stok: ${stok || 0}).`);
+
       req.flash('success', 'Barang berhasil diperbarui.');
       res.redirect('/barang');
     } catch (error) {
@@ -116,7 +123,14 @@ const barangController = {
   // POST /barang/delete/:id - Proses hapus
   async delete(req, res) {
     try {
+      const item = await Barang.findById(req.params.id);
+      const nama_barang = item ? item.nama_barang : 'Unknown';
+
       await Barang.delete(req.params.id);
+
+      // Log Activity: Delete Barang
+      await Log.record(req.session.user.id, 'DELETE', 'BARANG', req.params.id, `Menonaktifkan (arsip) barang: ${nama_barang}.`);
+
       req.flash('success', 'Barang berhasil dinonaktifkan (diarsipkan).');
       res.redirect('/barang');
     } catch (error) {

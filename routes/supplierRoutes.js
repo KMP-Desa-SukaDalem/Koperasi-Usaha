@@ -4,11 +4,11 @@ const supplierController = require('../controllers/supplierController');
 const { isLoggedIn } = require('../middleware/auth');
 const { authorize } = require('../middleware/authRole');
 
-// Route Index (READ): Dibuka untuk semua 4 Role
-router.get('/', isLoggedIn, authorize('admin', 'pengurus', 'operator', 'auditor'), supplierController.index);
+// Route Index (READ): Dibuka untuk Admin dan Operator
+router.get('/', isLoggedIn, authorize('admin', 'operator'), supplierController.index);
 
-// Route Form & CRUD (WRITE): DIBATASI KHUSUS Admin dan Pengurus saja
-router.use(isLoggedIn, authorize('admin', 'pengurus'));
+// Route Form & CRUD (WRITE): DIBATASI KHUSUS Admin dan Operator saja
+router.use(isLoggedIn, authorize('admin', 'operator'));
 
 router.get('/tambah', supplierController.createForm);
 router.post('/', supplierController.create);

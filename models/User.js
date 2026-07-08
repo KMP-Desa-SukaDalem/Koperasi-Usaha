@@ -20,18 +20,28 @@ const User = {
   },
 
   // Ambil semua user (dengan fitur pencarian)
-  async findAll(search = '', status = 'active') {
+  async findAll(search = '', status = null) {
+    let query = 'SELECT id, username, nama_lengkap, email, role, status, created_at, updated_at FROM users';
+    const params = [];
+    const conditions = [];
+
     if (search) {
-      const [rows] = await db.query(
-        'SELECT id, username, nama_lengkap, email, role, status, created_at, updated_at FROM users WHERE (username LIKE ? OR nama_lengkap LIKE ? OR email LIKE ?) AND status = ? ORDER BY id ASC',
-        [`%${search}%`, `%${search}%`, `%${search}%`, status]
-      );
-      return rows;
+      conditions.push('(username LIKE ? OR nama_lengkap LIKE ? OR email LIKE ?)');
+      params.push(`%${search}%`, `%${search}%`, `%${search}%`);
     }
-    const [rows] = await db.query(
-      'SELECT id, username, nama_lengkap, email, role, status, created_at, updated_at FROM users WHERE status = ? ORDER BY id ASC',
-      [status]
-    );
+
+    if (status) {
+      conditions.push('status = ?');
+      params.push(status);
+    }
+
+    if (conditions.length > 0) {
+      query += ' WHERE ' + conditions.join(' AND ');
+    }
+
+    query += ' ORDER BY id ASC';
+
+    const [rows] = await db.query(query, params);
     return rows;
   },
 
@@ -47,10 +57,10 @@ const User = {
 
   // Update user
   async update(id, data) {
-    const { username, nama_lengkap, email, role } = data;
+    const { username, nama_lengkap, email, role, status } = data;
     const [result] = await db.query(
-      'UPDATE users SET username = ?, nama_lengkap = ?, email = ?, role = ? WHERE id = ?',
-      [username, nama_lengkap, email, role, id]
+      'UPDATE users SET username = ?, nama_lengkap = ?, email = ?, role = ?, status = ? WHERE id = ?',
+      [username, nama_lengkap, email, role, status || 'active', id]
     );
     return result;
   },
@@ -58,6 +68,12 @@ const User = {
   // Update password
   async updatePassword(id, password) {
     const [result] = await db.query('UPDATE users SET password = ? WHERE id = ?', [password, id]);
+    return result;
+  },
+
+  // Update status (active/nonactive)
+  async updateStatus(id, status) {
+    const [result] = await db.query('UPDATE users SET status = ? WHERE id = ?', [status, id]);
     return result;
   },
 

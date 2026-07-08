@@ -1,6 +1,7 @@
 const Transaksi = require('../models/Transaksi');
 const Barang = require('../models/Barang');
 const UnitUsaha = require('../models/UnitUsaha');
+const Log = require('../models/Log');
 
 const transaksiController = {
   // GET /transaksi - Halaman POS Kasir
@@ -67,6 +68,10 @@ const transaksiController = {
         nominal_bayar: metode_pembayaran === 'Cash' ? parseFloat(nominal_bayar) : totalHargaTrans,
         kembalian
       });
+
+      // Log Activity: Create Transaction
+      await Log.record(req.session.user.id, 'CREATE', 'TRANSAKSI', result.transaksiId, `Membuat transaksi kasir baru #${result.transaksiId} senilai Rp ${Number(result.totalHarga).toLocaleString('id-ID')} (${metode_pembayaran}).`);
+
       res.json({
         success: true,
         message: 'Transaksi berhasil!',

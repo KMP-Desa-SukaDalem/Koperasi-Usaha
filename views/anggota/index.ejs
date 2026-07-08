@@ -8,8 +8,8 @@
       <h1 class="page-title d-inline-block">Data Anggota</h1>
     </div>
     <div class="d-flex gap-2">
-      <!-- TOMBOL EKSPOR (Tersedia untuk Admin, Pengurus, Auditor) -->
-      <% if (user && ['admin', 'pengurus', 'auditor'].includes(user.role)) { %>
+      <!-- TOMBOL EKSPOR (Tersedia untuk Admin) -->
+      <% if (user && user.role === 'admin') { %>
         <div class="dropdown">
           <button class="btn btn-outline-secondary dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown">
             <span class="material-symbols-outlined me-1" style="font-size:1.125rem;">download</span> Ekspor
@@ -25,11 +25,15 @@
         </div>
       <% } %>
 
-      <!-- TOMBOL RIWAYAT & ARSIP (Hanya Admin & Pengurus) -->
-      <% if (user && ['admin', 'pengurus'].includes(user.role)) { %>
+      <!-- TOMBOL RIWAYAT (Tersedia untuk Admin, Operator) -->
+      <% if (user && ['admin', 'operator'].includes(user.role)) { %>
         <a href="/anggota/riwayat" class="btn btn-outline-info d-flex align-items-center">
           <span class="material-symbols-outlined me-1" style="font-size:1.125rem;">history</span> Riwayat
         </a>
+      <% } %>
+
+      <!-- TOMBOL ARSIP & TAMBAH ANGGOTA (KHUSUS Admin dan Operator) -->
+      <% if (user && ['admin', 'operator'].includes(user.role)) { %>
         <a href="/anggota/arsip" class="btn btn-outline-danger d-flex align-items-center">
           <span class="material-symbols-outlined me-1" style="font-size:1.125rem;">archive</span> Arsip
         </a>
@@ -114,8 +118,8 @@
                           <span class="material-symbols-outlined" style="font-size:1rem; vertical-align:middle;">call</span>
                         </a>
 
-                        <!-- LOGIKA RBAC VIEW: Sembunyikan tombol Edit & Delete untuk Operator/Auditor -->
-                        <% if (user.role === 'admin' || user.role === 'pengurus') { %>
+                        <!-- LOGIKA RBAC VIEW: Tampilkan tombol Edit & Delete untuk Admin dan Operator -->
+                        <% if (user.role === 'admin' || user.role === 'operator') { %>
                           <div class="vr"></div> <!-- Pembatas Vertikal -->
                           
                           <a href="/anggota/edit/<%= row.id %>" class="btn btn-sm btn-outline-warning" title="Edit Data">

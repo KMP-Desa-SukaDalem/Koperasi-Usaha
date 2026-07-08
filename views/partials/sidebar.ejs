@@ -38,14 +38,16 @@
         <span class="material-symbols-outlined">inventory_2</span>
         Barang
       </a>
+    <% } %>
 
+    <% if (user && ['admin', 'pengurus'].includes(user.role)) { %>
       <a href="/transaksi" class="nav-link <%= currentPath === 'transaksi' ? 'active' : '' %>">
         <span class="material-symbols-outlined">receipt_long</span>
         Transaksi
       </a>
     <% } %>
 
-    <% if (user && ['admin', 'pengurus', 'auditor'].includes(user.role)) { %>
+    <% if (user && ['admin', 'auditor'].includes(user.role)) { %>
       <div class="nav-section-title mt-3">Pelaporan</div>
 
       <a href="/laporan" class="nav-link <%= currentPath === 'laporan' ? 'active' : '' %>">
@@ -54,23 +56,25 @@
       </a>
     <% } %>
 
-    <div class="nav-section-title mt-3">Administrasi</div>
+    <% if (user && ['admin', 'operator'].includes(user.role)) { %>
+      <div class="nav-section-title mt-3">Administrasi</div>
 
-    <% if (user && ['admin', 'pengurus'].includes(user.role)) { %>
-      <a href="/users" class="nav-link <%= currentPath === 'users' ? 'active' : '' %>">
-        <span class="material-symbols-outlined">group</span>
-        Pengguna
+      <% if (user.role === 'admin') { %>
+        <a href="/users" class="nav-link <%= currentPath === 'users' ? 'active' : '' %>">
+          <span class="material-symbols-outlined">group</span>
+          Pengguna
+        </a>
+      <% } %>
+      
+      <a href="/anggota" class="nav-link <%= currentPath === 'anggota' ? 'active' : '' %>">
+        <span class="material-symbols-outlined">contacts</span>
+        Data Anggota
+      </a>
+      <a href="/supplier" class="nav-link <%= currentPath === 'supplier' ? 'active' : '' %>">
+        <span class="material-symbols-outlined">local_shipping</span>
+        Data Supplier
       </a>
     <% } %>
-    
-    <a href="/anggota" class="nav-link <%= currentPath === 'anggota' ? 'active' : '' %>">
-      <span class="material-symbols-outlined">contacts</span>
-      Data Anggota
-    </a>
-    <a href="/supplier" class="nav-link <%= currentPath === 'supplier' ? 'active' : '' %>">
-      <span class="material-symbols-outlined">local_shipping</span>
-      Data Supplier
-    </a>
   </nav>
 
   <!-- Sidebar Footer -->

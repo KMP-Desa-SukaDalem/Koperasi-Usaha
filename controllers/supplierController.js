@@ -1,6 +1,7 @@
 const Supplier = require('../models/Supplier');
 const ExcelJS = require('exceljs');
 const PDFDocument = require('pdfkit');
+const Log = require('../models/Log');
 
 const supplierController = {
   // GET /supplier
@@ -67,7 +68,11 @@ const supplierController = {
         return res.redirect('/supplier/tambah');
       }
 
-      await Supplier.create({ nama_penanggung_jawab, nama_toko, email, alamat, nomor_telepon });
+      const result = await Supplier.create({ nama_penanggung_jawab, nama_toko, email, alamat, nomor_telepon });
+
+      // Log Activity: Create Supplier
+      await Log.record(req.session.user.id, 'CREATE', 'SUPPLIER', result.insertId, `Menambah supplier baru: ${nama_toko} (PJ: ${nama_penanggung_jawab}).`);
+
       req.flash('success', 'Data supplier berhasil ditambahkan.');
       res.redirect('/supplier');
     } catch (error) {
@@ -108,6 +113,10 @@ const supplierController = {
       }
 
       await Supplier.update(req.params.id, { nama_penanggung_jawab, nama_toko, email, alamat, nomor_telepon });
+
+      // Log Activity: Update Supplier
+      await Log.record(req.session.user.id, 'UPDATE', 'SUPPLIER', req.params.id, `Memperbarui data supplier: ${nama_toko} (PJ: ${nama_penanggung_jawab}).`);
+
       req.flash('success', 'Data supplier berhasil diperbarui.');
       res.redirect('/supplier');
     } catch (error) {
@@ -120,7 +129,14 @@ const supplierController = {
   // POST /supplier/delete/:id
   async delete(req, res) {
     try {
+      const supplier = await Supplier.findById(req.params.id);
+      const nama_toko = supplier ? supplier.nama_toko : 'Unknown';
+
       await Supplier.delete(req.params.id);
+
+      // Log Activity: Delete Supplier
+      await Log.record(req.session.user.id, 'DELETE', 'SUPPLIER', req.params.id, `Menghapus data supplier: ${nama_toko}.`);
+
       req.flash('success', 'Data supplier berhasil dihapus.');
       res.redirect('/supplier');
     } catch (error) {

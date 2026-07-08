@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
+const Log = require('../models/Log');
 
 const authController = {
   // GET /login - Halaman login
@@ -46,6 +47,9 @@ const authController = {
         nama_lengkap: user.nama_lengkap,
         role: user.role
       };
+
+      // Log Activity: Login
+      await Log.record(user.id, 'LOGIN', 'AUTH', user.id, `User ${user.nama_lengkap} (Role: ${user.role}) berhasil masuk ke sistem.`);
 
       req.flash('success', `Selamat datang kembali, ${user.nama_lengkap}!`);
       return res.redirect('/dashboard');
@@ -101,14 +105,15 @@ const authController = {
         const totalRegistered = countRows[0].total;
 
         if (totalRegistered >= 3) {
-          req.flash('error', 'Akses ditolak: Batas maksimal 3 perangkat untuk QR login dosen penguji telah tercapai.');
-          return res.redirect('/login');
+          // Hapus perangkat tertua untuk memberi ruang bagi perangkat baru
+          await db.query('DELETE FROM dosen_devices ORDER BY created_at ASC LIMIT 1');
+          console.log('🗑️ Menghapus perangkat terlama karena batas maksimal 3 perangkat tercapai.');
         }
 
         // Daftarkan perangkat baru ini
         const userAgent = req.headers['user-agent'] || 'Unknown Device';
         await db.query('INSERT INTO dosen_devices (device_token, user_agent) VALUES (?, ?)', [deviceToken, userAgent]);
-        console.log(`📱 Perangkat baru terdaftar untuk login QR Dosen (Total: ${totalRegistered + 1}/3)`);
+        console.log(`📱 Perangkat baru terdaftar untuk login QR Dosen`);
       }
 
       // Set cookie agar bertahan lama (1 tahun)
@@ -128,6 +133,9 @@ const authController = {
         role: user.role
       };
 
+      // Log Activity: Quick Login
+      await Log.record(user.id, 'LOGIN', 'AUTH', user.id, `Dosen Penguji (${user.nama_lengkap}) berhasil masuk ke sistem menggunakan Quick Login.`);
+
       req.flash('success', `Selamat datang Dosen Penguji, ${user.nama_lengkap}! (Perangkat Terverifikasi)`);
       return res.redirect('/dashboard');
     } catch (error) {
@@ -138,7 +146,10 @@ const authController = {
   },
 
   // GET /logout - Proses logout
-  logout(req, res) {
+  async logout(req, res) {
+    if (req.session && req.session.user) {
+      await Log.record(req.session.user.id, 'LOGOUT', 'AUTH', req.session.user.id, `User ${req.session.user.nama_lengkap} (Role: ${req.session.user.role}) keluar dari sistem.`);
+    }
     req.session.destroy((err) => {
       if (err) console.error('Error destroying session:', err);
       res.redirect('/login');

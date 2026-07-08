@@ -10,7 +10,7 @@
       <h1 class="page-title">Detail Anggota</h1>
     </div>
     <div class="d-flex gap-2">
-      <% if (user.role === 'admin' || user.role === 'pengurus') { %>
+      <% if (user.role === 'admin' || user.role === 'operator') { %>
         <a href="/anggota/edit/<%= anggota.id %>" class="btn btn-outline-warning">
           <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">edit</span> Edit
         </a>

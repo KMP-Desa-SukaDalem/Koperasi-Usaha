@@ -23,9 +23,7 @@ const isLoggedIn = async (req, res, next) => {
         return next();
       } else {
         // Jika akun dinonaktifkan atau dihapus (nonactive)
-        req.session.destroy((err) => {
-          if (err) console.error('SESSION_DESTROY_ERROR:', err);
-        });
+        delete req.session.user; // Hanya hapus data user dari session, jangan hancurkan session agar flash/csrf tidak error
         req.flash('error', 'Akun Anda telah dinonaktifkan atau dihapus.');
         return res.redirect('/login');
       }

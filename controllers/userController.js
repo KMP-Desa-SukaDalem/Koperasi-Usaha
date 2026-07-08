@@ -7,7 +7,7 @@ const userController = {
   async index(req, res) {
     try {
       const search = (req.query.search || '').trim();
-      const users = await User.findAll(search, 'active');
+      const users = await User.findAll(search, null);
       res.render('user/index', {
         title: 'Manajemen Pengguna',
         currentPage: 'users',
@@ -25,9 +25,9 @@ const userController = {
   // GET /users/riwayat
   async riwayatAktivitas(req, res) {
     try {
-      const logs = await Log.findAll({ targetType: 'USER' }, 200);
+      const logs = await Log.findAll({}, 200);
       res.render('user/riwayat', {
-        title: 'Riwayat Aktivitas Manajemen Pengguna',
+        title: 'Riwayat Aktivitas Pengguna',
         currentPage: 'users',
         logs,
         user: req.session.user
@@ -36,6 +36,18 @@ const userController = {
       console.error(error);
       req.flash('error', 'Gagal memuat riwayat aktivitas.');
       res.redirect('/users');
+    }
+  },
+
+  // GET /users/riwayat/api - Endpoint JSON untuk AJAX Polling
+  async riwayatAktivitasAPI(req, res) {
+    try {
+      const logs = await Log.findAll({}, 200);
+      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+      res.json(logs);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Gagal memuat riwayat aktivitas.' });
     }
   },
 
@@ -121,10 +133,10 @@ const userController = {
   // POST /users/edit/:id - Proses edit
   async update(req, res) {
     try {
-      const { username, nama_lengkap, email, role, password } = req.body;
+      const { username, nama_lengkap, email, role, password, status } = req.body;
 
-      if (!username || !nama_lengkap || !role) {
-        req.flash('error', 'Username, nama, dan role harus diisi.');
+      if (!username || !nama_lengkap || !role || !status) {
+        req.flash('error', 'Username, nama, role, dan status harus diisi.');
         return res.redirect(`/users/edit/${req.params.id}`);
       }
 
@@ -163,7 +175,7 @@ const userController = {
         }
       }
 
-      await User.update(req.params.id, { username, nama_lengkap, email, role });
+      await User.update(req.params.id, { username, nama_lengkap, email, role, status });
 
       // Update password jika diisi
       if (password && password.trim() !== '') {
@@ -206,6 +218,36 @@ const userController = {
     } catch (error) {
       console.error(error);
       req.flash('error', 'Gagal menonaktifkan pengguna.');
+      res.redirect('/users');
+    }
+  },
+
+  // POST /users/toggle-status/:id - Toggle status aktif/nonaktif
+  async toggleStatus(req, res) {
+    try {
+      // Cegah deaktifkan diri sendiri
+      if (parseInt(req.params.id) === req.session.user.id) {
+        req.flash('error', 'Tidak dapat menonaktifkan akun Anda sendiri.');
+        return res.redirect('/users');
+      }
+
+      const targetUser = await User.findById(req.params.id);
+      if (!targetUser) {
+        req.flash('error', 'Pengguna tidak ditemukan.');
+        return res.redirect('/users');
+      }
+
+      const newStatus = targetUser.status === 'active' ? 'nonactive' : 'active';
+      await User.updateStatus(req.params.id, newStatus);
+
+      // Log Activity
+      await Log.record(req.session.user.id, 'UPDATE', 'USER', req.params.id, `Mengubah status pengguna ${targetUser.nama_lengkap} menjadi ${newStatus}.`);
+
+      req.flash('success', `Status akses ${targetUser.nama_lengkap} berhasil diubah menjadi ${newStatus === 'active' ? 'Aktif' : 'Nonaktif'}.`);
+      res.redirect('/users');
+    } catch (error) {
+      console.error(error);
+      req.flash('error', 'Gagal mengubah status pengguna.');
       res.redirect('/users');
     }
   }

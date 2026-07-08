@@ -97,7 +97,7 @@
               <span class="material-symbols-outlined me-2" style="vertical-align:middle;color:var(--primary);">receipt_long</span>
               Transaksi Terbaru
             </h5>
-            <% if (user.role === 'admin' || user.role === 'operator') { %>
+            <% if (['pengurus', 'auditor'].includes(user.role)) { %>
               <a href="/transaksi/riwayat" class="btn btn-sm btn-outline-primary">Lihat Semua</a>
             <% } %>
           </div>

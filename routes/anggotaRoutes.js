@@ -4,16 +4,16 @@ const anggotaController = require('../controllers/anggotaController');
 const { isLoggedIn } = require('../middleware/auth');
 const { authorize } = require('../middleware/authRole');
 
-// Route Index (READ): Dibuka untuk semua 4 Role
-router.get('/', isLoggedIn, authorize('admin', 'pengurus', 'operator', 'auditor'), anggotaController.index);
+// Route Index (READ): Dibuka untuk Admin dan Operator
+router.get('/', isLoggedIn, authorize('admin', 'operator'), anggotaController.index);
 
-// Route Export & Riwayat: Dibuka untuk Admin, Pengurus, Auditor
-router.get('/export/excel', isLoggedIn, authorize('admin', 'pengurus', 'auditor'), anggotaController.exportExcel);
-router.get('/export/pdf', isLoggedIn, authorize('admin', 'pengurus', 'auditor'), anggotaController.exportPDF);
-router.get('/riwayat', isLoggedIn, authorize('admin', 'pengurus', 'auditor'), anggotaController.riwayatAktivitas);
+// Route Export & Riwayat: Dibuka untuk Admin dan Operator
+router.get('/export/excel', isLoggedIn, authorize('admin', 'operator'), anggotaController.exportExcel);
+router.get('/export/pdf', isLoggedIn, authorize('admin', 'operator'), anggotaController.exportPDF);
+router.get('/riwayat', isLoggedIn, authorize('admin', 'operator'), anggotaController.riwayatAktivitas);
 
-// Route Form & CRUD (WRITE): DIBATASI KHUSUS Admin dan Pengurus saja
-router.use(isLoggedIn, authorize('admin', 'pengurus'));
+// Route Form & CRUD (WRITE): DIBATASI KHUSUS Admin dan Operator saja
+router.use(isLoggedIn, authorize('admin', 'operator'));
 
 router.get('/tambah', anggotaController.createForm);
 router.post('/', anggotaController.create);

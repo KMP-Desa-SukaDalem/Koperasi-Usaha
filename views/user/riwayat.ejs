@@ -14,8 +14,8 @@
   <div class="content-wrapper">
     <div class="card shadow-sm border-0">
       <div class="card-header bg-white py-3 border-0">
-        <h5 class="mb-0 fw-bold">Log Perubahan Data Pengguna</h5>
-        <p class="text-muted small mb-0">Menampilkan riwayat aksi tambah, edit, dan hapus data pengguna sistem.</p>
+        <h5 class="mb-0 fw-bold">Log Aktivitas Sistem Koperasi</h5>
+        <p class="text-muted small mb-0">Menampilkan riwayat aksi seluruh aktivitas pengguna di dalam sistem secara real-time.</p>
       </div>
       <div class="card-body p-0">
         <div class="table-responsive">
@@ -28,10 +28,10 @@
                 <th>Keterangan</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="logTableBody">
               <% if (logs.length === 0) { %>
                 <tr>
-                  <td colspan="4" class="text-center py-5 text-muted">Belum ada riwayat aktivitas untuk data pengguna.</td>
+                  <td colspan="4" class="text-center py-5 text-muted">Belum ada riwayat aktivitas pengguna yang tercatat.</td>
                 </tr>
               <% } %>
               <% logs.forEach(log => { %>
@@ -53,6 +53,8 @@
                       <span class="badge bg-warning text-dark">EDIT</span>
                     <% } else if (log.action === 'DELETE') { %>
                       <span class="badge bg-danger">HAPUS</span>
+                    <% } else if (log.action === 'RESTORE') { %>
+                      <span class="badge bg-info">RESTORE</span>
                     <% } else { %>
                       <span class="badge bg-secondary"><%= log.action %></span>
                     <% } %>
@@ -70,5 +72,83 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const tableBody = document.getElementById('logTableBody');
+    if (!tableBody) return;
+
+    // Fungsi untuk memuat log dari API secara real-time dengan cache-buster
+    async function fetchLogs() {
+      try {
+        const response = await fetch('/users/riwayat/api?_t=' + Date.now());
+        if (!response.ok) return;
+        const logs = await response.json();
+        
+        if (logs.length === 0) {
+          tableBody.innerHTML = `
+            <tr>
+              <td colspan="4" class="text-center py-5 text-muted">Belum ada riwayat aktivitas pengguna yang tercatat.</td>
+            </tr>
+          `;
+          return;
+        }
+
+        let html = '';
+        logs.forEach(log => {
+          const dateObj = new Date(log.created_at);
+          const formattedDate = dateObj.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
+          const formattedTime = dateObj.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+
+          // Action badge
+          let actionBadge = '';
+          if (log.action === 'CREATE') {
+            actionBadge = '<span class="badge bg-success">TAMBAH</span>';
+          } else if (log.action === 'UPDATE') {
+            actionBadge = '<span class="badge bg-warning text-dark">EDIT</span>';
+          } else if (log.action === 'DELETE') {
+            actionBadge = '<span class="badge bg-danger">HAPUS</span>';
+          } else if (log.action === 'RESTORE') {
+            actionBadge = '<span class="badge bg-info">RESTORE</span>';
+          } else {
+            actionBadge = `<span class="badge bg-secondary">${log.action}</span>`;
+          }
+
+          html += `
+            <tr>
+              <td class="small">
+                ${formattedDate}
+                <br>
+                <span class="text-muted">${formattedTime} WIB</span>
+              </td>
+              <td>
+                <strong>${log.actor_name || 'System / Deleted User'}</strong>
+                <br>
+                <span class="badge bg-light text-dark border small">${log.actor_role || ''}</span>
+              </td>
+              <td>
+                ${actionBadge}
+              </td>
+              <td>
+                <p class="mb-0 small" style="max-width: 500px; white-space: normal;">${log.description || ''}</p>
+                <small class="text-muted">Target ID: ${log.target_id}</small>
+              </td>
+            </tr>
+          `;
+        });
+
+        tableBody.innerHTML = html;
+      } catch (error) {
+        console.error('Gagal mengambil data log:', error);
+      }
+    }
+
+    // Jalankan pertama kali secara instan saat halaman dibuka
+    fetchLogs();
+
+    // Lakukan polling setiap 5 detik
+    setInterval(fetchLogs, 5000);
+  });
+</script>
 
 <%- include('../partials/footer') %>

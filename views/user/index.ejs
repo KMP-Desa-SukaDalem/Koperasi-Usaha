@@ -51,13 +51,13 @@
               <strong>• Admin:</strong> Hak akses penuh ke seluruh fitur dan konfigurasi sistem.
             </div>
             <div class="col-md-6 mb-2">
-              <strong>• Pengurus:</strong> Memantau laporan, melihat dashboard, dan mengelola data pengguna (terbatas).
+              <strong>• Pengurus:</strong> Bertanggung jawab penuh atas transaksi kasir (POS) dan mencetak struk belanja.
             </div>
             <div class="col-md-6 mb-2">
-              <strong>• Operator:</strong> Bertugas menginput data master (barang/unit) dan melakukan transaksi kasir penjualan.
+              <strong>• Operator:</strong> Menginput data master koperasi (data barang, supplier, unit usaha, dan pendaftaran anggota baru).
             </div>
             <div class="col-md-6 mb-2">
-              <strong>• Auditor:</strong> Hanya memiliki akses khusus untuk melihat dan mengunduh laporan keuangan/transaksi.
+              <strong>• Auditor:</strong> Memeriksa keuangan dan mengunduh laporan secara berkala saat akses diaktifkan oleh Admin (akses temporer).
             </div>
           </div>
         </div>
@@ -82,8 +82,9 @@
                 <th>Nama Lengkap</th>
                 <th>Email</th>
                 <th>Role</th>
+                <th>Status</th>
                 <th>Dibuat</th>
-                <th style="width:150px;" class="text-center">Aksi</th>
+                <th style="width:180px;" class="text-center">Aksi</th>
               </tr>
             </thead>
             <tbody>
@@ -112,26 +113,40 @@
                       <span class="badge badge-role-auditor">Auditor</span>
                     <% } %>
                   </td>
+                  <td>
+                    <% if (u.status === 'active') { %>
+                      <span class="badge bg-success">Aktif</span>
+                    <% } else { %>
+                      <span class="badge bg-danger">Nonaktif</span>
+                    <% } %>
+                  </td>
                   <td><%= new Date(u.created_at).toLocaleDateString('id-ID') %></td>
                   <td class="text-center">
                     <% if (user.role === 'admin' || (user.role === 'pengurus' && u.role !== 'admin')) { %>
                       <a href="/users/edit/<%= u.id %>" class="btn btn-sm btn-outline-primary me-1" title="Edit">
-                        <span class="material-symbols-outlined" style="font-size:1rem;">edit</span>
+                        <span class="material-symbols-outlined" style="font-size:1rem;vertical-align:middle;">edit</span>
                       </a>
                       <% if (u.id !== user.id) { %>
+                        <form action="/users/toggle-status/<%= u.id %>" method="POST" style="display:inline;">
+                          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                          <button type="submit" class="btn btn-sm <%= u.status === 'active' ? 'btn-outline-warning' : 'btn-outline-success' %> me-1" 
+                                  title="<%= u.status === 'active' ? 'Nonaktifkan Akses' : 'Aktifkan Akses' %>">
+                            <span class="material-symbols-outlined" style="font-size:1rem;vertical-align:middle;"><%= u.status === 'active' ? 'block' : 'check_circle' %></span>
+                          </button>
+                        </form>
                         <button type="button" class="btn btn-sm btn-danger btn-delete"
                           data-bs-toggle="modal" data-bs-target="#deleteModal"
-                          data-id="<%= u.id %>" data-nama="<%= u.nama_lengkap %>">
-                          <span class="material-symbols-outlined" style="font-size:1rem;">delete</span>
+                          data-id="<%= u.id %>" data-nama="<%= u.nama_lengkap %>" title="Arsip/Hapus">
+                          <span class="material-symbols-outlined" style="font-size:1rem;vertical-align:middle;">delete</span>
                         </button>
                       <% } %>
                     <% } else { %>
                       <button class="btn btn-sm btn-outline-secondary me-1" disabled title="Edit dilarang">
-                        <span class="material-symbols-outlined" style="font-size:1rem;">edit</span>
+                        <span class="material-symbols-outlined" style="font-size:1rem;vertical-align:middle;">edit</span>
                       </button>
                       <% if (u.id !== user.id) { %>
                         <button type="button" class="btn btn-sm btn-secondary" disabled title="Hapus dilarang">
-                          <span class="material-symbols-outlined" style="font-size:1rem;">delete</span>
+                          <span class="material-symbols-outlined" style="font-size:1rem;vertical-align:middle;">delete</span>
                         </button>
                       <% } %>
                     <% } %>

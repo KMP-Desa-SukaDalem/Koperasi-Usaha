@@ -1,4 +1,5 @@
 const UnitUsaha = require('../models/UnitUsaha');
+const Log = require('../models/Log');
 
 const unitController = {
   // GET /unit-usaha - Daftar unit usaha
@@ -35,7 +36,11 @@ const unitController = {
         return res.redirect('/unit-usaha/tambah');
       }
 
-      await UnitUsaha.create({ nama_unit, deskripsi });
+      const result = await UnitUsaha.create({ nama_unit, deskripsi });
+
+      // Log Activity: Create Unit Usaha
+      await Log.record(req.session.user.id, 'CREATE', 'UNIT_USAHA', result.insertId, `Menambah unit usaha baru: ${nama_unit}.`);
+
       req.flash('success', 'Unit usaha berhasil ditambahkan.');
       res.redirect('/unit-usaha');
     } catch (error) {
@@ -75,6 +80,10 @@ const unitController = {
       }
 
       await UnitUsaha.update(req.params.id, { nama_unit, deskripsi });
+
+      // Log Activity: Update Unit Usaha
+      await Log.record(req.session.user.id, 'UPDATE', 'UNIT_USAHA', req.params.id, `Memperbarui data unit usaha: ${nama_unit}.`);
+
       req.flash('success', 'Unit usaha berhasil diperbarui.');
       res.redirect('/unit-usaha');
     } catch (error) {
@@ -87,7 +96,14 @@ const unitController = {
   // POST /unit-usaha/delete/:id - Proses hapus
   async delete(req, res) {
     try {
+      const unit = await UnitUsaha.findById(req.params.id);
+      const nama_unit = unit ? unit.nama_unit : 'Unknown';
+
       await UnitUsaha.delete(req.params.id);
+
+      // Log Activity: Delete Unit Usaha
+      await Log.record(req.session.user.id, 'DELETE', 'UNIT_USAHA', req.params.id, `Menonaktifkan (arsip) unit usaha: ${nama_unit}.`);
+
       req.flash('success', 'Unit usaha berhasil dinonaktifkan (diarsipkan).');
       res.redirect('/unit-usaha');
     } catch (error) {

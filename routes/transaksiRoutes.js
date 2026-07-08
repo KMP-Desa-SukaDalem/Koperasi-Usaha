@@ -4,25 +4,17 @@ const transaksiController = require('../controllers/transaksiController');
 const { isLoggedIn } = require('../middleware/auth');
 const { authorize } = require('../middleware/authRole');
 
-// Semua route transaksi memerlukan login + role admin/operator
-router.use(isLoggedIn, authorize('admin', 'operator'));
+// Semua route transaksi memerlukan login
+router.use(isLoggedIn);
 
-// GET /transaksi - Halaman POS
-router.get('/', transaksiController.index);
+// Halaman POS & Pemrosesan Transaksi: KHUSUS Admin dan Pengurus
+router.get('/', authorize('admin', 'pengurus'), transaksiController.index);
+router.post('/', authorize('admin', 'pengurus'), transaksiController.create);
 
-// POST /transaksi - Proses transaksi (JSON API)
-router.post('/', transaksiController.create);
-
-// GET /transaksi/riwayat - Riwayat transaksi
-router.get('/riwayat', transaksiController.riwayat);
-
-// GET /transaksi/riwayat/download - Download CSV Riwayat transaksi
-router.get('/riwayat/download', transaksiController.downloadRiwayat);
-
-// GET /transaksi/detail/:id - Detail transaksi
-router.get('/detail/:id', transaksiController.detail);
-
-// GET /transaksi/struk/:id - Cetak struk transaksi
-router.get('/struk/:id', transaksiController.cetakStruk);
+// Riwayat & Detail Transaksi: Dapat diakses oleh Admin, Pengurus & Auditor (untuk Audit)
+router.get('/riwayat', authorize('admin', 'pengurus', 'auditor'), transaksiController.riwayat);
+router.get('/riwayat/download', authorize('admin', 'pengurus', 'auditor'), transaksiController.downloadRiwayat);
+router.get('/detail/:id', authorize('admin', 'pengurus', 'auditor'), transaksiController.detail);
+router.get('/struk/:id', authorize('admin', 'pengurus', 'auditor'), transaksiController.cetakStruk);
 
 module.exports = router;
