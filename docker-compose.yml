@@ -29,6 +29,7 @@ services:
       - DB_PASSWORD=kmp-usaha
       - DB_NAME=labsweek_kmp-usaha
       - DB_PORT=3306
+      - DB_SSL=false
       - SESSION_SECRET=koperasi_desa_sukadalem_2024_secure_v1_random_long_string
       - SMTP_HOST=smtp.gmail.com
       - SMTP_PORT=587
