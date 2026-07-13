@@ -36,6 +36,16 @@
                     <% }) %>
                 </select>
               </div>
+              <div class="card-body p-3 border-bottom no-print">
+                <div class="position-relative">
+                  <label for="searchBarang" class="form-label fw-bold">Cari Barang (Autocomplete)</label>
+                  <div class="input-group">
+                    <span class="input-group-text" style="background:var(--surface-container-low);border-color:var(--outline-variant);"><span class="material-symbols-outlined">search</span></span>
+                    <input type="text" class="form-control" id="searchBarang" placeholder="Ketik nama barang (contoh: Minyak Goreng)..." autocomplete="off">
+                  </div>
+                  <div id="autocompleteSuggestions" class="list-group position-absolute w-100 mt-1 d-none" style="z-index:1050; max-height:250px; overflow-y:auto; box-shadow:0 4px 12px rgba(0,0,0,0.15); border-radius:8px;"></div>
+                </div>
+              </div>
               <div class="card-body p-0">
                 <div class="table-responsive" style="max-height:400px;overflow-y:auto;">
                   <table class="table mb-0">
@@ -52,10 +62,15 @@
                       <% barang.forEach(item=> { %>
                         <tr data-id="<%= item.id %>" data-nama="<%= item.nama_barang %>"
                           data-harga="<%= item.harga_jual %>" data-stok="<%= item.stok %>"
-                          data-unit="<%= item.unit_usaha_id %>">
-                          <td><strong>
-                              <%= item.nama_barang %>
-                            </strong></td>
+                          data-unit="<%= item.unit_usaha_id %>"
+                          data-ukuran="<%= item.ukuran || '' %>"
+                          data-satuan="<%= item.satuan || '' %>">
+                          <td>
+                            <strong><%= item.nama_barang %></strong>
+                            <% if (item.ukuran) { %>
+                              <br><small class="text-secondary"><%= item.ukuran %> <%= item.satuan || '' %></small>
+                            <% } %>
+                          </td>
                           <td><small class="text-secondary">
                               <%= item.nama_unit %>
                             </small></td>
@@ -144,11 +159,8 @@
             </div>
             <div class="mb-3">
               <label class="form-label">Metode Pembayaran</label>
-              <select class="form-select" id="metodePembayaran" onchange="toggleCashInput()">
-                <option value="Cash">Cash</option>
-                <!-- untuk menggunakan metode transfer nanti bisa diubah dengan cara hapus simbol komen  -->
-                <!-- <option value="Transfer">Transfer</option> -->
-              </select>
+              <h5 class="text-primary mb-0 fw-bold">Cash</h5>
+              <input type="hidden" id="metodePembayaran" value="Cash">
             </div>
             <div id="cashInputGroup">
               <div class="mb-3">
@@ -189,13 +201,24 @@
               <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;color:var(--primary);">draw</span>
               Tanda Tangan Kasir <span class="text-danger">*</span>
             </label>
-            <div style="background:#f8f9fa;border:1px solid #dee2e6;border-radius:8px;padding:8px;text-align:center;">
-              <canvas id="signatureCanvas" width="320" height="160" style="border:1px dashed #bbb;border-radius:6px;background:#fff;cursor:crosshair;touch-action:none;display:block;margin:0 auto;max-width:100%;"></canvas>
-            </div>
-            <div class="text-start mt-2">
-              <button type="button" class="btn btn-sm btn-outline-danger" onclick="clearSignature()">
-                <span class="material-symbols-outlined me-1" style="font-size:0.9rem;vertical-align:middle;">delete</span> Hapus Coretan
-              </button>
+            <div style="border: 1px solid var(--outline-variant); border-radius: var(--radius-lg); padding: 14px; background: var(--surface-container-lowest); border-style: solid;">
+              <div style="background:#f8f9fa; border:1px solid #dee2e6; border-radius:8px; padding:8px; text-align:center;">
+                <canvas id="signatureCanvas" width="320" height="160" style="border:1px dashed #bbb; border-radius:6px; background:#fff; cursor:crosshair; touch-action:none; display:block; margin:0 auto; max-width:100%;"></canvas>
+              </div>
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <button type="button" class="btn btn-sm btn-outline-danger d-flex align-items-center" onclick="clearSignature()">
+                  <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">delete</span> Hapus
+                </button>
+                <div>
+                  <input type="file" id="uploadSignature" accept="image/png, image/jpeg, image/jpg" style="display: none;">
+                  <button type="button" class="btn btn-sm btn-outline-primary d-flex align-items-center" onclick="document.getElementById('uploadSignature').click()">
+                    <span class="material-symbols-outlined me-1" style="font-size:1.125rem;vertical-align:middle;">upload_file</span> Unggah TTD
+                  </button>
+                </div>
+              </div>
+              <div class="text-center mt-2 text-secondary" style="font-size: 0.725rem;">
+                Format: PNG/JPG (Maks. 2MB). Coret langsung atau unggah gambar.
+              </div>
             </div>
           </div>
 
@@ -212,6 +235,21 @@
     <script>
       let cart = [];
 
+      // Keep a JS array of all items with their values
+      const allProducts = [
+        <% barang.forEach(item => { %>
+          {
+            id: <%= item.id %>,
+            nama: "<%= item.nama_barang.replace(/"/g, '\\"') %>",
+            ukuran: "<%= (item.ukuran || '').replace(/"/g, '\\"') %>",
+            satuan: "<%= (item.satuan || '').replace(/"/g, '\\"') %>",
+            stok: <%= item.stok %>,
+            harga: <%= item.harga_jual %>,
+            unit_id: <%= item.unit_usaha_id %>
+          },
+        <% }) %>
+      ];
+
       // Filter barang berdasarkan unit
       document.getElementById('filterUnit').addEventListener('change', function () {
         const unitId = this.value;
@@ -225,12 +263,82 @@
         });
       });
 
+      // Autocomplete Search Logic
+      const searchInput = document.getElementById('searchBarang');
+      const suggestionsContainer = document.getElementById('autocompleteSuggestions');
+
+      searchInput.addEventListener('input', function() {
+        const query = this.value.trim().toLowerCase();
+        const selectedUnit = document.getElementById('filterUnit').value;
+
+        if (!query) {
+          suggestionsContainer.classList.add('d-none');
+          suggestionsContainer.innerHTML = '';
+          return;
+        }
+
+        const filtered = allProducts.filter(p => {
+          const matchesUnit = !selectedUnit || p.unit_id === parseInt(selectedUnit);
+          const matchesQuery = p.nama.toLowerCase().includes(query) || 
+                               (p.ukuran && p.ukuran.toLowerCase().includes(query)) ||
+                               (p.satuan && p.satuan.toLowerCase().includes(query));
+          return matchesUnit && matchesQuery;
+        });
+
+        if (filtered.length === 0) {
+          suggestionsContainer.innerHTML = '<div class="list-group-item text-secondary">Barang tidak ditemukan</div>';
+        } else {
+          suggestionsContainer.innerHTML = filtered.slice(0, 10).map(p => {
+            const sizeStr = p.ukuran ? ` - ${p.ukuran} ${p.satuan ? p.satuan.charAt(0).toUpperCase() + p.satuan.slice(1) : ''}` : '';
+            return `
+              <a href="#" class="list-group-item list-group-item-action" onclick="selectProduct(${p.id}); return false;">
+                <strong>${p.nama}</strong>${sizeStr} <span class="badge bg-secondary ms-2">Stok ${p.stok}</span> <span class="float-end text-primary fw-bold">Rp ${p.harga.toLocaleString('id-ID')}</span>
+              </a>
+            `;
+          }).join('');
+        }
+        suggestionsContainer.classList.remove('d-none');
+      });
+
+      document.addEventListener('click', function(e) {
+        if (e.target !== searchInput && e.target !== suggestionsContainer) {
+          suggestionsContainer.classList.add('d-none');
+        }
+      });
+
+      function selectProduct(id) {
+        const product = allProducts.find(p => p.id === id);
+        if (!product) return;
+
+        if (product.stok <= 0) {
+          showAlert('danger', `Stok ${product.nama} habis!`);
+          return;
+        }
+
+        const existing = cart.find(c => c.barang_id === id);
+        const displayName = product.nama + (product.ukuran ? ` - ${product.ukuran} ${product.satuan || ''}` : '');
+        if (existing) {
+          if (existing.qty >= product.stok) {
+            showAlert('danger', `Stok ${product.nama} tidak mencukupi!`);
+            return;
+          }
+          existing.qty++;
+        } else {
+          cart.push({ barang_id: id, nama: displayName, harga: product.harga, qty: 1, stok: product.stok });
+        }
+        renderCart();
+        searchInput.value = '';
+        suggestionsContainer.classList.add('d-none');
+      }
+
       function addToCart(btn) {
         const row = btn.closest('tr');
         const id = parseInt(row.dataset.id);
         const nama = row.dataset.nama;
         const harga = parseFloat(row.dataset.harga);
         const stok = parseInt(row.dataset.stok);
+        const ukuran = row.dataset.ukuran || '';
+        const satuan = row.dataset.satuan || '';
 
         if (stok <= 0) {
           showAlert('danger', `Stok ${nama} habis!`);
@@ -238,6 +346,7 @@
         }
 
         const existing = cart.find(c => c.barang_id === id);
+        const displayName = nama + (ukuran ? ` - ${ukuran} ${satuan}` : '');
         if (existing) {
           if (existing.qty >= stok) {
             showAlert('danger', `Stok ${nama} tidak mencukupi!`);
@@ -245,7 +354,7 @@
           }
           existing.qty++;
         } else {
-          cart.push({ barang_id: id, nama, harga, qty: 1, stok });
+          cart.push({ barang_id: id, nama: displayName, harga, qty: 1, stok });
         }
         renderCart();
       }
@@ -414,6 +523,8 @@
       let canvas, ctx;
       let drawing = false;
       let hasSigned = false;
+      let lastX = 0;
+      let lastY = 0;
 
       function initSignaturePad() {
         canvas = document.getElementById('signatureCanvas');
@@ -426,72 +537,133 @@
         ctx.lineJoin = 'round';
 
         // Mouse events
-        canvas.addEventListener('mousedown', startDrawing);
-        canvas.addEventListener('mousemove', draw);
-        canvas.addEventListener('mouseup', stopDrawing);
-        canvas.addEventListener('mouseout', stopDrawing);
+        canvas.addEventListener('mousedown', (e) => {
+          const rect = canvas.getBoundingClientRect();
+          lastX = e.clientX - rect.left;
+          lastY = e.clientY - rect.top;
+          drawing = true;
+          hasSigned = true;
+          document.getElementById('btnCetakStruk').disabled = false;
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+          if (!drawing) return;
+          const rect = canvas.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          ctx.beginPath();
+          ctx.moveTo(lastX, lastY);
+          ctx.lineTo(x, y);
+          ctx.stroke();
+          
+          lastX = x;
+          lastY = y;
+        });
+
+        canvas.addEventListener('mouseup', () => drawing = false);
+        canvas.addEventListener('mouseleave', () => drawing = false);
 
         // Touch events for mobile/tablet
-        canvas.addEventListener('touchstart', startDrawingTouch, { passive: false });
-        canvas.addEventListener('touchmove', drawTouch, { passive: false });
-        canvas.addEventListener('touchend', stopDrawing);
+        canvas.addEventListener('touchstart', (e) => {
+          e.preventDefault();
+          const rect = canvas.getBoundingClientRect();
+          const touch = e.touches[0];
+          lastX = touch.clientX - rect.left;
+          lastY = touch.clientY - rect.top;
+          drawing = true;
+          hasSigned = true;
+          document.getElementById('btnCetakStruk').disabled = false;
+        }, { passive: false });
+
+        canvas.addEventListener('touchmove', (e) => {
+          e.preventDefault();
+          if (!drawing) return;
+          const rect = canvas.getBoundingClientRect();
+          const touch = e.touches[0];
+          const x = touch.clientX - rect.left;
+          const y = touch.clientY - rect.top;
+          
+          ctx.beginPath();
+          ctx.moveTo(lastX, lastY);
+          ctx.lineTo(x, y);
+          ctx.stroke();
+          
+          lastX = x;
+          lastY = y;
+        }, { passive: false });
+
+        canvas.addEventListener('touchend', () => drawing = false);
+
+        // Upload Signature File Handler & Validation
+        const uploadInput = document.getElementById('uploadSignature');
+        if (uploadInput) {
+          uploadInput.value = ''; // reset previous file selection
+          uploadInput.removeEventListener('change', handleSignatureUpload); // ensure no duplicate listener
+          uploadInput.addEventListener('change', handleSignatureUpload);
+        }
 
         // Reset state
         hasSigned = false;
         document.getElementById('btnCetakStruk').disabled = true;
       }
 
-      function startDrawing(e) {
-        drawing = true;
-        draw(e);
-      }
+      function handleSignatureUpload(e) {
+        const file = e.target.files[0];
+        if (!file) return;
 
-      function draw(e) {
-        if (!drawing) return;
-        const rect = canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        if (!hasSigned) {
-          ctx.beginPath();
-          ctx.moveTo(x, y);
-          hasSigned = true;
-          document.getElementById('btnCetakStruk').disabled = false;
-        } else {
-          ctx.lineTo(x, y);
-          ctx.stroke();
+        // Validation 1: Type
+        const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+        if (!allowedTypes.includes(file.type)) {
+          alert('Format file tidak didukung! Harap unggah foto berformat PNG, JPG, atau JPEG.');
+          e.target.value = '';
+          return;
         }
-      }
 
-      function stopDrawing() {
-        drawing = false;
-        ctx.beginPath();
-      }
+        // Validation 2: Size (Max 2MB)
+        const maxSize = 2 * 1024 * 1024;
+        if (file.size > maxSize) {
+          alert('Ukuran file terlalu besar! Maksimal ukuran adalah 2 MB.');
+          e.target.value = '';
+          return;
+        }
 
-      function startDrawingTouch(e) {
-        e.preventDefault();
-        drawing = true;
-        const touch = e.touches[0];
-        const rect = canvas.getBoundingClientRect();
-        const x = touch.clientX - rect.left;
-        const y = touch.clientY - rect.top;
-        
-        ctx.beginPath();
-        ctx.moveTo(x, y);
-        hasSigned = true;
-        document.getElementById('btnCetakStruk').disabled = false;
-      }
+        // Get the upload button element to apply loading state
+        const uploadBtn = document.querySelector('button[onclick*="uploadSignature"]');
+        let origContent = '';
+        if (uploadBtn) {
+          origContent = uploadBtn.innerHTML;
+          uploadBtn.disabled = true;
+          uploadBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span> Mengunggah...';
+        }
 
-      function drawTouch(e) {
-        e.preventDefault();
-        if (!drawing) return;
-        const touch = e.touches[0];
-        const rect = canvas.getBoundingClientRect();
-        const x = touch.clientX - rect.left;
-        const y = touch.clientY - rect.top;
-        
-        ctx.lineTo(x, y);
-        ctx.stroke();
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          const img = new Image();
+          img.onload = function() {
+            // Draw image on canvas preserving aspect ratio
+            const hRatio = canvas.width / img.width;
+            const vRatio = canvas.height / img.height;
+            const ratio  = Math.min(hRatio, vRatio);
+            const centerShift_x = (canvas.width - img.width * ratio) / 2;
+            const centerShift_y = (canvas.height - img.height * ratio) / 2;  
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0, img.width, img.height,
+                          centerShift_x, centerShift_y, img.width * ratio, img.height * ratio);  
+            
+            hasSigned = true;
+            document.getElementById('btnCetakStruk').disabled = false;
+
+            // Reset loading state
+            if (uploadBtn) {
+              uploadBtn.disabled = false;
+              uploadBtn.innerHTML = origContent;
+            }
+          };
+          img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
       }
 
       function clearSignature() {
@@ -499,6 +671,12 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         hasSigned = false;
         document.getElementById('btnCetakStruk').disabled = true;
+
+        // Reset file input
+        const uploadInput = document.getElementById('uploadSignature');
+        if (uploadInput) {
+          uploadInput.value = '';
+        }
       }
 
       function cetakStruk() {

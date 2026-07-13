@@ -40,10 +40,17 @@ const barangController = {
   // POST /barang - Proses tambah
   async create(req, res) {
     try {
-      const { unit_usaha_id, nama_barang, harga_beli, harga_jual, stok } = req.body;
+      const { unit_usaha_id, nama_barang, harga_beli, harga_jual, stok, ukuran, satuan } = req.body;
 
       if (!nama_barang || !unit_usaha_id) {
         req.flash('error', 'Nama barang dan unit usaha harus diisi.');
+        return res.redirect('/barang/tambah');
+      }
+
+      const validSatuans = ['pcs', 'kg', 'gram', 'liter', 'ml', 'karung', 'dus', 'botol', 'pack', 'sak', 'tray'];
+      const normalizedSatuan = (satuan || '').trim().toLowerCase();
+      if (satuan && !validSatuans.includes(normalizedSatuan)) {
+        req.flash('error', 'Satuan tidak valid.');
         return res.redirect('/barang/tambah');
       }
 
@@ -52,7 +59,9 @@ const barangController = {
         nama_barang,
         harga_beli: harga_beli || 0,
         harga_jual: harga_jual || 0,
-        stok: stok || 0
+        stok: stok || 0,
+        ukuran: ukuran || null,
+        satuan: satuan || 'pcs'
       });
 
       // Log Activity: Create Barang
@@ -93,10 +102,17 @@ const barangController = {
   // POST /barang/edit/:id - Proses edit
   async update(req, res) {
     try {
-      const { unit_usaha_id, nama_barang, harga_beli, harga_jual, stok } = req.body;
+      const { unit_usaha_id, nama_barang, harga_beli, harga_jual, stok, ukuran, satuan } = req.body;
 
       if (!nama_barang || !unit_usaha_id) {
         req.flash('error', 'Nama barang dan unit usaha harus diisi.');
+        return res.redirect(`/barang/edit/${req.params.id}`);
+      }
+
+      const validSatuans = ['pcs', 'kg', 'gram', 'liter', 'ml', 'karung', 'dus', 'botol', 'pack', 'sak', 'tray'];
+      const normalizedSatuan = (satuan || '').trim().toLowerCase();
+      if (satuan && !validSatuans.includes(normalizedSatuan)) {
+        req.flash('error', 'Satuan tidak valid.');
         return res.redirect(`/barang/edit/${req.params.id}`);
       }
 
@@ -105,7 +121,9 @@ const barangController = {
         nama_barang,
         harga_beli: harga_beli || 0,
         harga_jual: harga_jual || 0,
-        stok: stok || 0
+        stok: stok || 0,
+        ukuran: ukuran || null,
+        satuan: satuan || 'pcs'
       });
 
       // Log Activity: Update Barang
