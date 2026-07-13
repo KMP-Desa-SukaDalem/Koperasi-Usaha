@@ -38,20 +38,20 @@ const Barang = {
 
   // Buat barang baru
   async create(data) {
-    const { unit_usaha_id, nama_barang, harga_beli, harga_jual, stok } = data;
+    const { unit_usaha_id, nama_barang, harga_beli, harga_jual, stok, ukuran, satuan } = data;
     const [result] = await db.query(
-      'INSERT INTO barang (unit_usaha_id, nama_barang, harga_beli, harga_jual, stok) VALUES (?, ?, ?, ?, ?)',
-      [unit_usaha_id, nama_barang, harga_beli, harga_jual, stok]
+      'INSERT INTO barang (unit_usaha_id, nama_barang, harga_beli, harga_jual, stok, ukuran, satuan) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [unit_usaha_id, nama_barang, harga_beli, harga_jual, stok, ukuran, satuan]
     );
     return result;
   },
 
   // Update barang
   async update(id, data) {
-    const { unit_usaha_id, nama_barang, harga_beli, harga_jual, stok } = data;
+    const { unit_usaha_id, nama_barang, harga_beli, harga_jual, stok, ukuran, satuan } = data;
     const [result] = await db.query(
-      'UPDATE barang SET unit_usaha_id = ?, nama_barang = ?, harga_beli = ?, harga_jual = ?, stok = ? WHERE id = ?',
-      [unit_usaha_id, nama_barang, harga_beli, harga_jual, stok, id]
+      'UPDATE barang SET unit_usaha_id = ?, nama_barang = ?, harga_beli = ?, harga_jual = ?, stok = ?, ukuran = ?, satuan = ? WHERE id = ?',
+      [unit_usaha_id, nama_barang, harga_beli, harga_jual, stok, ukuran, satuan, id]
     );
     return result;
   },

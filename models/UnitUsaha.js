@@ -15,20 +15,20 @@ const UnitUsaha = {
 
   // Buat unit usaha baru
   async create(data) {
-    const { nama_unit, deskripsi } = data;
+    const { nama_unit, deskripsi, penanggung_jawab, bidang_usaha, alamat, pic, no_hp_pic } = data;
     const [result] = await db.query(
-      'INSERT INTO unit_usaha (nama_unit, deskripsi) VALUES (?, ?)',
-      [nama_unit, deskripsi]
+      'INSERT INTO unit_usaha (nama_unit, deskripsi, penanggung_jawab, bidang_usaha, alamat, pic, no_hp_pic) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [nama_unit, deskripsi, penanggung_jawab, bidang_usaha, alamat, pic, no_hp_pic]
     );
     return result;
   },
 
   // Update unit usaha
   async update(id, data) {
-    const { nama_unit, deskripsi } = data;
+    const { nama_unit, deskripsi, penanggung_jawab, bidang_usaha, alamat, pic, no_hp_pic } = data;
     const [result] = await db.query(
-      'UPDATE unit_usaha SET nama_unit = ?, deskripsi = ? WHERE id = ?',
-      [nama_unit, deskripsi, id]
+      'UPDATE unit_usaha SET nama_unit = ?, deskripsi = ?, penanggung_jawab = ?, bidang_usaha = ?, alamat = ?, pic = ?, no_hp_pic = ? WHERE id = ?',
+      [nama_unit, deskripsi, penanggung_jawab, bidang_usaha, alamat, pic, no_hp_pic, id]
     );
     return result;
   },

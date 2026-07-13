@@ -29,6 +29,8 @@
                 <tr>
                   <th style="width:50px;">No</th>
                   <th>Nama Barang</th>
+                  <th>Ukuran / Isi</th>
+                  <th>Satuan</th>
                   <th>Unit Usaha</th>
                   <th class="text-end">Harga Beli</th>
                   <th class="text-end">Harga Jual</th>
@@ -41,6 +43,8 @@
                   <tr>
                     <td><%= i + 1 %></td>
                     <td><strong><%= item.nama_barang %></strong></td>
+                    <td><%= item.ukuran || '-' %></td>
+                    <td><%= item.satuan ? (item.satuan.charAt(0).toUpperCase() + item.satuan.slice(1)) : '-' %></td>
                     <td><small class="text-secondary"><%= item.nama_unit %></small></td>
                     <td class="text-end">Rp <%= Number(item.harga_beli).toLocaleString('id-ID') %></td>
                     <td class="text-end">Rp <%= Number(item.harga_jual).toLocaleString('id-ID') %></td>

@@ -32,6 +32,10 @@
                 <tr>
                   <th style="width:50px;">No</th>
                   <th>Nama Unit</th>
+                  <th>Bidang Usaha</th>
+                  <th>Penanggung Jawab</th>
+                  <th>Alamat</th>
+                  <th>PIC / No. HP</th>
                   <th>Deskripsi</th>
                   <th>Dibuat</th>
                   <th style="width:150px;" class="text-center">Aksi</th>
@@ -42,6 +46,17 @@
                   <tr>
                     <td><%= i + 1 %></td>
                     <td><strong><%= unit.nama_unit %></strong></td>
+                    <td><%= unit.bidang_usaha || '-' %></td>
+                    <td><%= unit.penanggung_jawab || '-' %></td>
+                    <td><%= unit.alamat || '-' %></td>
+                    <td>
+                      <% if (unit.pic || unit.no_hp_pic) { %>
+                        <strong><%= unit.pic || '-' %></strong><br>
+                        <small class="text-secondary"><%= unit.no_hp_pic || '-' %></small>
+                      <% } else { %>
+                        -
+                      <% } %>
+                    </td>
                     <td><%= unit.deskripsi || '-' %></td>
                     <td><%= new Date(unit.created_at).toLocaleDateString('id-ID') %></td>
                     <td class="text-center">

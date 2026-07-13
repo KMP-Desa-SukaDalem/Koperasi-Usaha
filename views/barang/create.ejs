@@ -31,6 +31,28 @@
           </div>
           <div class="row g-3 mb-3">
             <div class="col-md-6">
+              <label for="ukuran" class="form-label">Ukuran / Isi</label>
+              <input type="text" class="form-control" id="ukuran" name="ukuran" placeholder="Contoh: 2, 25, 500">
+            </div>
+            <div class="col-md-6">
+              <label for="satuan" class="form-label">Satuan (Unit of Measure)</label>
+              <select class="form-select" id="satuan" name="satuan">
+                <option value="pcs">Pcs</option>
+                <option value="kg">Kg</option>
+                <option value="gram">Gram</option>
+                <option value="liter">Liter</option>
+                <option value="ml">mL</option>
+                <option value="karung">Karung</option>
+                <option value="dus">Dus</option>
+                <option value="botol">Botol</option>
+                <option value="pack">Pack</option>
+                <option value="sak">Sak</option>
+                <option value="tray">Tray</option>
+              </select>
+            </div>
+          </div>
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
               <label for="harga_beli" class="form-label">Harga Beli (Rp)</label>
               <input type="number" class="form-control" id="harga_beli" name="harga_beli" min="0" value="0">
             </div>

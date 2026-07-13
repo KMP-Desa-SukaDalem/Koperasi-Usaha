@@ -30,6 +30,21 @@
           </div>
           <div class="row g-3 mb-3">
             <div class="col-md-6">
+              <label for="ukuran" class="form-label">Ukuran / Isi</label>
+              <input type="text" class="form-control" id="ukuran" name="ukuran" value="<%= item.ukuran || '' %>" placeholder="Contoh: 2, 25, 500">
+            </div>
+            <div class="col-md-6">
+              <label for="satuan" class="form-label">Satuan (Unit of Measure)</label>
+              <select class="form-select" id="satuan" name="satuan">
+                <% const satuans = ['pcs', 'kg', 'gram', 'liter', 'ml', 'karung', 'dus', 'botol', 'pack', 'sak', 'tray']; %>
+                <% satuans.forEach(sat => { %>
+                  <option value="<%= sat %>" <%= (item.satuan && item.satuan.toLowerCase() === sat) ? 'selected' : '' %>><%= sat.charAt(0).toUpperCase() + sat.slice(1) %></option>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
               <label for="harga_beli" class="form-label">Harga Beli (Rp)</label>
               <input type="number" class="form-control" id="harga_beli" name="harga_beli" min="0" value="<%= item.harga_beli %>">
             </div>

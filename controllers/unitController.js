@@ -29,14 +29,22 @@ const unitController = {
   // POST /unit-usaha - Proses tambah
   async create(req, res) {
     try {
-      const { nama_unit, deskripsi } = req.body;
+      const { nama_unit, deskripsi, penanggung_jawab, bidang_usaha, alamat, pic, no_hp_pic } = req.body;
 
       if (!nama_unit) {
         req.flash('error', 'Nama unit usaha harus diisi.');
         return res.redirect('/unit-usaha/tambah');
       }
 
-      const result = await UnitUsaha.create({ nama_unit, deskripsi });
+      const result = await UnitUsaha.create({ 
+        nama_unit, 
+        deskripsi,
+        penanggung_jawab,
+        bidang_usaha,
+        alamat,
+        pic,
+        no_hp_pic
+      });
 
       // Log Activity: Create Unit Usaha
       await Log.record(req.session.user.id, 'CREATE', 'UNIT_USAHA', result.insertId, `Menambah unit usaha baru: ${nama_unit}.`);
@@ -72,14 +80,22 @@ const unitController = {
   // POST /unit-usaha/edit/:id - Proses edit
   async update(req, res) {
     try {
-      const { nama_unit, deskripsi } = req.body;
+      const { nama_unit, deskripsi, penanggung_jawab, bidang_usaha, alamat, pic, no_hp_pic } = req.body;
 
       if (!nama_unit) {
         req.flash('error', 'Nama unit usaha harus diisi.');
         return res.redirect(`/unit-usaha/edit/${req.params.id}`);
       }
 
-      await UnitUsaha.update(req.params.id, { nama_unit, deskripsi });
+      await UnitUsaha.update(req.params.id, { 
+        nama_unit, 
+        deskripsi,
+        penanggung_jawab,
+        bidang_usaha,
+        alamat,
+        pic,
+        no_hp_pic
+      });
 
       // Log Activity: Update Unit Usaha
       await Log.record(req.session.user.id, 'UPDATE', 'UNIT_USAHA', req.params.id, `Memperbarui data unit usaha: ${nama_unit}.`);
